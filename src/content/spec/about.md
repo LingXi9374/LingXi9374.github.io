@@ -1,9 +1,17 @@
-# About
-This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
+# 关于
+这是由B站UP主[泠熙_LingXi](https://space.bilibili.com/396529360)制作的个人博客网站，欢迎您的访问！
 
+此网站由Fuwari模板制作而成。
 ::github{repo="saicaca/fuwari"}
 
-> ### Sources of images used in this site
-> - [Unsplash](https://unsplash.com/)
-> - [星と少女](https://www.pixiv.net/artworks/108916539) by [Stella](https://www.pixiv.net/users/93273965)
-> - [Rabbit - v1.4 Showcase](https://civitai.com/posts/586908) by [Rabbit_YourMajesty](https://civitai.com/user/Rabbit_YourMajesty)
+> ### 友情链接
+> - [Khmer_Copilot(泠熙B站小号)](https://space.bilibili.com/3494357260831532)
+> - [睡衣蓝孩BB(合作伙伴(算是吧...))](https://space.bilibili.com/393698771)
+
+> ### 我推荐的项目
+> - [Arch Linux](https://www.archlinux.org/)
+> - [Linux Mint](https://www.linuxmint.com/)
+> - [Plain Craft Launcher](https://ifdian.net/a/LTcat?tab=home)
+> - [Visual Studio Code](https://code.visualstudio.com/)
+> - [Everything](https://www.voidtools.com/)
+> - [LANDrop](https://landrop.app/)
