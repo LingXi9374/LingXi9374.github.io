@@ -56,11 +56,11 @@ export const profileConfig: ProfileConfig = {
   bio: '一个很普通的B站UP主。',
   links: [
     {
-      name: 'Twitter',
-      icon: 'fa6-brands:twitter',       // Visit https://icones.js.org/ for icon codes
+      name: 'Douyin',
+      icon: 'fa6-brands:tiktok',       // Visit https://icones.js.org/ for icon codes
                                         // You will need to install the corresponding icon set if it's not already included
                                         // `pnpm add @iconify-json/<icon-set-name>`
-      url: 'https://twitter.com',
+      url: 'https://www.douyin.com/user/MS4wLjABAAAAPZ8mGlNzlrwcMyCDBdh6hBrN-PK222T13mXmXMkFB1SzZ5mEwTNu5_c-kdWXjplP?from_tab_name=main&vid=7396996864605818152',
     },
     {
       name: 'Bilibili',
