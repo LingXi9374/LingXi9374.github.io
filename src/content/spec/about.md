@@ -1,5 +1,5 @@
 # 关于
-这是由B站UP主[泠熙_LingXi](https://space.bilibili.com/396529360)制作的个人博客网站，欢迎您的访问！
+这是由B站UP主[泠熙_LingXi_](https://space.bilibili.com/396529360)制作的个人博客网站，欢迎您的访问！
 
 此网站由Fuwari模板制作而成。
 ::github{repo="saicaca/fuwari"}
