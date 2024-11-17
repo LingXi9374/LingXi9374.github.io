@@ -9,7 +9,7 @@ draft: false
 lang: 'zh_CN'
 ---
 
-> 封面图片来源：[链接](https://www.bilibili.com/video/BV1qbm9YzEkQ)
+> 封面图片来源: [链接](https://www.bilibili.com/video/BV1qbm9YzEkQ)
 
 # <font color=#EE230D>__\# 1\. GPLv3 许可证概述__</font>
 
