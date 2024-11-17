@@ -1,7 +1,7 @@
 ---
 title: 音游圈皇帝的版权要求是否合理？
 published: 2024-11-17
-description: '根据GPLv3许可证分析lchzh3473的版权要求及其行为是否合理。''
+description: '根据GPLv3许可证分析lchzh3473的版权要求及其行为是否合理。'
 image: './lchzh3473.jpg'
 tags: [Phigros,音游]
 category: '锐评'
