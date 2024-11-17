@@ -2,7 +2,7 @@
 title: Arch Linux in VMware安装指南（可能会持续更新）
 published: 2024-11-17
 description: '讲述如何在VMware上安装Arch Linux'
-image: ''
+image: './ArchInst.png'
 tags: [Linux]
 category: '教程'
 draft: false 
