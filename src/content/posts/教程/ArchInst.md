@@ -45,7 +45,7 @@ Arch Linux是一个基于滚动发布的Linux发行版，它的设计理念是�
 
 启动虚拟机，进入Arch Linux安装界面。
 安装界面选项选择`"Arch Linux install medium (x86_64, UEFI)"`回车。 ~~(第一个就是了直接Enter回车)~~
-[choose this](/src/content/posts/教程/choose.png)
+![choose this](./choose.png)
 
 等它加载完就进入livecd交互tty界面了（使用getty），默认root登录
 
@@ -203,7 +203,7 @@ cat /mnt/etc/fstab
 ```
 
 看起来是这样子的
-[fstab](/src/content/posts/教程/fstab.png)
+![fstab](./fstab.png)
 
 
 #### 切换根目录
