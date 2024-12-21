@@ -2,7 +2,7 @@
 title: Arch Linux 安装后配置（可能也会更新）
 published: 2024-12-21
 description: '讲述安装Arch Linux后，需要干什么'
-image: 'https://img.moegirl.org.cn/common/thumb/c/c9/Archlinux_chan.png/1280px-Archlinux_chan.png'
+image: './1920px-Archlinux_chan.png'
 tags: [Linux]
 category: '教程'
 draft: false 
