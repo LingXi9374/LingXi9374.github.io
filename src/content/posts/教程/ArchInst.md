@@ -45,6 +45,7 @@ Arch Linux是一个基于滚动发布的Linux发行版，它的设计理念是�
 
 启动虚拟机，进入Arch Linux安装界面。
 安装界面选项选择`"Arch Linux install medium (x86_64, UEFI)"`回车。 ~~(第一个就是了直接Enter回车)~~
+
 ![choose this](./choose.png)
 
 等它加载完就进入livecd交互tty界面了（使用getty），默认root登录
@@ -203,6 +204,7 @@ cat /mnt/etc/fstab
 ```
 
 看起来是这样子的
+
 ![fstab](./fstab.png)
 
 
@@ -331,11 +333,7 @@ Installation finished. No error reported.
 
 则表示安装grub引导成功。
 
-生成`grub`配置文件：
-
-```bash
-grub-mkconfig -o /boot/grub/grub.cfg
-```
+-----
 
 编辑`/etc/default/grub`文件，将`"GRUB_TIMEOUT=5"`修改为`"GRUB_TIMEOUT=30"`；
 
@@ -349,7 +347,7 @@ GRUB_CMDLINE_LINUX_DEFAULT="loglevel=5 nowatchdog"
 
 保存并退出。
 
-重新生成`grub`配置文件：
+生成`grub`配置文件：
 
 ```bash
 grub-mkconfig -o /boot/grub/grub.cfg
