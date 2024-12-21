@@ -387,8 +387,6 @@ reboot
 
 ## 后续工作
 
-敬请期待……
-
-Coming soon……
+敬请参阅[下一篇博文](https://lingxi9374.github.io/posts/%E6%95%99%E7%A8%8B/archconfiguration/)
 
 （The End）
