@@ -1,5 +1,43 @@
 ---
-const theme = 'auto'
+// Giscus.astro
+import { onMount } from 'solid-js'
+
+// 获取当前页面主题或默认主题
+const getTheme = () =>
+  document.documentElement.getAttribute('data-theme') ||
+  'preferred_color_scheme'
+let currentTheme = getTheme()
+
+// 更新 Giscus 主题的函数
+function updateGiscusTheme(theme: string) {
+  // 指定 theme 参数为 string 类型
+  const giscusFrame = document.querySelector(
+    'iframe.giscus-frame',
+  ) as HTMLIFrameElement
+  // biome-ignore lint/complexity/useOptionalChain: <explanation>
+  if (giscusFrame && giscusFrame.contentWindow) {
+    giscusFrame.contentWindow.postMessage(
+      { giscus: { setConfig: { theme: theme } } },
+      'https://giscus.app',
+    )
+  }
+}
+
+// 监听主题切换事件
+onMount(() => {
+  // 初始化时设置 Giscus 主题
+  updateGiscusTheme(currentTheme)
+
+  // 监听主题变化事件
+  window.addEventListener('themeChange', event => {
+    // 使用类型断言将 event 从 Event 类型转换为 CustomEvent 类型
+    const newTheme = (event as CustomEvent).detail.theme
+    if (newTheme !== currentTheme) {
+      currentTheme = newTheme
+      updateGiscusTheme(newTheme)
+    }
+  })
+})
 ---
 
 <script src="https://giscus.app/client.js"
@@ -12,7 +50,7 @@ const theme = 'auto'
         data-reactions-enabled="1"
         data-emit-metadata="0"
         data-input-position="top"
-        data-theme={theme}
+        data-theme={currentTheme}
         data-lang="zh-CN"
         data-loading="lazy"
         crossorigin="anonymous"
