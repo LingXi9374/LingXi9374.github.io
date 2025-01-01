@@ -1,7 +1,7 @@
 ---
 title: Arch Linux 启用独显直连(NVIDIA)
 published: 2025-01-01
-description: ''
+description: '如何在Arch Linux上启用NVIDIA独显直连，让应用程序直接使用独显渲染'
 image: './Arch-Nvidia.png'
 tags: [Linux]
 category: '教程'
