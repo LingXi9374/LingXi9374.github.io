@@ -187,6 +187,10 @@ sudo systemctl enable nvidia-suspend.service nvidia-hibernate.service nvidia-res
 
 ![pAXivr9.png](https://s21.ax1x.com/2024/12/21/pAXivr9.png)
 
+### 2. 开启独显直连
+
+敬请参阅这篇文章：[Arch Linux 启用独显直连(NVIDIA)](https://lingxi9374.github.io/posts/%E6%95%99%E7%A8%8B/arch-nvidia/)
+
 ## 第四件事
 
 ### 1. 安装中文输入法（雾凇拼音）
