@@ -17,3 +17,4 @@
 > - [Visual Studio Code](https://code.visualstudio.com/)
 > - [Everything](https://www.voidtools.com/)
 > - [LANDrop](https://landrop.app/)
+> - [AB Download Manager](https://github.com/amir1376/ab-download-manager)
