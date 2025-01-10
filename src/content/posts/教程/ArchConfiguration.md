@@ -265,6 +265,7 @@ yay -S <软件名>
  - `linuxqq`: QQ聊天（基于ntqq内核的新版QQ）
  - `visual-studio-code-bin`: VSCode编辑器
  - `nekoray`: 科学上网软件（基于sing-box和xray-core）
+ - `teamviewer`：TeamViewer远程控制软件
  - more and more...
 
 
