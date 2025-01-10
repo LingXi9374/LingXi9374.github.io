@@ -38,6 +38,7 @@ export enum LinkPreset {
   Home = 0,
   Archive = 1,
   About = 2,
+  Resources = 3,
 }
 
 export type NavBarLink = {
@@ -66,11 +67,6 @@ export type LicenseConfig = {
   name: string
   url: string
 }
-
-export type LIGHT_DARK_MODE =
-  | typeof LIGHT_MODE
-  | typeof DARK_MODE
-  | typeof AUTO_MODE
 
 export type BlogPostData = {
   body: string
