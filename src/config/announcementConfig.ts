@@ -5,7 +5,7 @@ export const announcementConfig: AnnouncementConfig = {
 	title: "公告",
 
 	// 公告内容
-	content: "欢迎来到我的博客！这是一则示例公告。",
+	content: "本Blog于2026年从Fuwari迁移至更稳定的Firefly模板，让我们恭喜泠熙_LingXi_的博客得到大翻新！可惜原先的Blog文章评论全部丢失力(悲)",
 
 	// 是否允许用户关闭公告
 	closable: true,

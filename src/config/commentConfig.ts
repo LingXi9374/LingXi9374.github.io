@@ -47,7 +47,7 @@ export const commentConfig: CommentConfig = {
 	//giscus评论系统配置
 	giscus: {
 		// 设置 Giscus 评论系统仓库
-		repo: "LingXi9374/lingxi-newblog",
+		repo: "LingXi9374/LingXi9374.github.io",
 		// 设置 Giscus 评论系统仓库ID
 		repoId: "R_kgDORm9TTg",
 		// 设置 Giscus 评论系统分类
