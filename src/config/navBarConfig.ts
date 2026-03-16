@@ -19,7 +19,7 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 	];
 
 	// 友链
-	links.push(LinkPreset.Friends);
+	//links.push(LinkPreset.Friends);
 
 	// 根据配置决定是否添加留言板，在siteConfig关闭pages.guestbook时导航栏不显示留言板
 	if (siteConfig.pages.guestbook) {
@@ -64,22 +64,10 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		children: [
 			{
 				name: "GitHub",
-				url: "https://github.com/CuteLeaf/Firefly",
+				url: "https://github.com/LingXi9374/lingxi-newblog",
 				external: true,
 				icon: "fa7-brands:github",
-			},
-			{
-				name: "Gitee",
-				url: "https://gitee.com/CuteLeaf/Firefly",
-				external: true,
-				icon: "fa7-brands:gitee",
-			},
-			{
-				name: "QQ交流群",
-				url: "https://qm.qq.com/q/ZGsFa8qX2G",
-				external: true,
-				icon: "fa7-brands:qq",
-			},
+			}
 		],
 	});
 

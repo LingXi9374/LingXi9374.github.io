@@ -5,44 +5,44 @@ export const commentConfig: CommentConfig = {
 	type: "none",
 
 	//twikoo评论系统配置
-	twikoo: {
-		envId: "https://twikoo.vercel.app",
+	//twikoo: {
+	//	envId: "https://twikoo.vercel.app",
 		// 设置 Twikoo 评论系统语言
-		lang: "zh-CN",
+	//	lang: "zh-CN",
 		// 是否启用文章访问量统计功能
-		visitorCount: true,
-	},
+	//	visitorCount: true,
+	//},
 
 	//waline评论系统配置
-	waline: {
+	//waline: {
 		// waline 后端服务地址
-		serverURL: "https://waline.vercel.app",
+	//	serverURL: "https://waline.vercel.app",
 		// 设置 Waline 评论系统语言
-		lang: "zh-CN",
+	//	lang: "zh-CN",
 		// 设置 Waline 评论系统表情地址
-		emoji: [
-			"https://unpkg.com/@waline/emojis@1.4.0/weibo",
-			"https://unpkg.com/@waline/emojis@1.4.0/bilibili",
-			"https://unpkg.com/@waline/emojis@1.4.0/bmoji",
-		],
+	//	emoji: [
+	//		"https://unpkg.com/@waline/emojis@1.4.0/weibo",
+	//		"https://unpkg.com/@waline/emojis@1.4.0/bilibili",
+	//		"https://unpkg.com/@waline/emojis@1.4.0/bmoji",
+	//	],
 		// 评论登录模式。可选值如下：
 		//   'enable'   —— 默认，允许访客匿名评论和用第三方 OAuth 登录评论，兼容性最佳。
 		//   'force'    —— 强制必须登录后才能评论，适合严格社区，关闭匿名评论。
 		//   'disable'  —— 禁止所有登录和 OAuth，仅允许匿名评论（填写昵称/邮箱），适用于极简留言。
-		login: "enable",
+	//	login: "enable",
 		// 是否启用文章访问量统计功能
-		visitorCount: true,
-	},
+	//	visitorCount: true,
+	//},
 
 	// artalk评论系统配置
-	artalk: {
+	//artalk: {
 		// artalk后端程序 API 地址
-		server: "https://artalk.example.com/",
+	//	server: "https://artalk.example.com/",
 		// 设置 Artalk 语言
-		locale: "zh-CN",
+	//	locale: "zh-CN",
 		// 是否启用文章访问量统计功能
-		visitorCount: true,
-	},
+	//	visitorCount: true,
+	//},
 
 	//giscus评论系统配置
 	giscus: {
@@ -71,8 +71,8 @@ export const commentConfig: CommentConfig = {
 	},
 
 	//disqus评论系统配置
-	disqus: {
+	//disqus: {
 		// 获取 Disqus 评论系统
-		shortname: "firefly",
-	},
+	//	shortname: "firefly",
+	//},
 };
