@@ -240,6 +240,7 @@ export type CommentConfig = {
 		inputPosition: string;
 		lang: string;
 		loading: string;
+		crossorigin: string;
 	};
 	disqus?: {
 		shortname: string;
