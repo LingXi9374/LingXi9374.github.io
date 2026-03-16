@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /_astro/
 
-Sitemap: https://firefly.cuteleaf.cn/sitemap-index.xml
+Sitemap: https://blog-lingxi9374.netlify.app/sitemap-index.xml
