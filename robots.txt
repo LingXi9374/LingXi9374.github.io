@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /_astro/
 
-Sitemap: https://blog-lingxi9374.netlify.app/sitemap-index.xml
+Sitemap: https://lingxi9374.github.io/sitemap-index.xml
