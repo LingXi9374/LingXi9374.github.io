@@ -2,7 +2,7 @@
 title: UniGetUI：让Windows软件管理告别命令行，图形化操作真高效
 published: 2025-10-03
 description: '一键集成Winget、Scoop、Chocolatey等10多种包管理器'
-image: './images/UniGetUI.png'
+image: '../images/UniGetUI.png'
 tags: [开源,Windows]
 category: '杂谈'
 draft: false 

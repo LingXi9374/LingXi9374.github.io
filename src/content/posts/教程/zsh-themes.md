@@ -2,7 +2,7 @@
 title: 使用 Oh-My-Zsh 主题为你的 Zsh 美化！让你的终端更好看！
 published: 2025-05-05
 description: '安装 Zsh 并美化终端'
-image: './images/zsh-config.png'
+image: '../images/zsh-config.png'
 tags: [Linux]
 category: '教程'
 draft: false 

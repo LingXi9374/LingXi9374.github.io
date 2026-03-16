@@ -2,7 +2,7 @@
 title: Arch Linux 完全指南(物理机 & 虚拟机)(2025.01.09更新)
 published: 2025-01-09
 description: '如何在物理机/虚拟机上安装Arch Linux'
-image: './images/ArchInst.png'
+image: '../images/ArchInst.png'
 tags: [Linux]
 category: '教程'
 draft: false 
@@ -227,7 +227,7 @@ lang: 'zh_CN'
 
 进入Arch Linux Live CD引导界面，选择`"Arch Linux install medium (x86_64, UEFI)"`回车。 ~~(第一个就是了直接Enter回车)~~
 
-![choose](./images/choose.png)
+![choose](../images/choose.png)
 
 <center><font color="#A9A9A9">Choose This!</font></center>
 
@@ -619,7 +619,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 记得检查`Fstab`文件是否正确，确保它包含了所有需要挂载的分区，并且挂载信息正确。
 
-![fstab](./images/fstab.png)
+![fstab](../images/fstab.png)
 
 <center><font color="#A9A9A9">Fstab文件示例</font></center>
 

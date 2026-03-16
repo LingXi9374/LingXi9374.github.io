@@ -2,7 +2,7 @@
 title: 就“Alist被卖”一事对国内开源的思考
 published: 2025-07-06
 description: '对知名网盘聚合软件Alist项目售出事件的一些想法'
-image: './images/Alist.jpg'
+image: '../images/Alist.jpg'
 tags: [开源]
 category: '锐评'
 draft: false 

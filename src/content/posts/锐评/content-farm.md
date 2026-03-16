@@ -2,7 +2,7 @@
 title: 如何清理「内容农场」？
 published: 2025-12-12
 description: '铲除**内容农场**产生的垃圾信息，还你一个清净的中文搜索体验！'
-image: './images/content_farm.png'
+image: '../images/content_farm.png'
 tags: []
 category: '锐评'
 draft: false 
