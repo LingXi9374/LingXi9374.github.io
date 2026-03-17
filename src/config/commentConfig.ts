@@ -51,9 +51,9 @@ export const commentConfig: CommentConfig = {
 		// 设置 Giscus 评论系统仓库ID
 		repoId: "R_kgDORm9TTg",
 		// 设置 Giscus 评论系统分类
-		category: "Announcements",
+		category: "General",
 		// 获取 Giscus 评论系统分类ID
-		categoryId: "DIC_kwDORm9TTs4C4f0s",
+		categoryId: "DIC_kwDORm9TTs4C4f0t",
 		// 获取 Giscus 评论系统映射方式
 		mapping: "pathname",
 		// 获取 Giscus 评论系统严格模式
