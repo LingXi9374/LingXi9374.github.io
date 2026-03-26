@@ -13,7 +13,7 @@ export const siteConfig: SiteConfig = {
 	subtitle: " ——一个令人耳目一新的Blog",
 
 	// 站点 URL
-	site_url: "https://lingxi9374.github.io",
+	site_url: "https://blog.lingxi9374.top",
 
 	// 站点描述
 	description:
