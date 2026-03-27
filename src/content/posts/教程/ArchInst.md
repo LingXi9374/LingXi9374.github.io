@@ -78,9 +78,9 @@ lang: 'zh_CN'
 
 `Arch Linux`系统的安装需要一个ISO镜像文件，可以从[官网下载](https://archlinux.org/download/)，但国内的网络环境推荐去开源镜像站下载，这里列出了一些国内镜像站。
 
- - (不推荐) ~~ TUNA镜像源：https://mirrors.tuna.tsinghua.edu.cn/archlinux/iso/latest/ ~~
+ - (不推荐) ~~TUNA镜像源：https://mirrors.tuna.tsinghua.edu.cn/archlinux/iso/latest/~~
 
- - (不推荐) ~~ 北外镜像源：https://mirrors.bfsu.edu.cn/archlinux/iso/latest/ ~~
+ - (不推荐) ~~北外镜像源：https://mirrors.bfsu.edu.cn/archlinux/iso/latest/~~
 
  - 中科大源：https://mirrors.ustc.edu.cn/archlinux/iso/latest/
 
