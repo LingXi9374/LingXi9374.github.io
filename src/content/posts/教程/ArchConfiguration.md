@@ -26,7 +26,7 @@ sudo pacman -S fastfetch
 
 执行`fastfetch`命令，即可看到系统配置信息。
 
-![pAXikBn.png](https://s21.ax1x.com/2024/12/21/pAXikBn.png)
+![终端显示 fastfetch 信息](https://s21.ax1x.com/2024/12/21/pAXikBn.png)
 
 ### 2. 添加archlinuxcn仓库
 
@@ -42,7 +42,7 @@ sudo pacman -S fastfetch
 
 编辑`/etc/pacman.conf`文件，在文件末尾添加以下内容：
 
-```bash
+```bash title="/etc/pacman.conf"
 [archlinuxcn]
 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
@@ -111,7 +111,7 @@ sudo systemctl enable gdm.service
 reboot
 ```
 
-重启后记得桌面环境设置中文，每个桌面环境都有自己的设置方法，请自行查找 ~~（好像像XFCE这类桌面没有中文支持）））~~。
+重启后记得桌面环境设置中文，每个桌面环境都有自己的设置方法，请自行查找（XFCE桌面需要编辑`/etc/locale.conf`更改为`LANG=zh_CN.UTF-8`以启用中文支持）。
 
 ### 2. 安装中文字体
 
@@ -151,7 +151,7 @@ sudo pacman -S egl-gbm egl-wayland libvdpau libxnvctrl nvidia-dkms nvidia-prime 
 
 编辑initramfs配置文件`/etc/mkinitcpio.conf`，在`MODULES`字段里添加以下内容：
 
-```bash
+```bash title="/etc/mkinitcpio.conf"
 MODULES=(... nvidia nvidia_modeset nvidia_uvm nvidia_drm...)
 ```
 
@@ -165,7 +165,7 @@ sudo mkinitcpio -P
 
 配置内核启动参数，编辑grub配置文件`/etc/default/grub`，在`GRUB_CMDLINE_LINUX`字段里添加以下内容：
 
-```bash
+```bash title="/etc/default/grub"
 GRUB_CMDLINE_LINUX="... ibt=off nvidia-drm.modeset=1"
 ```
 
@@ -185,11 +185,11 @@ sudo systemctl enable nvidia-suspend.service nvidia-hibernate.service nvidia-res
 
 重启电脑后检查，输入`nvidia-smi`命令，如果有输出，说明驱动安装成功。
 
-![pAXivr9.png](https://s21.ax1x.com/2024/12/21/pAXivr9.png)
+![终端显示 nvidia-smi 输出](https://s21.ax1x.com/2024/12/21/pAXivr9.png)
 
 ### 2. 开启独显直连
 
-敬请参阅这篇文章：[Arch Linux 启用独显直连(NVIDIA)](https://lingxi9374.github.io/posts/%E6%95%99%E7%A8%8B/arch-nvidia/)
+敬请参阅这篇文章：[Arch Linux 启用独显直连(NVIDIA)](https://blog.lingxi9374.top/posts/%E6%95%99%E7%A8%8B/arch-nvidia/)
 
 ## 第四件事
 
@@ -229,13 +229,17 @@ rime_frontend=fcitx5-rime bash rime-install iDvel/rime-ice:others/recipes/full
 
 如何激活：接下来，只需要按「Ctrl+~」快捷键（其中，「~」键位于 Tab 键的正上方），打开 RIME 的输入方案选择菜单：
 
-![pAXisEt.webp](https://s21.ax1x.com/2024/12/21/pAXisEt.webp)
+![RIME 方案候选框](https://s21.ax1x.com/2024/12/21/pAXisEt.webp)
 
 然后，按下相应的数字键（或直接点击），选择「雾凇拼音」，那么雾凇拼音将正式激活，你可以畅快地打字了！
 
 ## 第五件事
 
 ### 1. 配置hosts文件
+
+:::warning
+由于许多国外网站(如 Github, Gitlab, freedesktop.org 等)因大陆运营商的 SNI 阻断，该方法失效，建议使用 AUR 安装 throne, Clash Party 等科学上网软件。
+:::
 
 由于我们日常使用Arch Linux过程中，往往都需要与Github打交道，但很多时候终端执行一些命令时总是连不上，因此，我们需要配置hosts文件。
 
@@ -264,7 +268,7 @@ yay -S <软件名>
 我的常用软件：
  - `linuxqq`: QQ聊天（基于ntqq内核的新版QQ）
  - `visual-studio-code-bin`: VSCode编辑器
- - `nekoray`: 科学上网软件（基于sing-box和xray-core）
+ - `throne`: 科学上网软件（基于sing-box和xray-core）
  - `teamviewer`：TeamViewer远程控制软件
  - more and more...
 

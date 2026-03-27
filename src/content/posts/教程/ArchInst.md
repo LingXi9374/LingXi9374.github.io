@@ -9,33 +9,6 @@ draft: false
 lang: 'zh_CN'
 ---
 
-<style>
-  .heimu, .heimu a, a .heimu, .heimu a.new {
-      background-color: #252525;
-      color: #252525; /* 初始颜色与背景相同，文字不可见 */
-      text-shadow: none;
-      transition: color 0.5s ease-in-out;
-  }
-  </style>
-  <style>
-  .heimu:hover, .heimu:active,
-  .heimu:hover .heimu, .heimu:active .heimu {
-    color: white !important;
-  }
-  </style>
-  <style>
-  .heimu:hover a, a:hover .heimu,
-  .heimu:active a, a:active .heimu {
-    color: lightblue !important;
-  }
-  </style>
-  <style>
-  .heimu:hover .new, .heimu .new:hover, .new:hover .heimu,
-  .heimu:active .new, .heimu .new:active, .new:active .heimu {
-    color: #BA0000 !important;
-  }
-</style>
-
 ## 前言
 
 :::important
@@ -62,15 +35,15 @@ lang: 'zh_CN'
 #### 一、 物理机硬件要求
 
  1. 有一台能用的电脑！
- <span class="heimu" title="你知道的太多了">~~(如果你的电脑在此之前就有一堆硬件问题，比如开机没几秒就熄灯之类的，那么你要不拿去修理要不换一台电脑)。~~</span><span class="heimu" title="你知道的太多了">~~(如果你没有一台电脑，是手机用户，那请退出这个网站，买一台电脑再来，或者使用Termux运行Linux虚拟机)。~~</span>
+ :spoiler[~~(如果你的电脑在此之前就有一堆硬件问题，比如开机没几秒就熄灯之类的，那么你要不拿去修理要不换一台电脑)。~~]:spoiler[~~(如果你没有一台电脑，是手机用户，那请退出这个网站，买一台电脑再来，或者使用Termux运行Linux虚拟机)。~~]
 
- 2. 你的主板支持UEFI启动。<span class="heimu" title="你知道的太多了">~~(在当今UEFI普及的时代，很多教程都以UEFI+GPT方式安装，如果你的电脑不支持UEFI启动，说明你的电脑很老了，请换一台电脑)。~~</span>
+ 2. 你的主板支持UEFI启动。:spoiler[~~(在当今UEFI普及的时代，很多教程都以UEFI+GPT方式安装，如果你的电脑不支持UEFI启动，说明你的电脑很老了，请换一台电脑)。~~]
 
- 3. 至少 4GB 的 DDR3 内存，推荐 8GB DDR4 以上。<span class="heimu" title="你知道的太多了">~~DDR2内存用户请自觉退出该页面（。~~</span>
+ 3. 至少 4GB 的 DDR3 内存，推荐 8GB DDR4 以上。:spoiler[~~DDR2内存用户请自觉退出该页面（。~~]
 
  4. 至少 20GB HDD的硬盘空间，推荐 120GB SSD以上(较普遍的固态硬盘的容量)。
 
- 5. 有较强的网络环境，推荐千兆网线或者千兆 WiFi 6 无线网卡(比如Intel 的 AX210)<span class="heimu" title="你知道的太多了">~~(如果你的光猫宽带不支持千兆，虽然能继续跟着教程安装，但是拉取仓库的速度就很不理想了，只要你能忍受就行)。~~</span>
+ 5. 有较强的网络环境，推荐千兆网线或者千兆 WiFi 6 无线网卡(比如Intel 的 AX210):spoiler[~~(如果你的光猫宽带不支持千兆，虽然能继续跟着教程安装，但是拉取仓库的速度就很不理想了，只要你能忍受就行)。~~]
 
  6. CPU为x86_64架构(Intel 或 AMD)，只要能安装就行。~~ARM平台的CPU请查阅其他教程~~
 
@@ -78,7 +51,7 @@ lang: 'zh_CN'
 
 #### 二、 虚拟机软件要求
 
- 1. 你的物理机支持虚拟化技术，如果默认不开启需要在固件设置<span class="heimu" title="你知道的太多了">(人话就是BIOS设置但是是在UEFI平台上的称呼)</span>中找到类似`"Intel Virtual Technology"`和`"VT-d"`字样，选择`"enable"`（AMD平台的为`"AMD-V"`字样）。
+ 1. 你的物理机支持虚拟化技术，如果默认不开启需要在固件设置:spoiler[(人话就是BIOS设置但是是在UEFI平台上的称呼)]中找到类似`"Intel Virtual Technology"`和`"VT-d"`字样，选择`"enable"`（AMD平台的为`"AMD-V"`字样）。
 
  2. 虚拟机软件为`VMware Workstation Pro` 或 `VirtualBox`，推荐安装最新版本。
 
@@ -93,9 +66,9 @@ lang: 'zh_CN'
  - 物理机安装还需要另外准备一个可读写的U盘，用来引导`Arch Linux`安装盘。
 
  - 需要用户有一定的Linux基础，包括命令行操作、文件管理、软件安装等。
- <span class="heimu" title="你知道的太多了">(如果你是一位完全不会Linux的新手，建议你尝试其他的发行版吧，比如常用的Ubuntu，Mint，Fedora等，先在虚拟机或者WSL2上体验一下再来考虑要不要安装)</span>
+ :spoiler[(如果你是一位完全不会Linux的新手，建议你尝试其他的发行版吧，比如常用的Ubuntu，Mint，Fedora等，先在虚拟机或者WSL2上体验一下再来考虑要不要安装)]
 
- - 需要用户有一定的命令行基础！<span class="heimu" title="你知道的太多了">(如果你是Windows用户，并且你从来没碰过cmd和powershell，也比较讨厌命令行操作，只会桌面操作，建议你关闭该教程，继续使用Windows，因为Linux很多时候需要命令行操作，这都一点不会还不如继续保持Win，别来折磨自己（（（)</span><span class="heimu" title="你知道的太多了">(或者你无视我的提醒，用户：我埃及吧怎样用就怎样用（（（)</span>
+ - 需要用户有一定的命令行基础！:spoiler[(如果你是Windows用户，并且你从来没碰过cmd和powershell，也比较讨厌命令行操作，只会桌面操作，建议你关闭该教程，继续使用Windows，因为Linux很多时候需要命令行操作，这都一点不会还不如继续保持Win，别来折磨自己（（（)]:spoiler[(或者你无视我的提醒，用户：我埃及吧怎样用就怎样用（（（)]
 
  - 参考：https://arch.icekylin.online/guide/prepare/head-on-blow.html
 
@@ -105,13 +78,15 @@ lang: 'zh_CN'
 
 `Arch Linux`系统的安装需要一个ISO镜像文件，可以从[官网下载](https://archlinux.org/download/)，但国内的网络环境推荐去开源镜像站下载，这里列出了一些国内镜像站。
 
- - TUNA镜像源：https://mirrors.tuna.tsinghua.edu.cn/archlinux/iso/latest/
+ - (不推荐) ~~ TUNA镜像源：https://mirrors.tuna.tsinghua.edu.cn/archlinux/iso/latest/ ~~
 
- - 北外镜像源：https://mirrors.bfsu.edu.cn/archlinux/iso/latest/
+ - (不推荐) ~~ 北外镜像源：https://mirrors.bfsu.edu.cn/archlinux/iso/latest/ ~~
 
  - 中科大源：https://mirrors.ustc.edu.cn/archlinux/iso/latest/
 
  - 浙大源：https://mirrors.zju.edu.cn/archlinux/iso/latest/
+
+ - (推荐)南科大源：https://mirrors.sustech.edu.cn/
 
 进入网页后，点击类似`"archlinux-[年份].[月份].[日期]-x86_64.iso"`的链接下载镜像文件，推荐使用`FDM`或者`AB Download Manager`下载。
 
@@ -124,7 +99,7 @@ lang: 'zh_CN'
 
 <font color="red" size="5">注意在此之前先备份一下U盘上的重要数据！！！</font>
 
-<span class="heimu" title="你知道的太多了">重要的事情说三遍！！！</span>
+:spoiler[重要的事情说三遍！！！]
 :::
 
 #### 1. Balena Etcher
@@ -137,9 +112,7 @@ lang: 'zh_CN'
 
 然后点击"选择目标磁盘"，找到你插入的U盘。
 
-![pECkXgs.png](https://s21.ax1x.com/2025/01/08/pECkXgs.png)
-
-<center><font color="#A9A9A9">选择目标U盘</font></center>
+![选择目标U盘](https://s21.ax1x.com/2025/01/08/pECkXgs.png)
 
 点击"现在烧录!"
 
@@ -153,9 +126,7 @@ lang: 'zh_CN'
 
 打开`Ventoy`，先在配置选项-分区类型选择GPT，默认选中了你的U盘，然后点击"安装"按钮，期间会反复确认是否格式化U盘，点击"是"即可。
 
-![pECAuVK.png](https://s21.ax1x.com/2025/01/08/pECAuVK.png)
-
-<center><font color="#A9A9A9">分区格式选择GPT</font></center>
+![分区格式选择GPT](https://s21.ax1x.com/2025/01/08/pECAuVK.png)
 
 之后把ISO镜像拖入到名为"Ventoy"的分区中即可。
 
@@ -173,43 +144,31 @@ lang: 'zh_CN'
 
 点击"创建新的虚拟机"，选择"自定义(高级)"。
 
-![pECAJKI.png](https://s21.ax1x.com/2025/01/08/pECAJKI.png)
-
-<center><font color="#A9A9A9">创建虚拟机</font></center>
+![创建虚拟机](https://s21.ax1x.com/2025/01/08/pECAJKI.png)
 
 虚拟机硬件兼容性保持默认，点击"下一步"，选择"安装程序光盘映像文件(iso)"，选择下载好的ISO镜像文件。
 
-![pECAUVf.png](https://s21.ax1x.com/2025/01/08/pECAUVf.png)
-
-<center><font color="#A9A9A9">选择安装镜像文件</font></center>
+![选择安装镜像文件](https://s21.ax1x.com/2025/01/08/pECAUVf.png)
 
 点击"下一步"，操作系统选择"Linux",版本选择"其他 Linux 6.x 内核 64 位"
 
-![pECA5RJ.png](https://s21.ax1x.com/2025/01/08/pECA5RJ.png)
-
-<center><font color="#A9A9A9">选择操作系统</font></center>
+![选择操作系统](https://s21.ax1x.com/2025/01/08/pECA5RJ.png)
 
 点击下一步，编辑虚拟机名称和位置
 
-![pECATMR.png](https://s21.ax1x.com/2025/01/08/pECATMR.png)
-
-<center><font color="#A9A9A9">编辑虚拟机名称和位置</font></center>
+![编辑虚拟机名称和位置](https://s21.ax1x.com/2025/01/08/pECATMR.png)
 
 选择处理器数量，建议为1个处理器数量和4个核心，然后分配内存，内存建议为4GB以上。
 
-![pECALdK.png](https://s21.ax1x.com/2025/01/08/pECALdK.png)
-
-<center><font color="#A9A9A9">选择CPU核心数和分配内存</font></center>
+![选择CPU核心数和分配内存](https://s21.ax1x.com/2025/01/08/pECALdK.png)
 
 网络类型默认选择"使用网络地址转换(NAT)"，点击下一步，选择I/O控制器类型，保持默认点击下一步，虚拟磁盘类型选择"SATA"或者"NVMe"，点击下一步选择创建新虚拟磁盘，指定磁盘容量自定，下边保持默认。
 
-![pECEieP.png](https://s21.ax1x.com/2025/01/08/pECEieP.png)
-
-<center><font color="#A9A9A9">自定磁盘容量</font></center>
+![自定磁盘容量](https://s21.ax1x.com/2025/01/08/pECEieP.png)
 
 点击"下一步"，最后检查设置，确保所有设置正确无误，点击"完成"，虚拟机创建完成。
 
-![pEClYEd.png](https://s21.ax1x.com/2025/01/09/pEClYEd.png)
+![ ](https://s21.ax1x.com/2025/01/09/pEClYEd.png)
 
 ## 安装Arch Linux
 
@@ -227,9 +186,7 @@ lang: 'zh_CN'
 
 进入Arch Linux Live CD引导界面，选择`"Arch Linux install medium (x86_64, UEFI)"`回车。 ~~(第一个就是了直接Enter回车)~~
 
-![choose](../images/choose.png)
-
-<center><font color="#A9A9A9">Choose This!</font></center>
+![Choose This!](../images/choose.png)
 
 进入满屏的跑代码界面几十秒后，就会成功进入Arch Live CD的命令行交互环境，下面是你能输入的那一行的标识：
 
@@ -243,15 +200,11 @@ root@archiso ~ #
 
 找到新建的虚拟机，点击`编辑虚拟机设置-硬件-CD/DVD`，选择下载好的ISO镜像文件，勾选`启动时连接`。
 
-![pECld8P.png](https://s21.ax1x.com/2025/01/09/pECld8P.png)
+![选择ISO镜像文件](https://s21.ax1x.com/2025/01/09/pECld8P.png)
 
-<center><font color="#A9A9A9">选择ISO镜像文件</font></center>
+然后点击`选项`菜单，找到`高级`，在`固件类型`中选择`UEFI`，然后点击`确认`按钮。:spoiler[(当然虚拟机的话BIOS也是行的（（（)]
 
-然后点击`选项`菜单，找到`高级`，在`固件类型`中选择`UEFI`，然后点击`确认`按钮。<span class="heimu" title="你知道的太多了">(当然虚拟机的话BIOS也是行的（（（)</span>
-
-![pEClwgf.png](https://s21.ax1x.com/2025/01/09/pEClwgf.png)
-
-<center><font color="#A9A9A9">选择UEFI固件类型</font></center>
+![选择UEFI固件类型](https://s21.ax1x.com/2025/01/09/pEClwgf.png)
 
 最后点击`开启此虚拟机`按钮，虚拟机就会启动，进入Arch Linux Live CD的命令行交互环境。
 
@@ -461,7 +414,7 @@ sr0             11:0     1  755.3M   0  rom   /run/archiso/bootmnt  # sr0 是VMw
 
 <font color="red" size="5">请提前做好数据备份，防止数据丢失！</font>
 
-<span class="heimu" title="你知道的太多了">还是重要的事情说三遍……</span>
+:spoiler[还是重要的事情说三遍……]
 :::
 
 #### 1. 使用fdisk命令分区
@@ -619,9 +572,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 记得检查`Fstab`文件是否正确，确保它包含了所有需要挂载的分区，并且挂载信息正确。
 
-![fstab](../images/fstab.png)
-
-<center><font color="#A9A9A9">Fstab文件示例</font></center>
+![Fstab 文件示例](../images/fstab.png)
 
  > 更多相关信息，请参阅：
    - Fstab：https://wiki.archlinuxcn.org/wiki/Fstab
@@ -629,7 +580,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 ### 十四、 切换到新系统
 
-原本的`chroot`命令在此之前需要挂载很多必要的文件系统，至少需要五六条命令才能正常使用chroot环境，非常繁琐<span class="heimu" title="你知道的太多了">，不信给你康康</span>：
+原本的`chroot`命令在此之前需要挂载很多必要的文件系统，至少需要五六条命令才能正常使用chroot环境，非常繁琐:spoiler[不信给你康康]：
 
 ```bash
 mount -t proc /proc /mnt/proc
@@ -694,7 +645,7 @@ pacman -S vim nano
 
 使用`vim`编辑`/etc/locale.gen`文件，将`"en_US.UTF-8"`和`"zh_CN.UTF-8"`前面的`"#"`号去掉，保存修改并退出，确保看起来如下：
 
-```plaintext
+```plaintext title="/etc/locale.gen"
 ...
 en_US.UTF-8 UTF-8
 ...
@@ -741,7 +692,7 @@ vim /etc/sudoers
 
 再次确认一下文件修改对不对：
 
-```bash
+```bash title="/etc/sudoers"
 ...
 %wheel ALL=(ALL:ALL) ALL
 ...
@@ -751,7 +702,7 @@ vim /etc/sudoers
 
 编辑`/etc/hosts`文件，添加以下内容：
 
-```plaintext
+```plaintext title="/etc/hosts"
 127.0.0.1   localhost
 ::1         localhost
 127.0.1.1   lingxi9374-ArchPC.localdomain lingxi9374-ArchPC
@@ -823,11 +774,11 @@ Installation finished. No error reported.
 编辑`/etc/default/grub`文件，将`"GRUB_TIMEOUT=5"`修改为`"GRUB_TIMEOUT=30"`；
 
 将`"GRUB_CMDLINE_LINUX_DEFAULT="`后面的参数修改为`"loglevel=5 nowatchdog"`。
-<span class="heimu" title="你知道的太多了">当然你也可以修改为"loglevel=7"使用最高日志等级来装逼，这将会输出全部内核日志</span>
+:spoiler[当然你也可以修改为"loglevel=7"使用最高日志等级来装逼，这将会输出全部内核日志]
 
 最终修改如下：
 
-```plaintext
+```bash title="/etc/default/grub"
 GRUB_TIMEOUT=30
 GRUB_CMDLINE_LINUX_DEFAULT="loglevel=5 nowatchdog"
 ```
@@ -873,6 +824,6 @@ reboot
 
 ## 后续工作
 
-敬请参阅[此篇博文](https://lingxi9374.github.io/posts/%E6%95%99%E7%A8%8B/archconfiguration/)
+敬请参阅[此篇博文](https://blog.lingxi9374.top/posts/%E6%95%99%E7%A8%8B/archconfiguration/)
 
 （The End）
