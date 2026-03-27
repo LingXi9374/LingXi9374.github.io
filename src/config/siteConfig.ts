@@ -10,7 +10,7 @@ export const siteConfig: SiteConfig = {
 	title: "泠熙のBlog",
 
 	// 站点副标题
-	subtitle: " ——一个令人耳目一新的Blog",
+	subtitle: " 一个令人耳目一新的Blog",
 
 	// 站点 URL
 	site_url: "https://blog.lingxi9374.top",

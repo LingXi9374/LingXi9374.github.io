@@ -20,20 +20,20 @@ export const friendsPageConfig: FriendsPageConfig = {
 // 友链配置
 export const friendsConfig: FriendLink[] = [
 	{
-		title: "夏夜流萤",
-		imgurl: "https://q1.qlogo.cn/g?b=qq&nk=7618557&s=640",
-		desc: "飞萤之火自无梦的长夜亮起，绽放在终竟的明天。",
-		siteurl: "https://blog.cuteleaf.cn",
+		title: "Cloverta 的博客",
+		imgurl: "https://blog.cloverta.top/images/marisa.png",
+		desc: "见字如晤，展信舒颜。楮墨有限，不尽欲言。\n欢迎来到三叶的博客。",
+		siteurl: "https://blog.cloverta.top",
 		tags: ["Blog"],
 		weight: 10, // 权重，数字越大排序越靠前
 		enabled: true, // 是否启用
 	},
 	{
-		title: "Firefly Docs",
-		imgurl: "https://docs-firefly.cuteleaf.cn/logo.png",
-		desc: "Firefly主题模板文档",
-		siteurl: "https://docs-firefly.cuteleaf.cn",
-		tags: ["Docs"],
+		title: "A Moment's Rest",
+		imgurl: "https://a-moment096.github.io/avatar.jpg",
+		desc: "AMoment 的 Blog",
+		siteurl: "https://a-moment096.github.io/",
+		tags: ["Blog"],
 		weight: 9,
 		enabled: true,
 	},
@@ -44,7 +44,7 @@ export const friendsConfig: FriendLink[] = [
 		siteurl: "https://github.com/withastro/astro",
 		tags: ["Framework"],
 		weight: 8,
-		enabled: true,
+		enabled: false,
 	},
 ];
 
