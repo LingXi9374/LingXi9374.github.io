@@ -38,13 +38,13 @@ export const friendsConfig: FriendLink[] = [
 		enabled: true,
 	},
 	{
-		title: "Astro",
-		imgurl: "https://avatars.githubusercontent.com/u/44914786?v=4&s=640",
-		desc: "The web framework for content-driven websites. ⭐️ Star to support our work!",
-		siteurl: "https://github.com/withastro/astro",
-		tags: ["Framework"],
+		title: "極限風味 Blog",
+		imgurl: "https://save1.ex-tasty.com/media/tasty-icon.webp",
+		desc: "邪惡與極限伴您一生……🥰",
+		siteurl: "https://ex-tasty.com",
+		tags: ["Blog"],
 		weight: 8,
-		enabled: false,
+		enabled: true,
 	},
 ];
 
