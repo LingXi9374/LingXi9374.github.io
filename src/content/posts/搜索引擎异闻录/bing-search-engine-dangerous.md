@@ -1,6 +1,6 @@
 ---
 title: 必应已死！所有人停止使用 Bing搜索 下载软件！
-published: 2026-04-13
+published: 2026-04-15
 description: 'Micro$oft Bing 已经沦陷，亿万人必须使用 Duckduckgo ，，，'
 image: '../images/bing-search-engine-dangerous.png'
 tags: [搜索引擎调教]
