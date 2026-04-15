@@ -3,11 +3,14 @@ title: 如何清理「内容农场」？
 published: 2025-12-12
 description: '铲除**内容农场**产生的垃圾信息，还你一个清净的中文搜索体验！'
 image: '../images/content_farm.png'
-tags: []
-category: '锐评'
+tags: [搜索引擎调教]
+category: '搜索引擎异闻录'
 draft: false 
 lang: 'zh_CN'
 ---
+
+> [!NOTE] 2026 年首次开创新专栏合集
+> 2026.04.15 更新：本人因Blog文章未来规划需要，特此新增《搜索引擎异闻录》这一全新的合集！让我们恭喜 LingXi 再次为我们画了个大饼🎉 ~~(bushi)~~
 
 ## 前言
 
@@ -56,7 +59,7 @@ lang: 'zh_CN'
 
 :::
 
-眼不见为净，最直接的方式当然是避免搜索结果中出现内容农场。[uBlacklist](https://ublacklist.github.io/docs)这款浏览器扩展就能自动屏蔽搜索引擎页面中出现的低质量结果，支持[Chrome](https://chrome.google.com/webstore/detail/ublacklist/pncfbmialoiaghdehhbnbhkkgmjanfhe/)、[Firefox](https://addons.mozilla.org/en/firefox/addon/ublacklist/) 和 [Safari](https://apps.apple.com/us/app/ublacklist-for-safari/id1547912640) 等主流平台。 ~~(可惜了没有上架Edge扩展商店)~~ 安装后，搜索结果的网址后面就会出现「加入黑名单」按钮，允许你通过域名、标题和正则表达式屏蔽不想看到的站点。例如，规则 /^https:\/\/www\.example\./ 将匹配所有以 `https://www.example.` 开头的 URL。
+眼不见为净，最直接的方式当然是避免搜索结果中出现内容农场。[uBlacklist](https://ublacklist.github.io/docs)这款浏览器扩展就能自动屏蔽搜索引擎页面中出现的低质量结果，支持[Chrome](https://chrome.google.com/webstore/detail/ublacklist/pncfbmialoiaghdehhbnbhkkgmjanfhe/)、[Firefox](https://addons.mozilla.org/en/firefox/addon/ublacklist/) 和 [Safari](https://apps.apple.com/us/app/ublacklist-for-safari/id1547912640) 等主流平台。 ~~(可惜了没有上架Edge扩展商店)~~ 安装后，搜索结果的网址后面就会出现「加入黑名单」按钮，允许你通过域名、标题和正则表达式屏蔽不想看到的站点。例如，规则`/^https:\/\/www\.example\./` 将匹配所有以 `https://www.example.` 开头的 URL。
 
 规则的进阶用法，不妨参阅 MDN 文档对[匹配模式](https://developer.mozilla.org/zh-CN/docs/Mozilla/Add-ons/WebExtensions/Match_patterns)和[正则表达式](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_expressions)的讲解，uBlacklist 官网也给出了[部分范例](https://ublacklist.github.io/docs/advanced-features#match-patterns)。
 
