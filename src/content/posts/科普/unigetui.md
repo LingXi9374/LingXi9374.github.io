@@ -4,7 +4,7 @@ published: 2025-10-03
 description: '一键集成Winget、Scoop、Chocolatey等10多种包管理器'
 image: '../images/UniGetUI.png'
 tags: [开源,Windows]
-category: '杂谈'
+category: '科普'
 draft: false 
 lang: 'zh_CN'
 ---
