@@ -1,5 +1,5 @@
 ---
-title: Arch Linux 启用独显直连(NVIDIA)
+title: Arch Linux 启用独显直连(NVIDIA)(更新于2026.03.27)
 published: 2025-01-01
 description: '如何在Arch Linux上启用NVIDIA独显直连，让应用程序直接使用独显渲染'
 image: '../images/Arch-Nvidia.png'
@@ -15,18 +15,77 @@ lang: 'zh_CN'
 ~~这篇博客很多文字是照搬那个参考链接的，感觉即使我自己手打文稿也觉得和原文讲的差不多，就懒得想了直接Ctrl+C Ctrl+V了。~~
 :::
 
-本博客参考网页：[点我](https://blog.caiyi1.me/2024/03/06/Linux-nvidia/)
+本博客参考网页：[点我1](https://blog.caiyi1.me/2024/03/06/Linux-nvidia/) [点我2](https://blog.hifuu.ink/2024/11/06/arch-nvidia/)
 
 有一次周末，我在安装好的`Arch Linux`系统和`NVIDIA驱动`之后玩MC，发现帧数撑死只有100多，查看`nvidia-smi`发现能正常使用命令行，但是游戏画面还是卡的很严重，于是我开始排查问题。（如图，MC打开F3界面发现视频驱动使用的是Intel核显）
 
-![pAzxyqA.png](https://s21.ax1x.com/2025/01/01/pAzxyqA.png)
+![Minecraft Java F3 显示界面](https://s21.ax1x.com/2025/01/01/pAzxyqA.png)
 
 
 ## 解决方法
 
-上篇文章我介绍了安装`NVIDIA驱动`，没看过的[先点这里](https://lingxi9374.github.io/posts/%E6%95%99%E7%A8%8B/archconfiguration/#1-%E5%AE%89%E8%A3%85%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E4%BB%A5nvidia%E4%B8%BA%E4%BE%8B)
+上篇文章我介绍了安装`NVIDIA驱动`，没看过的[先点这里](https://blog.lingxi9374.top/posts/%E6%95%99%E7%A8%8B/archconfiguration/#1-%E5%AE%89%E8%A3%85%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E4%BB%A5nvidia%E4%B8%BA%E4%BE%8B)
 
-### 1. 安装切换工具
+### 1. 配置 X11 下的 Nvidia 显卡优先
+
+可以通过配置`/etc/X11/xorg.conf`实现 Nvidia 独显输出。幸运的是，Nvidia 提供了自动生成配置文件的工具，用户无需手动编写：
+
+```bash
+sudo nvidia-xconfig --prime
+```
+
+该命令会根据硬件情况自动生成配置文件。执行后**重新登录会话**即可生效（即使是 Wayland 用户也可以执行一次此命令）。
+
+![X11 Nvidia 配置](https://blog.hifuu.ink/images/1613f5602b203b38230f19699deb0219454454985.png)
+
+### 2. 配置 Wayland 下的 Nvidia 显卡优先
+
+在 Wayland 下优先启用 Nvidia 显卡的步骤如下：
+
+ 1. 编辑 **GRUB配置** 文件
+    打开`/etc/default/grub`文件，在`GRUB_CMDLINE_LINUX_DEFAULT=""`中添加`nvidia_drm.modeset=1`：
+    ```bash title="/etc/default/grub"
+    GRUB_CMDLINE_LINUX_DEFAULT="nvidia_drm.modeset=1"
+    ```
+ 2. 重新生成 grub 配置：
+    ```bash
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+    ```
+ 3. 配置`Plasma 环境`文件：
+    在`~/.config/plasma-workspace/env/nvidia.sh`中写入以下内容：
+    ```bash title="~/.config/plasma-workspace/env/nvidia.sh"
+    #!/bin/bash 
+
+    export __NV_PRIME_RENDER_OFFLOAD=1 
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    ```
+ 4. 保存并重启电脑，即可生效。
+    ![Wayland Nvidia 配置](https://blog.hifuu.ink/images/b2054bbaf6197624d38cc2007d885fd1454454985.png)
+
+### 3. Intel + Nvidia 混合显卡方案
+
+如果不希望全局启用独显，可以选择让大部分程序默认使用核显，而少数高性能需求的程序使用独显。这种方法能有效节省功耗，同时将独显资源集中分配给需要的程序（如 Steam 游戏、Blender 等）。缺点是每个程序需要手动配置启动项。
+
+#### 配置步骤
+
+ 1. 打开程序的`.desktop`启动文件：
+    位置可能在`/usr/share/applications`或`~/.local/share/applications`中。
+ 2. 在`Exec=`后添加`prime-run`参数。例如：
+    ```bash title="XXX.desktop"
+    Exec=prime-run <程序启动命令>
+    ```
+    ![ ](https://blog.hifuu.ink/images/71a5357ef4bd808b10429bc2ea46cb6f454454985.png)
+ 3. Vim 快捷配置
+    如果使用 Vim，可以使用以下快捷键快速批量替换`Exec=`为`Exec=prime-run`：
+    ```vim
+    v -> G -> :s/Exec=/Exec=prime-run /g Enter -> :wq Enter
+    ```
+
+### 4. 安装切换工具(不建议)
+
+:::caution
+此方法已过时，请忽略
+:::
 
 网上的大多数博客仅仅是在hybrid模式下仅使用独显允许所有进程，并非真正的独显直连。这种配置下独立显卡绘制完成后，会将framebuffer交由集成显卡然后输出至显示器，不仅延迟更高，性能也会受到总线带宽的限制。
 
@@ -65,7 +124,7 @@ sudo system76-power graphics nvidia
 
 ~~（如果/etc/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf的文件不存在就直接复制一模一样的过去），不影响也不冲突。~~
 
-```Plaintext
+```plaintext
 Section "OutputClass"
     Identifier "nvidia"
     MatchDriver "nvidia-drm"
@@ -88,7 +147,7 @@ EndSection
 
 在`/usr/share/sddm/scripts/Xsetup`中添加以下内容:
 
-```Plaintext
+```plaintext
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
 ```
@@ -97,7 +156,7 @@ xrandr --auto
 
 在`/usr/share/gdm/greeter/autostart/optimus.desktop`和`/etc/xdg/autostart/optimus.desktop`中添加以下相同的内容:
 
-```Plaintext
+```plaintext
 [Desktop Entry]
 Type=Application
 Name=Optimus
@@ -110,7 +169,7 @@ X-GNOME-Autostart-Phase=DisplayServer
 
 如果不使用DM，在`~/.xinitrc`中添加以下内容：
 
-```Plaintext
+```plaintext
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
 ```

@@ -2,7 +2,109 @@ import type { APIRoute } from "astro";
 
 const robotsTxt = `
 User-agent: *
+Crawl-delay: 20
 Disallow: /_astro/
+Disallow: /*.js$
+Disallow: /*.css$
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: sogou spider
+Disallow: /
+
+User-agent: Sosospider
+Disallow: /
+
+User-agent: Yisouspider
+Disallow: /
+
+User-agent: 360Spider
+Disallow: /
+
+User-agent: ToutiaoSpider
+Disallow: /
+
+User-agent: Baidu-YunheBot
+Disallow: /
+
+User-agent: EasyDLSpider
+Disallow: /
+
+User-agent: Seniverse
+Disallow: /
+
+User-agent: Baiduspider-render
+Disallow: /
+
+User-agent: KimiClaw
+Disallow: /
+
+User-agent: Moonshot
+Disallow: /
+
+User-agent: ZhipuAI
+Disallow: /
+
+User-agent: AliCustom
+Disallow: /
+
+User-agent: Alibaba.Crawler
+Disallow: /
+
+User-agent: KuaishouBot
+Disallow: /
+
+User-agent: Sogou
+Disallow: /
+
+User-agent: Deepseek
+Disallow: /
+
+User-agent: Deepseek-V3
+Disallow: /
+
+User-agent: Hunyuan
+Disallow: /
+
+User-agent: TencentBot
+Disallow: /
+
+User-agent: iFLYTEK
+Disallow: /
+
+User-agent: SparkBot
+Disallow: /
+
+User-agent: Skywork
+Disallow: /
+
+User-agent: SkyworkSpider
+Disallow: /
+
+User-agent: Tiangong
+Disallow: /
+
+User-agent: Nano
+Disallow: /
+
+User-agent: Nano-AI
+Disallow: /
+
+User-agent: YodaoBot
+Disallow: /
+
+User-agent: MSNBot
+Disallow: /
+
+User-agent: googlebot-image
+Disallow: /
+
+User-agent: adsbot-google
+Disallow: /
 
 Sitemap: ${new URL("sitemap-index.xml", import.meta.env.SITE).href}
 `.trim();

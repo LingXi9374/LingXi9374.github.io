@@ -7,11 +7,6 @@
 
 ## 关于
 
-### 友情链接
-
-> - [睡衣蓝孩BB(合作伙伴(算是吧...))](https://space.bilibili.com/393698771)
-> - [花城あんず大好き(合作伙伴)](https://space.bilibili.com/1177535434)
-
 ### 我推荐的项目
 
 > - [Arch Linux](https://www.archlinux.org/)

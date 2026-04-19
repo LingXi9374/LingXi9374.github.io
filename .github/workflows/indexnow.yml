@@ -1,0 +1,34 @@
+name: "IndexNow"
+on:
+  push:
+    branches:
+      # when git push to the master branch
+      - master
+  schedule:
+    # scheduled in UTC.
+    - cron:  '0 12 * * *'
+
+jobs:
+  check-and-submit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup IndexNow
+        run: echo ${{ secrets.INDEXNOW_KEY }} > IndexNow-${{ secrets.INDEXNOW_KEY }}.txt
+      
+  # Push to IndexNow
+  indexnow:
+    if: github.repository == 'LingXi9374/LingXi9374.github.io'
+    runs-on: ubuntu-latest
+    needs: check-and-submit
+    steps:
+      - name: submit-to-bing
+        uses: bojieyang/indexnow-action@v1
+        with:
+          sitemap-location: "https://blog.lingxi9374.top/sitemap-index.xml"  # 修改为你自己的
+          endpoint: "www.bing.com"
+          since: 1
+          # minite, hour, day, week, month, year
+          since-unit: "week"
+          limit: 100
+          key: ${{ secrets.INDEXNOW_KEY }}
+          key-location: https://blog.lingxi9374.top/IndexNow-${{ secrets.INDEXNOW_KEY }}.txt
