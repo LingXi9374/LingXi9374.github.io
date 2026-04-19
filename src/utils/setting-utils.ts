@@ -307,7 +307,11 @@ export function applyWallpaperModeToDocument(mode: WALLPAPER_MODE) {
 		const body = document.body;
 
 		// 移除所有壁纸相关的CSS类
-		body.classList.remove("enable-banner", "wallpaper-transparent");
+		body.classList.remove(
+			"enable-banner",
+			"wallpaper-transparent",
+			"no-banner-layout",
+		);
 
 		// 根据模式添加相应的CSS类
 		switch (mode) {
@@ -317,12 +321,15 @@ export function applyWallpaperModeToDocument(mode: WALLPAPER_MODE) {
 				break;
 			case WALLPAPER_OVERLAY:
 				body.classList.add("wallpaper-transparent");
+				body.classList.add("no-banner-layout");
 				showOverlayMode();
 				break;
 			case WALLPAPER_NONE:
+				body.classList.add("no-banner-layout");
 				hideAllWallpapers();
 				break;
 			default:
+				body.classList.add("no-banner-layout");
 				hideAllWallpapers();
 				break;
 		}
@@ -342,7 +349,11 @@ function ensureWallpaperState(mode: WALLPAPER_MODE) {
 	const body = document.body;
 
 	// 移除所有壁纸相关的CSS类
-	body.classList.remove("enable-banner", "wallpaper-transparent");
+	body.classList.remove(
+		"enable-banner",
+		"wallpaper-transparent",
+		"no-banner-layout",
+	);
 
 	// 根据模式添加相应的CSS类
 	switch (mode) {
@@ -352,9 +363,11 @@ function ensureWallpaperState(mode: WALLPAPER_MODE) {
 			break;
 		case WALLPAPER_OVERLAY:
 			body.classList.add("wallpaper-transparent");
+			body.classList.add("no-banner-layout");
 			showOverlayMode();
 			break;
 		case WALLPAPER_NONE:
+			body.classList.add("no-banner-layout");
 			hideAllWallpapers();
 			break;
 	}
@@ -525,26 +538,31 @@ function updateNavbarTransparency(mode: WALLPAPER_MODE) {
 
 	let transparentMode: string;
 	let enableBlur: boolean;
+	let blurAmount: number;
 
 	// 根据当前壁纸模式设置导航栏透明模式和模糊效果
 	if (mode === WALLPAPER_OVERLAY) {
 		// 全屏壁纸模式
 		transparentMode = "none";
 		enableBlur = false;
+		blurAmount = 0;
 	} else if (mode === WALLPAPER_NONE) {
 		// 纯色背景模式
 		transparentMode = "none";
 		enableBlur = false;
+		blurAmount = 0;
 	} else {
 		// Banner模式：使用配置的透明模式和模糊效果
 		transparentMode =
 			backgroundWallpaper.banner?.navbar?.transparentMode || "semi";
 		enableBlur = backgroundWallpaper.banner?.navbar?.enableBlur ?? true;
+		blurAmount = backgroundWallpaper.banner?.navbar?.blur ?? 20;
 	}
 
 	// 更新导航栏的透明模式属性
 	navbar.setAttribute("data-transparent-mode", transparentMode);
 	navbar.setAttribute("data-enable-blur", String(enableBlur));
+	navbar.style.setProperty("--navbar-glass-blur", `${blurAmount}px`);
 
 	// 移除现有的透明模式类
 	navbar.classList.remove(
@@ -607,14 +625,20 @@ function adjustMainContentTransparency(enable: boolean) {
 	const mainContent = document.querySelector(".absolute.w-full.z-30");
 	const body = document.body;
 
-	if (!mainContent || !body) return;
-
 	if (enable) {
-		mainContent.classList.add("wallpaper-transparent");
-		body.classList.add("wallpaper-transparent");
+		if (mainContent) {
+			mainContent.classList.add("wallpaper-transparent");
+		}
+		if (body) {
+			body.classList.add("wallpaper-transparent");
+		}
 	} else {
-		mainContent.classList.remove("wallpaper-transparent");
-		body.classList.remove("wallpaper-transparent");
+		if (mainContent) {
+			mainContent.classList.remove("wallpaper-transparent");
+		}
+		if (body) {
+			body.classList.remove("wallpaper-transparent");
+		}
 	}
 }
 
@@ -628,6 +652,13 @@ export function setWallpaperMode(mode: WALLPAPER_MODE): void {
 	}
 	localStorage.setItem("wallpaperMode", mode);
 	applyWallpaperModeToDocument(mode);
+	if (typeof window !== "undefined") {
+		window.dispatchEvent(
+			new CustomEvent("wallpaperModeChange", {
+				detail: { mode },
+			}),
+		);
+	}
 }
 
 export function initWallpaperMode(): void {
@@ -645,6 +676,13 @@ export function getStoredWallpaperMode(): WALLPAPER_MODE {
 	) {
 		return backgroundWallpaper.mode;
 	}
+
+	const isSwitchable = backgroundWallpaper.switchable ?? true;
+	if (!isSwitchable) {
+		localStorage.removeItem("wallpaperMode");
+		return backgroundWallpaper.mode;
+	}
+
 	return (
 		(localStorage.getItem("wallpaperMode") as WALLPAPER_MODE) ||
 		backgroundWallpaper.mode
@@ -860,6 +898,10 @@ export function getDefaultBannerTitleEnabled(): boolean {
 	return backgroundWallpaper.banner?.homeText?.enable ?? true;
 }
 
+export function getDefaultBannerCarouselEnabled(): boolean {
+	return backgroundWallpaper.banner?.carousel?.enable ?? false;
+}
+
 export function getStoredBannerTitleEnabled(): boolean {
 	if (
 		typeof localStorage === "undefined" ||
@@ -874,6 +916,25 @@ export function getStoredBannerTitleEnabled(): boolean {
 	return stored === "true";
 }
 
+export function getStoredBannerCarouselEnabled(): boolean {
+	const isSwitchable =
+		backgroundWallpaper.banner?.carousel?.switchable ?? false;
+	if (!isSwitchable) {
+		return getDefaultBannerCarouselEnabled();
+	}
+	if (
+		typeof localStorage === "undefined" ||
+		typeof localStorage.getItem !== "function"
+	) {
+		return getDefaultBannerCarouselEnabled();
+	}
+	const stored = localStorage.getItem("bannerCarouselEnabled");
+	if (stored === null) {
+		return getDefaultBannerCarouselEnabled();
+	}
+	return stored === "true";
+}
+
 export function setBannerTitleEnabled(enabled: boolean): void {
 	if (
 		typeof localStorage === "undefined" ||
@@ -883,6 +944,27 @@ export function setBannerTitleEnabled(enabled: boolean): void {
 	}
 	localStorage.setItem("bannerTitleEnabled", String(enabled));
 	applyBannerTitleEnabledToDocument(enabled);
+}
+
+export function setBannerCarouselEnabled(enabled: boolean): void {
+	const safeEnabled = !!enabled;
+	const isSwitchable =
+		backgroundWallpaper.banner?.carousel?.switchable ?? false;
+	if (
+		isSwitchable &&
+		typeof localStorage !== "undefined" &&
+		typeof localStorage.setItem === "function"
+	) {
+		localStorage.setItem("bannerCarouselEnabled", String(safeEnabled));
+	}
+	applyBannerCarouselEnabledToDocument(safeEnabled);
+	if (typeof window !== "undefined") {
+		window.dispatchEvent(
+			new CustomEvent("bannerCarouselChange", {
+				detail: { enabled: safeEnabled },
+			}),
+		);
+	}
 }
 
 export function applyBannerTitleEnabledToDocument(enabled: boolean): void {
@@ -905,4 +987,14 @@ export function applyBannerTitleEnabledToDocument(enabled: boolean): void {
 			bannerTextOverlay.classList.add("user-hidden");
 		}
 	}
+}
+
+export function applyBannerCarouselEnabledToDocument(enabled: boolean): void {
+	if (typeof document === "undefined") {
+		return;
+	}
+	document.documentElement.setAttribute(
+		"data-banner-carousel-enabled",
+		String(enabled),
+	);
 }

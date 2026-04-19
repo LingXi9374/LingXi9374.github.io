@@ -90,8 +90,8 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			showOnPostPage: true,
 			// 响应式配置
 			responsive: {
-				// 折叠阈值：当标签数量超过>20个时自动折叠
-				collapseThreshold: 20,
+				// 折叠阈值：当标签数量超过>10个时自动折叠
+				collapseThreshold: 10,
 			},
 		},
 		{
@@ -150,7 +150,7 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			// 组件位置
 			position: "sticky",
 			// 是否在文章详情页显示
-			showOnPostPage: false,
+			showOnPostPage: true,
 			// 配置ID：使用第二个广告配置
 			configId: "ad2",
 		},

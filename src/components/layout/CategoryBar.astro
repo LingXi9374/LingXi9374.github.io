@@ -5,18 +5,30 @@ import { Icon } from "astro-icon/components";
 import { getCategoryList, getSortedPostsList } from "@/utils/content-utils";
 import { url } from "@/utils/url-utils";
 
+interface Props {
+	currentPostCategory?: string;
+}
+
+const { currentPostCategory } = Astro.props as Props;
+
 const categories = await getCategoryList();
 const totalPosts = (await getSortedPostsList()).length;
 const homeUrl = url("/");
 const archiveUrl = url("/archive/");
 ---
 
-<div class="card-base category-bar p-3 onload-animation" id="category-bar" data-home-path={homeUrl} data-archive-path={archiveUrl}>
+<div
+  class="card-base category-bar p-3 onload-animation"
+  id="category-bar"
+  data-home-path={homeUrl}
+  data-archive-path={archiveUrl}
+  data-current-post-category={currentPostCategory || ""}
+>
   <div class="category-bar-inner flex gap-2">
     <a
       href={homeUrl}
-      class="category-pill text-sm px-2 py-1 rounded-lg flex-shrink-0
-             transition-colors duration-200 flex items-center justify-center"
+      class="category-pill text-sm px-2 py-1 rounded-lg shrink-0
+             transition-colors duration-150 ease-out flex items-center justify-center"
       data-category-name=""
       aria-label={i18n(I18nKey.home)}
     >
@@ -24,14 +36,14 @@ const archiveUrl = url("/archive/");
     </a>
     <a
       href={archiveUrl}
-      class="category-pill text-sm px-3 py-1 rounded-lg whitespace-nowrap flex-shrink-0
-             transition-colors duration-200 flex items-center justify-center"
+      class="category-pill text-sm px-3 py-1 rounded-lg whitespace-nowrap shrink-0
+             transition-colors duration-150 ease-out flex items-center justify-center"
       data-category-name="__archive__"
     >
       {i18n(I18nKey.archive)}
       <span class="text-xs opacity-60 ml-1">{totalPosts}</span>
     </a>
-    <div class="category-divider flex-shrink-0"></div>
+    <div class="category-divider shrink-0"></div>
     <div class="scroll-area relative">
       <div class="scroll-fade scroll-fade-left" aria-hidden="true"></div>
       <div class="category-scroll flex gap-2 overflow-x-auto">
@@ -40,7 +52,7 @@ const archiveUrl = url("/archive/");
             <a
               href={cat.url}
               class="category-pill text-sm px-3 py-1 rounded-lg whitespace-nowrap
-                     transition-colors duration-200 flex items-center justify-center"
+                     transition-colors duration-150 ease-out flex items-center justify-center"
               data-category-name={cat.name}
             >
               {cat.name}
@@ -115,6 +127,22 @@ const archiveUrl = url("/archive/");
     border-color: var(--primary);
     color: white;
   }
+  .category-pill[data-soft-active] {
+    border-color: var(--line-divider);
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
+    color: color-mix(in srgb, var(--primary) 72%, var(--btn-content));
+  }
+  .category-pill[data-soft-active]:hover {
+    border-color: var(--line-divider);
+    background: color-mix(in srgb, var(--primary) 15%, transparent);
+    color: color-mix(in srgb, var(--primary) 82%, var(--btn-content));
+  }
+  .category-pill[data-soft-active][data-active],
+  .category-pill[data-soft-active][data-active]:hover {
+    border-color: var(--line-divider);
+    background: color-mix(in srgb, var(--primary) 15%, transparent);
+    color: color-mix(in srgb, var(--primary) 82%, var(--btn-content));
+  }
   .category-pill[data-active]:hover {
     background: var(--primary);
     border-color: var(--primary);
@@ -123,61 +151,153 @@ const archiveUrl = url("/archive/");
 </style>
 
 <script>
-  function updateCategoryBar() {
-    const bar = document.getElementById("category-bar");
-    if (!bar) return;
+  let delayedCategoryBarScrollTimer: number | undefined;
 
-    const pathname = window.location.pathname.replace(/\/$/, "");
+  function getCategoryBarState(bar: HTMLElement, currentUrl: URL) {
+    const pathname = currentUrl.pathname.replace(/\/$/, "");
     const homePath = (bar.getAttribute("data-home-path") || "/").replace(/\/$/, "");
     const archivePath = (bar.getAttribute("data-archive-path") || "/archive").replace(/\/$/, "");
     const isHome = pathname === homePath || pathname === "" || pathname === "/";
     const isArchive = pathname === archivePath;
 
-    // 只在首页和归档页显示
-    if (!isHome && !isArchive) {
-      bar.style.display = "none";
-      return;
-    }
-    bar.style.display = "";
+    return {
+      isHome,
+      isArchive,
+      activeCategory: currentUrl.searchParams.get("category") || "",
+      hasTag: currentUrl.searchParams.has("tag"),
+      hasUncategorized: currentUrl.searchParams.has("uncategorized"),
+    };
+  }
 
-    // 高亮当前分类
+  function setActiveCategory(bar: HTMLElement, currentUrl: URL) {
+    const { isHome, isArchive, activeCategory, hasTag, hasUncategorized } =
+      getCategoryBarState(bar, currentUrl);
+    const postCategory = (bar.getAttribute("data-current-post-category") || "").trim();
+
     const pills = bar.querySelectorAll<HTMLAnchorElement>(".category-pill");
-    const params = new URLSearchParams(window.location.search);
-    const activeCategory = params.get("category") || "";
-    const hasTag = params.has("tag");
-    const hasUncategorized = params.has("uncategorized");
-
-    pills.forEach((pill) => pill.removeAttribute("data-active"));
+    pills.forEach((pill) => {
+      pill.removeAttribute("data-active");
+      pill.removeAttribute("data-soft-active");
+    });
 
     if (isHome) {
       bar.querySelector<HTMLAnchorElement>('.category-pill[data-category-name=""]')
         ?.setAttribute("data-active", "");
-    } else if (activeCategory) {
+      return;
+    }
+
+    if (activeCategory) {
       pills.forEach((pill) => {
         if (pill.getAttribute("data-category-name") === activeCategory) {
           pill.setAttribute("data-active", "");
         }
       });
-    } else if (isArchive && !hasTag && !hasUncategorized) {
+      return;
+    }
+
+    if (isArchive && !hasTag && !hasUncategorized) {
       bar.querySelector<HTMLAnchorElement>('.category-pill[data-category-name="__archive__"]')
         ?.setAttribute("data-active", "");
+      return;
     }
 
-    // 自动滚动到当前高亮的分类
-    const activePill = bar.querySelector<HTMLAnchorElement>('.category-pill[data-active]');
+    if (postCategory) {
+      pills.forEach((pill) => {
+        if (pill.getAttribute("data-category-name") === postCategory) {
+          pill.setAttribute("data-soft-active", "");
+        }
+      });
+    }
+  }
+
+  function scrollActiveCategoryIntoView(bar: HTMLElement, behavior: ScrollBehavior = "smooth") {
+    const activePill =
+      bar.querySelector<HTMLAnchorElement>('.category-pill[data-active]') ||
+      bar.querySelector<HTMLAnchorElement>('.category-pill[data-soft-active]');
     const scroll = bar.querySelector<HTMLElement>(".category-scroll");
-    if (activePill && scroll) {
-      const scrollLeft = activePill.offsetLeft - scroll.offsetLeft - (scroll.clientWidth - activePill.offsetWidth) / 2;
-      scroll.scrollTo({ left: Math.max(0, scrollLeft), behavior: "smooth" });
+    if (!activePill || !scroll) return;
+
+    const scrollLeft = activePill.offsetLeft - scroll.offsetLeft - (scroll.clientWidth - activePill.offsetWidth) / 2;
+    scroll.scrollTo({ left: Math.max(0, scrollLeft), behavior });
+  }
+
+  function shouldDeferCategoryScroll(bar: HTMLElement, currentUrl: URL) {
+    const { isHome } = getCategoryBarState(bar, currentUrl);
+    const isMobile = window.innerWidth < 1024;
+    const isBannerMode = document.body.classList.contains("enable-banner");
+    return isMobile && isBannerMode && !isHome;
+  }
+
+  function updateCategoryBar(
+    currentUrl = new URL(window.location.href),
+    options: { scrollBehavior?: ScrollBehavior; deferScroll?: boolean } = {},
+  ) {
+    const bar = document.getElementById("category-bar");
+    if (!bar) return;
+
+    const swupContainer = document.getElementById("swup-container");
+    if (swupContainer) {
+      const currentPostCategory = swupContainer.getAttribute("data-current-post-category") || "";
+      bar.setAttribute("data-current-post-category", currentPostCategory);
     }
 
-    // 更新横幅标题：归档页有分类筛选时显示分类名
-    if (isArchive && activeCategory) {
-      const bannerTitle = document.querySelector(".banner-page-title-text");
-      if (bannerTitle) {
-        bannerTitle.textContent = decodeURIComponent(activeCategory);
-      }
+    setActiveCategory(bar, currentUrl);
+
+    const deferScroll = options.deferScroll ?? shouldDeferCategoryScroll(bar, currentUrl);
+    const scrollBehavior = options.scrollBehavior ?? (deferScroll ? "auto" : "smooth");
+
+    if (delayedCategoryBarScrollTimer) {
+      window.clearTimeout(delayedCategoryBarScrollTimer);
+      delayedCategoryBarScrollTimer = undefined;
     }
+
+    if (deferScroll) {
+      // 等主内容上移完成后再定位分类，避免出现“先横向滚动后上移”的卡顿观感。
+      delayedCategoryBarScrollTimer = window.setTimeout(() => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            scrollActiveCategoryIntoView(bar, scrollBehavior);
+            updateScrollHint();
+          });
+        });
+      }, 220);
+      return;
+    }
+
+    scrollActiveCategoryIntoView(bar, scrollBehavior);
+    updateScrollHint();
+  }
+
+  function initCategoryBarInteractions() {
+    const bar = document.getElementById("category-bar");
+    if (!bar || bar.dataset.clickBound === "true") return;
+
+    bar.dataset.clickBound = "true";
+    bar.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+
+      const pill = event.target.closest<HTMLAnchorElement>(".category-pill");
+      if (!pill) return;
+
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
+
+      if (pill.target && pill.target !== "_self") return;
+
+      const targetUrl = new URL(pill.href, window.location.href);
+      if (targetUrl.origin !== window.location.origin) return;
+
+      setActiveCategory(bar, targetUrl);
+      scrollActiveCategoryIntoView(bar, "auto");
+    });
   }
 
   function initScrollFeatures() {
@@ -186,6 +306,12 @@ const archiveUrl = url("/archive/");
 
     const scroll = bar.querySelector<HTMLElement>(".category-scroll");
     if (!scroll) return;
+
+    if (scroll.dataset.featuresBound === "true") {
+      updateScrollHint();
+      return;
+    }
+    scroll.dataset.featuresBound = "true";
 
     // 鼠标滚轮横向滚动
     scroll.addEventListener("wheel", (e) => {
@@ -226,10 +352,33 @@ const archiveUrl = url("/archive/");
   }
 
   updateCategoryBar();
+  initCategoryBarInteractions();
   initScrollFeatures();
   document.addEventListener("astro:page-load", () => {
     updateCategoryBar();
     initScrollFeatures();
   });
-  document.addEventListener("swup:contentReplaced", updateCategoryBar);
+  document.addEventListener("swup:contentReplaced", () => {
+    updateCategoryBar();
+    // 某些 swup 生命周期下 URL/DOM 状态同步稍晚，下一帧再校正一次避免状态残留
+    requestAnimationFrame(() => {
+      updateCategoryBar();
+    });
+  });
+
+  // 在 Swup 导航时提前更新状态，避免切换期间激活态闪烁
+  function setupSwupEarlyUpdate() {
+    if (!window.swup?.hooks) return;
+    window.swup.hooks.on("visit:start", (visit: any) => {
+      const bar = document.getElementById("category-bar");
+      if (!bar) return;
+      const targetUrl = new URL(visit.to.url, window.location.href);
+      setActiveCategory(bar, targetUrl);
+    });
+  }
+  if (window.swup?.hooks) {
+    setupSwupEarlyUpdate();
+  } else {
+    document.addEventListener("swup:enable", setupSwupEarlyUpdate);
+  }
 </script>

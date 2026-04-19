@@ -7,6 +7,7 @@ import {
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import {
+	getDefaultBannerCarouselEnabled,
 	getDefaultBannerTitleEnabled,
 	getDefaultHue,
 	getDefaultOverlayBlur,
@@ -14,12 +15,14 @@ import {
 	getDefaultOverlayOpacity,
 	getDefaultWavesEnabled,
 	getHue,
+	getStoredBannerCarouselEnabled,
 	getStoredBannerTitleEnabled,
 	getStoredOverlayBlur,
 	getStoredOverlayCardOpacity,
 	getStoredOverlayOpacity,
 	getStoredWallpaperMode,
 	getStoredWavesEnabled,
+	setBannerCarouselEnabled,
 	setBannerTitleEnabled,
 	setHue,
 	setOverlayBlur,
@@ -33,21 +36,41 @@ import Icon from "@/components/common/Icon.svelte";
 import { backgroundWallpaper, siteConfig } from "@/config";
 import type { WALLPAPER_MODE } from "@/types/config";
 
+type OverlaySliderItem = {
+	key: "opacity" | "blur" | "cardOpacity";
+	enabled: boolean;
+	label: string;
+	displayValue: string;
+	ariaLabel: string;
+	min: number;
+	max: number;
+	step: number;
+	value: number;
+	onValueChange: (value: number) => void;
+};
+
 let hue = $state(getHue());
 const defaultHue = getDefaultHue();
 let wallpaperMode: WALLPAPER_MODE = $state(backgroundWallpaper.mode);
 const defaultWallpaperMode = backgroundWallpaper.mode;
 let currentLayout: "list" | "grid" = $state("list");
 const defaultLayout = siteConfig.postListLayout.defaultMode;
+const mobileDefaultLayout =
+	siteConfig.postListLayout.mobileDefaultMode || defaultLayout;
 let mounted = $state(false);
 let isSmallScreen = $state(
 	typeof window !== "undefined" ? window.innerWidth < 1200 : false,
+);
+let isMobileWidth = $state(
+	typeof window !== "undefined" ? window.innerWidth < 780 : false,
 );
 let isSwitching = $state(false);
 let wavesEnabled = $state(true);
 const defaultWavesEnabled = getDefaultWavesEnabled();
 let bannerTitleEnabled = $state(true);
 const defaultBannerTitleEnabled = getDefaultBannerTitleEnabled();
+let bannerCarouselEnabled = $state(true);
+const defaultBannerCarouselEnabled = getDefaultBannerCarouselEnabled();
 let overlayOpacity = $state(getDefaultOverlayOpacity());
 const defaultOverlayOpacity = getDefaultOverlayOpacity();
 let overlayBlur = $state(getDefaultOverlayBlur());
@@ -57,6 +80,9 @@ const defaultOverlayCardOpacity = getDefaultOverlayCardOpacity();
 
 const isWallpaperSwitchable = backgroundWallpaper.switchable ?? true;
 const allowLayoutSwitch = siteConfig.postListLayout.allowSwitch;
+let effectiveDefaultLayout = $derived(
+	isMobileWidth ? mobileDefaultLayout : defaultLayout,
+);
 const showThemeColor = !siteConfig.themeColor.fixed;
 // 是否允许用户切换水波纹动画（只看 switchable 配置）
 const isWavesSwitchable =
@@ -68,8 +94,12 @@ const isBannerTitleEnabled =
 const isBannerTitleSwitchable =
 	isBannerTitleEnabled &&
 	(backgroundWallpaper.banner?.homeText?.switchable ?? false);
+// 是否允许用户切换横幅轮播
+const isBannerCarouselSwitchable =
+	backgroundWallpaper.banner?.carousel?.switchable ?? false;
 // 是否有任何横幅设置可显示（后续添加新设置时在此处添加条件）
-const hasBannerSettings = isWavesSwitchable || isBannerTitleSwitchable;
+const hasBannerSettings =
+	isWavesSwitchable || isBannerTitleSwitchable || isBannerCarouselSwitchable;
 const overlaySwitchableConfig =
 	backgroundWallpaper.overlay?.switchable ?? false;
 const isOverlaySettingsSwitchable =
@@ -101,7 +131,9 @@ let overlaySettingsIsDefault = $derived(
 let bannerSettingsIsDefault = $derived(
 	(!isBannerTitleSwitchable ||
 		bannerTitleEnabled === defaultBannerTitleEnabled) &&
-		(!isWavesSwitchable || wavesEnabled === defaultWavesEnabled),
+		(!isWavesSwitchable || wavesEnabled === defaultWavesEnabled) &&
+		(!isBannerCarouselSwitchable ||
+			bannerCarouselEnabled === defaultBannerCarouselEnabled),
 );
 const hasAnyContent =
 	showThemeColor ||
@@ -109,6 +141,51 @@ const hasAnyContent =
 	allowLayoutSwitch ||
 	hasBannerSettings ||
 	hasOverlaySettings;
+
+let overlaySliderItems = $derived<OverlaySliderItem[]>([
+	{
+		key: "opacity",
+		enabled: isOverlayOpacitySwitchable,
+		label: i18n(I18nKey.overlayOpacity),
+		displayValue: `${Math.round(overlayOpacity * 100)}%`,
+		ariaLabel: i18n(I18nKey.overlayOpacity),
+		min: 20,
+		max: 100,
+		step: 1,
+		value: Math.round(overlayOpacity * 100),
+		onValueChange: (value) => {
+			overlayOpacity = value / 100;
+		},
+	},
+	{
+		key: "blur",
+		enabled: isOverlayBlurSwitchable,
+		label: i18n(I18nKey.overlayBlur),
+		displayValue: `${overlayBlur.toFixed(1)}px`,
+		ariaLabel: i18n(I18nKey.overlayBlur),
+		min: 0,
+		max: 20,
+		step: 0.5,
+		value: overlayBlur,
+		onValueChange: (value) => {
+			overlayBlur = value;
+		},
+	},
+	{
+		key: "cardOpacity",
+		enabled: isOverlayCardOpacitySwitchable,
+		label: i18n(I18nKey.overlayCardOpacity),
+		displayValue: `${Math.round(overlayCardOpacity * 100)}%`,
+		ariaLabel: i18n(I18nKey.overlayCardOpacity),
+		min: 20,
+		max: 100,
+		step: 1,
+		value: Math.round(overlayCardOpacity * 100),
+		onValueChange: (value) => {
+			overlayCardOpacity = value / 100;
+		},
+	},
+]);
 
 function resetHue() {
 	hue = getDefaultHue();
@@ -121,12 +198,12 @@ function resetWallpaperMode() {
 }
 
 function resetLayout() {
-	currentLayout = defaultLayout;
-	localStorage.setItem("postListLayout", defaultLayout);
+	currentLayout = effectiveDefaultLayout;
+	localStorage.removeItem("postListLayout");
 
 	// 触发自定义事件，通知页面布局已改变
 	const event = new CustomEvent("layoutChange", {
-		detail: { layout: defaultLayout },
+		detail: { layout: effectiveDefaultLayout },
 	});
 	window.dispatchEvent(event);
 }
@@ -147,6 +224,13 @@ function resetBannerSettings() {
 	if (isWavesSwitchable && wavesEnabled !== defaultWavesEnabled) {
 		wavesEnabled = defaultWavesEnabled;
 		setWavesEnabled(defaultWavesEnabled);
+	}
+	if (
+		isBannerCarouselSwitchable &&
+		bannerCarouselEnabled !== defaultBannerCarouselEnabled
+	) {
+		bannerCarouselEnabled = defaultBannerCarouselEnabled;
+		setBannerCarouselEnabled(defaultBannerCarouselEnabled);
 	}
 }
 
@@ -180,6 +264,11 @@ function toggleBannerTitleEnabled() {
 	setBannerTitleEnabled(bannerTitleEnabled);
 }
 
+function toggleBannerCarouselEnabled() {
+	bannerCarouselEnabled = !bannerCarouselEnabled;
+	setBannerCarouselEnabled(bannerCarouselEnabled);
+}
+
 function switchWallpaperMode(newMode: WALLPAPER_MODE) {
 	wallpaperMode = newMode;
 	setWallpaperMode(newMode);
@@ -191,8 +280,14 @@ function switchWallpaperMode(newMode: WALLPAPER_MODE) {
 
 function checkScreenSize() {
 	isSmallScreen = window.innerWidth < 1200;
-	if (isSmallScreen) {
-		currentLayout = "list";
+	isMobileWidth = window.innerWidth < 780;
+	// 低于380px强制网格模式
+	if (window.innerWidth < 380 && currentLayout === "list") {
+		currentLayout = "grid";
+		const event = new CustomEvent("layoutChange", {
+			detail: { layout: "grid" },
+		});
+		window.dispatchEvent(event);
 	}
 }
 
@@ -221,7 +316,7 @@ function refreshAllRangeProgress() {
 }
 
 function switchLayout() {
-	if (!mounted || isSmallScreen || isSwitching) return;
+	if (!mounted || isSwitching) return;
 
 	isSwitching = true;
 	currentLayout = currentLayout === "list" ? "grid" : "list";
@@ -252,6 +347,9 @@ onMount(() => {
 	// 从localStorage读取横幅标题状态
 	bannerTitleEnabled = getStoredBannerTitleEnabled();
 
+	// 从localStorage读取横幅轮播状态
+	bannerCarouselEnabled = getStoredBannerCarouselEnabled();
+
 	// 从localStorage读取全屏透明设置状态
 	overlayOpacity = getStoredOverlayOpacity();
 	overlayBlur = getStoredOverlayBlur();
@@ -262,7 +360,8 @@ onMount(() => {
 	if (savedLayout && (savedLayout === "list" || savedLayout === "grid")) {
 		currentLayout = savedLayout;
 	} else {
-		currentLayout = siteConfig.postListLayout.defaultMode;
+		currentLayout =
+			window.innerWidth < 780 ? mobileDefaultLayout : defaultLayout;
 	}
 
 	// 监听窗口大小变化
@@ -303,6 +402,22 @@ onMount(() => {
 
 	return () => {
 		panel.removeEventListener("input", handleRangeInput);
+	};
+});
+
+onMount(() => {
+	const handleWallpaperModeChange = (event: Event) => {
+		const customEvent = event as CustomEvent<{ mode: WALLPAPER_MODE }>;
+		wallpaperMode = customEvent.detail.mode;
+	};
+
+	window.addEventListener("wallpaperModeChange", handleWallpaperModeChange);
+
+	return () => {
+		window.removeEventListener(
+			"wallpaperModeChange",
+			handleWallpaperModeChange,
+		);
 	};
 });
 
@@ -431,43 +546,26 @@ $effect(() => {
                 </button>
             </div>
             <div class="space-y-2">
-                {#if isOverlayOpacitySwitchable}
-                    <div class="rounded-md bg-(--btn-regular-bg) p-2">
-                        <div class="flex items-center justify-between mb-1">
-                            <span class="text-sm font-medium text-(--btn-content) opacity-80">{i18n(I18nKey.overlayOpacity)}</span>
-                            <span class="text-xs text-(--btn-content)">{Math.round(overlayOpacity * 100)}%</span>
+                {#each overlaySliderItems as item (item.key)}
+                    {#if item.enabled}
+                        <div class="rounded-md bg-(--btn-regular-bg) p-2">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-sm font-medium text-(--btn-content) opacity-80">{item.label}</span>
+                                <span class="text-xs text-(--btn-content)">{item.displayValue}</span>
+                            </div>
+                            <input
+                                aria-label={item.ariaLabel}
+                                type="range"
+                                min={item.min}
+                                max={item.max}
+                                step={item.step}
+                                value={item.value}
+                                oninput={(e) => item.onValueChange(Number((e.currentTarget as HTMLInputElement).value))}
+                                class="slider w-full overlay-slider"
+                            />
                         </div>
-                        <input aria-label={i18n(I18nKey.overlayOpacity)} type="range" min="20" max="100" step="1"
-                               value={Math.round(overlayOpacity * 100)}
-                               oninput={(e) => (overlayOpacity = Number((e.currentTarget as HTMLInputElement).value) / 100)}
-                               class="slider w-full" />
-                    </div>
-                {/if}
-
-                {#if isOverlayBlurSwitchable}
-                    <div class="rounded-md bg-(--btn-regular-bg) p-2">
-                        <div class="flex items-center justify-between mb-1">
-                            <span class="text-sm font-medium text-(--btn-content) opacity-80">{i18n(I18nKey.overlayBlur)}</span>
-                            <span class="text-xs text-(--btn-content)">{overlayBlur.toFixed(1)}px</span>
-                        </div>
-                        <input aria-label={i18n(I18nKey.overlayBlur)} type="range" min="0" max="20" step="0.5"
-                               bind:value={overlayBlur}
-                               class="slider w-full" />
-                    </div>
-                {/if}
-
-                {#if isOverlayCardOpacitySwitchable}
-                    <div class="rounded-md bg-(--btn-regular-bg) p-2">
-                        <div class="flex items-center justify-between mb-1">
-                            <span class="text-sm font-medium text-(--btn-content) opacity-80">{i18n(I18nKey.overlayCardOpacity)}</span>
-                            <span class="text-xs text-(--btn-content)">{Math.round(overlayCardOpacity * 100)}%</span>
-                        </div>
-                        <input aria-label={i18n(I18nKey.overlayCardOpacity)} type="range" min="20" max="100" step="1"
-                               value={Math.round(overlayCardOpacity * 100)}
-                               oninput={(e) => (overlayCardOpacity = Number((e.currentTarget as HTMLInputElement).value) / 100)}
-                               class="slider w-full" />
-                    </div>
-                {/if}
+                    {/if}
+                {/each}
             </div>
         </div>
     {/if}
@@ -506,6 +604,24 @@ $effect(() => {
                     </div>
                 </button>
                 {/if}
+                <!-- Banner Carousel Switch -->
+                {#if isBannerCarouselSwitchable}
+                <button
+                    class="w-full btn-regular rounded-md py-2 px-3 flex items-center gap-3 text-left active:scale-95 transition-all relative overflow-hidden"
+                    class:bg-(--btn-regular-bg-hover)={bannerCarouselEnabled}
+                    onclick={toggleBannerCarouselEnabled}
+                >
+                    <Icon icon="material-symbols:view-carousel-outline" class="text-[1.25rem] shrink-0"></Icon>
+                    <span class="text-sm flex-1">{i18n(I18nKey.bannerCarousel)}</span>
+                    <div class="w-10 h-5 rounded-full transition-all duration-200 relative"
+                         class:bg-(--primary)={bannerCarouselEnabled}
+                         class:bg-(--btn-regular-bg-active)={!bannerCarouselEnabled}>
+                        <div class="absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-all duration-200"
+                             class:left-0.5={!bannerCarouselEnabled}
+                             class:left-5={bannerCarouselEnabled}></div>
+                    </div>
+                </button>
+                {/if}
                 <!-- Waves Animation Switch -->
                 {#if isWavesSwitchable}
                 <button
@@ -529,7 +645,7 @@ $effect(() => {
     {/if}
 
     <!-- Layout Switch Section -->
-    {#if allowLayoutSwitch && !isSmallScreen}
+    {#if allowLayoutSwitch}
         <div class="mt-2 mb-2">
             <div class="flex gap-2 font-bold text-lg text-neutral-900 dark:text-neutral-100 transition relative ml-3 mb-2
                 before:w-1 before:h-4 before:rounded-md before:bg-(--primary)
@@ -537,7 +653,7 @@ $effect(() => {
             >
                 {i18n(I18nKey.postListLayout)}
                 <button aria-label="Reset to Default" class="btn-regular w-7 h-7 rounded-md  active:scale-90"
-                        class:opacity-0={currentLayout === defaultLayout} class:pointer-events-none={currentLayout === defaultLayout} onclick={resetLayout}>
+                        class:opacity-0={currentLayout === effectiveDefaultLayout} class:pointer-events-none={currentLayout === effectiveDefaultLayout} onclick={resetLayout}>
                     <div class="text-(--btn-content)">
                         <Icon icon="fa7-solid:arrow-rotate-left" class="text-[0.875rem]"></Icon>
                     </div>
@@ -593,6 +709,9 @@ $effect(() => {
             border-radius 999px
             background-image unquote("linear-gradient(90deg, var(--primary) 0 var(--range-progress, 50%), hsla(var(--hue), 22%, 28%, 0.18) var(--range-progress, 50%) 100%)")
             transition background-image 0.15s ease-in-out
+
+        input[type="range"].overlay-slider
+            height 0.85rem
 
             /* Input Thumb */
             &::-webkit-slider-thumb

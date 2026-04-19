@@ -47,6 +47,7 @@ interface Props {
 	lang?: string;
 	setOGTypeArticle?: boolean;
 	postSlug?: string;
+	postCategory?: string;
 	headings?: MarkdownHeading[];
 	bannerPostMeta?: {
 		title: string;
@@ -66,6 +67,7 @@ const {
 	lang,
 	setOGTypeArticle,
 	postSlug,
+	postCategory,
 	headings = [],
 	bannerPostMeta,
 } = Astro.props;
@@ -125,6 +127,8 @@ const creditUrlMobile =
 
 // 检查是否为首页
 const isHomePageCheck = isHomePage(Astro.url.pathname);
+
+const shouldRenderCategoryBar = !!siteConfig.categoryBar;
 
 // 检查是否在文章详情页
 const isPostPage = !!postSlug;
@@ -229,21 +233,30 @@ if (
 	updatedGridConfig.hasLeftComponents &&
 	updatedGridConfig.hasRightComponents
 ) {
-	// 双侧栏：平板端跨2列，桌面端在中间列
-	footerClass.push("md:col-span-2 xl:col-start-2 xl:col-span-1");
+	// 双侧栏：Footer 在平板与桌面都跟随内容列
+	if (updatedGridConfig.tabletSidebar === "right") {
+		footerClass.push(
+			"md:col-start-1 md:col-span-1 xl:col-start-2 xl:col-span-1",
+		);
+	} else {
+		footerClass.push(
+			"md:col-start-2 md:col-span-1 xl:col-start-2 xl:col-span-1",
+		);
+	}
 } else if (
 	updatedGridConfig.hasLeftComponents &&
 	!updatedGridConfig.hasRightComponents
 ) {
-	footerClass.push("md:col-span-2 xl:col-start-2 xl:col-span-1");
+	// 仅左侧栏：内容列在第2列
+	footerClass.push("md:col-start-2 md:col-span-1 xl:col-start-2 xl:col-span-1");
 } else if (
 	!updatedGridConfig.hasLeftComponents &&
 	updatedGridConfig.hasRightComponents
 ) {
-	// 仅右侧栏：平板端跨2列，内容在第1列
-	footerClass.push("md:col-span-2 md:col-start-1 xl:col-start-1 xl:col-span-1");
+	// 仅右侧栏：内容列在第1列
+	footerClass.push("md:col-start-1 md:col-span-1 xl:col-start-1 xl:col-span-1");
 } else {
-	footerClass.push("xl:col-start-1 xl:col-span-1");
+	footerClass.push("md:col-start-1 md:col-span-1 xl:col-start-1 xl:col-span-1");
 }
 
 const footerClassName = footerClass.join(" ");
@@ -251,16 +264,20 @@ const footerClassName = footerClass.join(" ");
 // 检查是否应该启用半透明效果
 const shouldEnableTransparency = isOverlayMode && isBackgroundEnabled;
 
-// 为组件添加半透明效果的CSS类
-const transparentClass = shouldEnableTransparency
-	? "wallpaper-transparent"
-	: "";
-
 const navbarWidthFull = siteConfig.navbar.widthFull ?? false;
+const stickyNavbar = siteConfig.navbar.stickyNavbar ?? false;
 
 // 获取图片质量配置
 const configQuality = getImageQuality();
 const mobileQuality = Math.round(configQuality * 0.9);
+const bannerCarouselEnabledDefault =
+	backgroundWallpaper.banner?.carousel?.enable ?? false;
+const bannerCarouselSwitchable =
+	backgroundWallpaper.banner?.carousel?.switchable ?? false;
+const bannerCarouselInterval = Math.max(
+	backgroundWallpaper.banner?.carousel?.interval ?? 5000,
+	3000,
+);
 ---
 
 <Layout title={title} banner={banner} description={description} lang={lang} setOGTypeArticle={setOGTypeArticle} postSlug={postSlug}>
@@ -275,8 +292,21 @@ const mobileQuality = Math.round(configQuality * 0.9);
 
 <!-- Navbar -->
 <slot slot="head" name="head"></slot>
-<div id="top-row" class="z-50 pointer-events-none relative transition-all duration-700 mx-auto" class:list={[navbarWidthFull ? "" : "w-full xl:w-[92vw] max-w-(--page-width) px-0 md:px-4"]}>
-    <div id="navbar-wrapper" class="pointer-events-auto sticky top-0 transition-all">
+<div
+    id="top-row"
+    class="z-50 pointer-events-none relative transition-all duration-700 mx-auto"
+    class:list={[
+        stickyNavbar ? "h-18 fixed top-0 left-0 right-0 z-80" : "",
+        navbarWidthFull ? "" : "w-full xl:w-[92vw] max-w-(--page-width) px-0 md:px-4",
+    ]}
+>
+    <div
+        id="navbar-wrapper"
+        class:list={[
+            "pointer-events-auto transition-all",
+            stickyNavbar ? "" : "sticky top-0",
+        ]}
+    >
         <Navbar></Navbar>
     </div>
 </div>
@@ -296,7 +326,10 @@ const mobileQuality = Math.round(configQuality * 0.9);
     <!-- 背景图片显示 -->
     <div class="relative h-full w-full" id="banner-images-container"
          data-mobile-count={backgroundImages.mobile.length}
-         data-desktop-count={backgroundImages.desktop.length}>
+         data-desktop-count={backgroundImages.desktop.length}
+         data-carousel-enabled={bannerCarouselEnabledDefault}
+         data-carousel-switchable={bannerCarouselSwitchable}
+         data-carousel-interval={bannerCarouselInterval}>
         <!-- Mobile: 默认渲染第一张，其余放入 template 避免浏览器预加载 -->
         {backgroundImages.mobile.length > 0 && (
             <div class="banner-image-slot-mobile absolute inset-0 block lg:hidden">
@@ -374,6 +407,22 @@ const mobileQuality = Math.round(configQuality * 0.9);
 
             if (mobileCount <= 1 && desktopCount <= 1) return;
 
+            // 保存 SSR 初始第一张图的 HTML，供后续轮播收集完整帧序列使用
+            if (typeof window.__bannerInitialFrameHtml === 'undefined') {
+                window.__bannerInitialFrameHtml = {};
+            }
+
+            function rememberInitialFrame(slotClass) {
+                var slot = container.querySelector('.' + slotClass);
+                if (!slot) return;
+                if (!window.__bannerInitialFrameHtml[slotClass]) {
+                    window.__bannerInitialFrameHtml[slotClass] = slot.innerHTML;
+                }
+            }
+
+            rememberInitialFrame('banner-image-slot-mobile');
+            rememberInitialFrame('banner-image-slot-desktop');
+
             // F5 刷新重置，Swup 切换保留
             if (typeof window.__bannerRandomIndex === 'undefined') {
                 window.__bannerRandomIndex = {
@@ -398,6 +447,179 @@ const mobileQuality = Math.round(configQuality * 0.9);
             applyRandom('banner-image-slot-desktop', 'banner-tpl-desktop', window.__bannerRandomIndex.desktop);
         })();
     </script>
+
+    <!-- 横幅轮播 Ken Burns 样式（放在 body 中，不受 Swup head 替换影响） -->
+    <Fragment set:html={`<style>
+        @keyframes bannerKenBurns {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        .banner-kb {
+            animation: bannerKenBurns ${bannerCarouselInterval + 1500}ms ease-out forwards;
+        }
+    </style>`} />
+    <!-- 横幅图片轮播脚本 -->
+    <script is:inline data-swup-ignore-script>
+        (function initBannerCarousel() {
+            var container = document.getElementById('banner-images-container');
+            if (!container) return;
+
+            var WALLPAPER_BANNER = 'banner';
+
+            var mobileCount = parseInt(container.dataset.mobileCount || '0', 10);
+            var desktopCount = parseInt(container.dataset.desktopCount || '0', 10);
+            if (mobileCount <= 1 && desktopCount <= 1) return;
+
+            var interval = parseInt(container.dataset.carouselInterval || '8000', 10);
+            var switchable = container.dataset.carouselSwitchable === 'true';
+            var defaultEnabled = container.dataset.carouselEnabled === 'true';
+            var FADE_MS = 1500;
+
+            function isCarouselEnabled() {
+                if (!switchable) return defaultEnabled;
+                var stored = localStorage.getItem('bannerCarouselEnabled');
+                if (stored === null) return defaultEnabled;
+                return stored === 'true';
+            }
+
+            function isBannerWallpaperMode() {
+                return document.documentElement.getAttribute('data-wallpaper-mode') === WALLPAPER_BANNER;
+            }
+
+            // 收集所有帧内容
+            if (!window.__bannerCarouselFrames) window.__bannerCarouselFrames = {};
+
+            function collectFrames(slotClass, tplClass) {
+                if (window.__bannerCarouselFrames[slotClass]) return;
+                var frames = [];
+                var initialFrame =
+                    window.__bannerInitialFrameHtml &&
+                    window.__bannerInitialFrameHtml[slotClass];
+                var slot = container.querySelector('.' + slotClass);
+                if (initialFrame) {
+                    frames.push(initialFrame);
+                } else if (slot) {
+                    frames.push(slot.innerHTML);
+                }
+                var tpls = container.querySelectorAll('.' + tplClass);
+                for (var i = 0; i < tpls.length; i++) {
+                    // 直接读取 template 的 innerHTML，不创建真实 DOM 节点，避免触发图片加载
+                    frames.push(tpls[i].innerHTML);
+                }
+                window.__bannerCarouselFrames[slotClass] = frames;
+            }
+
+            collectFrames('banner-image-slot-mobile', 'banner-tpl-mobile');
+            collectFrames('banner-image-slot-desktop', 'banner-tpl-desktop');
+
+            if (typeof window.__bannerCarouselIndex === 'undefined') {
+                window.__bannerCarouselIndex = {
+                    mobile: window.__bannerRandomIndex ? window.__bannerRandomIndex.mobile : 0,
+                    desktop: window.__bannerRandomIndex ? window.__bannerRandomIndex.desktop : 0
+                };
+            }
+
+            // 检查 slot 是否被响应式类隐藏（lg:hidden / hidden lg:block）
+            // 不使用 offsetParent，因为 wallpaper-wrapper 初始可能 display:none
+            function isSlotHiddenByBreakpoint(slot) {
+                var cl = slot.classList;
+                var w = window.innerWidth;
+                var isLg = w >= 1024;
+                // mobile slot: "block lg:hidden" → lg 以上隐藏
+                if (cl.contains('lg:hidden') && isLg) return true;
+                // desktop slot: "hidden lg:block" → lg 以下隐藏
+                if (cl.contains('hidden') && !cl.contains('lg:hidden') && !isLg) return true;
+                return false;
+            }
+
+            // 给首张图启动 Ken Burns
+            function applyInitialKB(slotClass) {
+                var slot = container.querySelector('.' + slotClass);
+                if (!slot || isSlotHiddenByBreakpoint(slot)) return;
+                // 移除可能残留的旧 class，重新触发动画
+                slot.classList.remove('banner-kb');
+                void slot.offsetWidth; // 强制回流
+                slot.classList.add('banner-kb');
+            }
+
+            function crossfade(slotClass, totalCount, type) {
+                if (totalCount <= 1) return;
+                var frames = window.__bannerCarouselFrames[slotClass];
+                if (!frames || frames.length === 0) return;
+
+                var oldSlot = container.querySelector('.' + slotClass);
+                if (!oldSlot) return;
+
+                // 跳过当前不可见的 slot（桌面端不加载移动端图片，反之亦然）
+                if (isSlotHiddenByBreakpoint(oldSlot)) return;
+
+                var currentIndex = window.__bannerCarouselIndex[type];
+                var nextIndex = (currentIndex + 1) % frames.length;
+                window.__bannerCarouselIndex[type] = nextIndex;
+
+                // 新层：叠在旧层上方
+                var newSlot = document.createElement('div');
+                // 复制基础 class，去掉 banner-kb 避免继承旧动画状态
+                var baseClass = oldSlot.className.replace(/\bbanner-kb\b/g, '').trim();
+                newSlot.className = baseClass;
+                newSlot.style.opacity = '0';
+                newSlot.style.transition = 'opacity ' + FADE_MS + 'ms ease-in-out';
+                newSlot.innerHTML = frames[nextIndex];
+                oldSlot.parentNode.insertBefore(newSlot, oldSlot.nextSibling);
+
+                // 双 rAF：确保 opacity:0 已绘制，然后同时触发淡入 + Ken Burns
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(function() {
+                        newSlot.style.opacity = '1';
+                        newSlot.classList.add('banner-kb');
+                    });
+                });
+
+                // 淡入完成后：移除旧层，清理 transition（避免影响后续动画）
+                setTimeout(function() {
+                    if (oldSlot.parentNode) oldSlot.parentNode.removeChild(oldSlot);
+                    newSlot.style.transition = '';
+                }, FADE_MS + 50);
+            }
+
+            var timerId = null;
+
+            function startCarousel() {
+                stopCarousel();
+                if (!isBannerWallpaperMode()) return;
+                if (!isCarouselEnabled()) return;
+
+                // 首张图立即启动 Ken Burns 缩放
+                applyInitialKB('banner-image-slot-mobile');
+                applyInitialKB('banner-image-slot-desktop');
+
+                timerId = setInterval(function() {
+                    if (!isBannerWallpaperMode()) { stopCarousel(); return; }
+                    if (!isCarouselEnabled()) { stopCarousel(); return; }
+                    crossfade('banner-image-slot-mobile', mobileCount, 'mobile');
+                    crossfade('banner-image-slot-desktop', desktopCount, 'desktop');
+                }, interval);
+            }
+
+            function stopCarousel() {
+                if (timerId !== null) { clearInterval(timerId); timerId = null; }
+            }
+
+            window.addEventListener('bannerCarouselChange', function(e) {
+                e.detail && e.detail.enabled ? startCarousel() : stopCarousel();
+            });
+
+            window.addEventListener('wallpaperModeChange', function(e) {
+                if (e.detail && e.detail.mode === 'banner') {
+                    if (isCarouselEnabled()) startCarousel();
+                } else {
+                    stopCarousel();
+                }
+            });
+
+            startCarousel();
+        })();
+    </script>
     
     <div id="banner-dim-container" class="absolute inset-0 z-0 pointer-events-none">
         {showBannerDim && <div class="banner-dim-overlay absolute inset-0"></div>}
@@ -409,7 +631,7 @@ const mobileQuality = Math.round(configQuality * 0.9);
             <div class="w-4/5 lg:w-3/4 text-center mb-0">
                 <div class="flex flex-col">
                     {backgroundWallpaper.banner?.homeText?.title && (
-                        <div class="banner-title font-bold text-white mb-2 lg:mb-4 leading-tight" style={{ fontSize: backgroundWallpaper.banner.homeText.titleSize || "3rem" }}>
+                        <div class="banner-title font-bold text-white mb-2 lg:mb-4 leading-tight" style={{ '--banner-title-size': backgroundWallpaper.banner.homeText.titleSize || "3rem" }}>
                             {backgroundWallpaper.banner.homeText.title}
                         </div>
                     )}
@@ -521,7 +743,7 @@ const mobileQuality = Math.round(configQuality * 0.9);
     <div class={`waves absolute -bottom-px h-[10vh] max-h-37.5 min-h-12.5 w-full md:h-[15vh]
         ${!wavesEnabledOnMobile ? 'hidden' : ''} ${!wavesEnabledOnDesktop ? 'md:hidden' : ''} ${wavesEnabledOnDesktop ? 'md:block' : ''}`}
         id="header-waves"
-        style="transform: translateZ(0); will-change: fill;">
+        style="transform: translateZ(0);">
         <svg
             class="waves"
             xmlns="http://www.w3.org/2000/svg"
@@ -578,7 +800,7 @@ const mobileQuality = Math.round(configQuality * 0.9);
 )}
 
 <!-- Main content -->
-<div class={`absolute w-full z-30 pointer-events-none ${mobileNonHomeBannerClass ? 'mobile-main-no-banner' : ''} ${!(isBannerMode && isBackgroundEnabled) ? 'no-banner-layout' : ''} ${transparentClass}`} style={`top: ${finalMainPanelTop}`}>
+<div class={`absolute w-full z-30 pointer-events-none ${mobileNonHomeBannerClass ? 'mobile-main-no-banner' : ''} ${!(isBannerMode && isBackgroundEnabled) ? 'no-banner-layout' : ''}`} style={`top: ${finalMainPanelTop}`}>
     <!-- The pointer-events-none here prevent blocking the click event of the TOC -->
     <div class="relative w-full xl:w-[92vw] max-w-(--page-width) mx-auto pointer-events-auto">
         <div id="main-grid"
@@ -640,7 +862,7 @@ const mobileQuality = Math.round(configQuality * 0.9);
                         {effectiveHasLeftComponents && (
                             <SideBar
                                 side={effectiveIsBothSidebars ? "left" : undefined}
-                                class={`${sidebarClass} ${transparentClass}`}
+                                class={sidebarClass}
                                 headings={headings}
                             />
                         )}
@@ -650,18 +872,21 @@ const mobileQuality = Math.round(configQuality * 0.9);
             ) : (
                 <div id="left-sidebar-dynamic" class="contents transition-swup-fade">
                     {effectiveIsBothSidebars && effectiveHasLeftComponents && (
-                        <SideBar side="left" class={`${sidebarClass} ${transparentClass}`} headings={headings}></SideBar>
+						<SideBar side="left" class={sidebarClass} headings={headings}></SideBar>
                     )}
                 </div>
             )}
                     
             {/* 主内容区包装器 - 包含静态栏位和swup容器，作为单个grid item */}
             <div class={staticBarClass}>
-                {/* 分类导航栏 - 在所有页面渲染，由客户端JS控制显隐 */}
-                {siteConfig.categoryBar && <CategoryBar />}
-
+                {/* 分类导航栏 - 全站渲染并显示 */}
+                {shouldRenderCategoryBar && <div id="category-bar-wrapper"><CategoryBar currentPostCategory={postCategory} /></div>}
                 {/* 主内容区 - 始终渲染，确保 Swup 容器存在 */}
-                <main id="swup-container" class="transition-main">
+                <main
+                    id="swup-container"
+                    class="transition-main"
+                    data-current-post-category={postCategory || ""}
+                >
                 {/* 携带网格布局类名，用于JS更新父容器 */}
                 <div id="grid-class-carrier" data-grid-class={gridCols} class="hidden"></div>
                 {/* 为每个页面提供一个隐藏的h1标题，用于SEO和可访问性 */}
@@ -683,7 +908,7 @@ const mobileQuality = Math.round(configQuality * 0.9);
                 <>
                     <div id="right-sidebar-static" class="contents">
                         {(effectiveIsBothSidebars || sidebarLayoutConfig.position === "right") && effectiveHasRightComponents && (
-                            <SideBar side="right" class={`${rightSidebarClass} ${transparentClass}`} headings={headings}></SideBar>
+							<SideBar side="right" class={rightSidebarClass} headings={headings}></SideBar>
                         )}
                     </div>
                     <div id="right-sidebar-dynamic" class="hidden transition-swup-fade"></div>
@@ -691,7 +916,7 @@ const mobileQuality = Math.round(configQuality * 0.9);
             ) : (
                 <div id="right-sidebar-dynamic" class="contents transition-swup-fade">
                     {effectiveIsBothSidebars && effectiveHasRightComponents && (
-                        <SideBar side="right" class={`${rightSidebarClass} ${transparentClass}`} headings={headings}></SideBar>
+						<SideBar side="right" class={rightSidebarClass} headings={headings}></SideBar>
                     )}
                 </div>
             )}
@@ -699,7 +924,7 @@ const mobileQuality = Math.round(configQuality * 0.9);
             {/* 移动端底部组件 - 768px及以下显示 */}
             {sidebarLayoutConfig.mobileBottomComponents && sidebarLayoutConfig.mobileBottomComponents.length > 0 && (
                 <div id="mobile-bottom-sidebar" class="col-span-1 block md:hidden mt-4">
-                    <SideBar side="bottom" class={`${transparentClass}`} headings={headings}></SideBar>
+					<SideBar side="bottom" headings={headings}></SideBar>
                 </div>
             )}
 
