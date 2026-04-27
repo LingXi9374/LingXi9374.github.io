@@ -1,6 +1,7 @@
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 import tailwindcss from "@tailwindcss/vite";
+import { setMaxListeners } from "node:events";
 import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-sections";
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
 import swup from "@swup/astro";
@@ -24,27 +25,41 @@ import { pluginLanguageBadge } from "expressive-code-language-badge"; /* Languag
 import { pluginCollapsible } from "expressive-code-collapsible"; /* Collapsible */
 import { GithubCardComponent } from "./src/plugins/rehype-component-github-card.mjs";
 import { rehypeMermaid } from "./src/plugins/rehype-mermaid.mjs";
+import { rehypePlantuml } from "./src/plugins/rehype-plantuml.mjs";
 import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js";
 import { remarkExcerpt } from "./src/plugins/remark-excerpt.js";
 import { remarkMermaid } from "./src/plugins/remark-mermaid.js";
+import { remarkPlantuml } from "./src/plugins/remark-plantuml.js";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 import mdx from "@astrojs/mdx";
 import rehypeEmailProtection from "./src/plugins/rehype-email-protection.mjs";
 import rehypeExternalLinks from "./src/plugins/rehype-external-links.mjs";
 import rehypeFigure from "./src/plugins/rehype-figure.mjs";
 import { remarkImageGrid } from "./src/plugins/remark-image-grid.js";
+import { plantumlConfig } from "./src/config";
+
+if (process.env.NODE_ENV === "development") {
+	setMaxListeners(20);
+}
 
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.site_url,
-
+	
 	base: "/",
 	trailingSlash: "always",
 
 	// 图像优化配置
 	image: {
 		// 全局响应式布局
-		experimentalLayout: "constrained",
+		layout: "constrained",
+	},
+
+	experimental: {
+		// Rust 编译器以提升构建性能（实验性），部分平台可能会导致构建失败，可以根据需要启用或禁用
+		rustCompiler: false,
+		// 队列渲染以优化性能（实验性）
+		queuedRendering: { enabled: true },
 	},
 
 	integrations: [
@@ -73,7 +88,7 @@ export default defineConfig({
 			animateHistoryBrowsing: false,
 			skipPopStateHandling: (event) => {
 				// 跳过锚点链接的处理，让浏览器原生处理
-				return event.state && event.state.url && event.state.url.includes("#");
+				return event.state?.url?.includes("#");
 			},
 		}),
 		icon({
@@ -156,6 +171,9 @@ export default defineConfig({
 				const url = new URL(page);
 				const pathname = url.pathname;
 
+				if (pathname === "/friends/" && !siteConfig.pages.friends) {
+					return false;
+				}
 				if (pathname === "/sponsor/" && !siteConfig.pages.sponsor) {
 					return false;
 				}
@@ -184,12 +202,14 @@ export default defineConfig({
 			remarkSectionize,
 			parseDirectiveNode,
 			remarkMermaid,
+			[remarkPlantuml, plantumlConfig],
 		],
 		rehypePlugins: [
 			[rehypeKatex, { katex }],
 			[rehypeCallouts, { theme: siteConfig.rehypeCallouts.theme }],
 			rehypeSlug,
 			rehypeMermaid,
+			rehypePlantuml,
 			rehypeFigure,
 			[rehypeExternalLinks, { siteUrl: siteConfig.site_url }],
 			[rehypeEmailProtection, { method: "base64" }], // 邮箱保护插件，支持 'base64' 或 'rot13'
@@ -228,6 +248,11 @@ export default defineConfig({
 	},
 	vite: {
 		plugins: [tailwindcss()],
+		server: {
+			watch: {
+				ignored: ["**/package/**", "**/Firefly-docs/**"],
+			},
+		},
 		resolve: {
 			alias: {
 				"@rehype-callouts-theme": `rehype-callouts/theme/${siteConfig.rehypeCallouts.theme}`,
@@ -238,7 +263,7 @@ export default defineConfig({
 			esbuildOptions: {
 				minify: true,
 				// 移除 console.log 和 debugger
-				drop: ["console", "debugger"], 
+				drop: ["console", "debugger"],
 			},
 			rollupOptions: {
 				onwarn(warning, warn) {
@@ -255,6 +280,7 @@ export default defineConfig({
 			// CSS 优化
 			cssCodeSplit: true,
 			cssMinify: "esbuild",
+			assetsInlineLimit: 4096,
 		},
 	},
 });
