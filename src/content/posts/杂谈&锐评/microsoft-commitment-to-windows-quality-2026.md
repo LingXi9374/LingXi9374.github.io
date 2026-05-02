@@ -23,7 +23,7 @@ lang: 'zh_CN'
 
 Linux侧也在发力，自从 Windows 10 停止支持后，End of 10 等民间项目鼓励使用中低端硬件的 Win10 用户转向 Linux 桌面。<sup>[[来源1]](https://www.techtarget.com/searchenterprisedesktop/feature/End-of-10-How-Linux-could-help-Windows-10-PCs-live-on) [[来源2]](https://endof10.org/)</sup>:spoiler[依旧今年是 **Linux 桌面元年**，，，]
 
-面对愈演愈烈的信任危机，Ｍ＄也是意识到了事情的严重性，Windows 作为公司的根基不应该减少重心投入 ~~ (Ｍ＄许多产品业务重心是投向B端了，比如 Azure) ~~，于是他们在 Windows Insider Blog 上写下了这篇“保证书”，试图恢复 Windows 与 Ｍ＄ 在消费市场的声誉。
+面对愈演愈烈的信任危机，Ｍ＄也是意识到了事情的严重性，Windows 作为公司的根基不应该减少重心投入 ~~(Ｍ＄许多产品业务重心是投向B端了，比如 Azure)~~，于是他们在 Windows Insider Blog 上写下了这篇“保证书”，试图恢复 Windows 与 Ｍ＄ 在消费市场的声誉。
 
 那么，在这轰轰烈烈的“罪已诏”背后，究竟是真的 **“真心悔改”**，还是Ｍ＄对用户临时 **“画大饼”** 呢？下面有请请我逐句分析。
 

@@ -1,6 +1,12 @@
 import type { APIRoute } from "astro";
 
 const robotsTxt = `
+User-agent: Bingbot
+Allow: /
+
+User-agent: googlebot
+Allow: /
+
 User-agent: *
 Allow: /
 Disallow: /_astro/
