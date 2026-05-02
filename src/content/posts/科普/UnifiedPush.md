@@ -45,14 +45,17 @@ lang: 'zh_CN'
 > **Wer wir sind?   我们是谁?**
 >
 > Wir sind der Prototype Fund. Wir fördern Freie- und Open-Source-Software (FOSS) aus der Gesellschaft und für die Gesellschaft.
+>  
 > 我们是原型基金。我们从社会和社会中推广自由开源软件（FOSS）。
 >
 >Wir erkennen die gesellschaftliche Dimension und das transformative Potential von FOSS. Wir glauben, dass die Verbreitung und bewusste Nutzung von FOSS die gesellschaftliche Teilhabe bestärkt. Wir sind davon überzeugt, dass FOSS bessere Technologien für alle möglich machen kann.
+> 
 >我们认识到自由开源软件的社会维度和变革潜力。我们相信，自由开源软件的传播和有意识使用能够增强社会参与。我们坚信，自由开源软件能够让更好的技术惠及所有人。
->
->Der Prototype Fund richtet sich an User*innen, Entwickler*innen und Contributor-Communities. Wir unterstützen unabhängige Entwickler*innen und setzen uns für die Sichtbarkeit der Projekte und ihres gesellschaftlichen Impact ein. Wir ermöglichen User*innen einen unabhängigen und selbstbestimmten Zugang zu Software. Damit reagieren wir auf das gesellschaftliche Interesse an Freier- und Open-Source-Software.
+> 
+>Der Prototype Fund richtet sich an User\*innen, Entwickler\*innen und Contributor-Communities. Wir unterstützen unabhängige Entwickler\*innen und setzen uns für die Sichtbarkeit der Projekte und ihres gesellschaftlichen Impact ein. Wir ermöglichen User\*innen einen unabhängigen und selbstbestimmten Zugang zu Software. Damit reagieren wir auf das gesellschaftliche Interesse an Freier- und Open-Source-Software.
+> 
 >原型基金面向用户、开发者和贡献者社区。我们支持独立开发商，致力于项目的可见度及其社会影响。我们为用户提供独立且自主的软件访问权。通过这样做，我们是在回应社会对自由和开源软件的兴趣。
->
+> 
 > 来自：https://www.prototypefund.de/ueber-uns/mission
 
 它的诞生主要是为了解决 Android 平台上推送服务被 Google (FCM) 高度垄断，以及许多手机厂商推送标准碎片化的问题。
@@ -73,7 +76,7 @@ UnifiedPush 的 **主要优势**：
 
  - **用户控制**： 用户选择他们使用的服务，而不是开发者。
 
-![所有分发器与应用都兼容](https://f-droid.org/assets/animation-options_MLZPGs9RJptxV8Q_3U4fEdo2mJcvJDSd4rYpMr7r9og=.svg)
+![所有分发器与应用都兼容](../images/all-distributors-are-compatible-with-all-apps.svg)
 
 **主要特点**：
 
@@ -93,7 +96,7 @@ UnifiedPush 的 **主要优势**：
 
 ### Step 1: 安装发行版服务端 App
 
-UnifiedPush 官网提供许多服务端，其中 [Ntfy](https://ntfy.sh//) 需要自建服务器，提供REST API。有公用节点，但需要注册账号才能使用。这里我推荐 [Sunup](https://f-droid.org/packages/org.unifiedpush.distributor.sunup/)，优势是不用注册与不用自建服务器，使用 Mozilla 的推送服务器 (https://push.services.mozilla.com)。
+UnifiedPush 官网提供许多服务端，其中 [Ntfy](https://ntfy.sh//) 需要自建服务器，提供REST API。有公用节点，但需要注册账号才能使用。这里我推荐 [Sunup](https://f-droid.org/packages/org.unifiedpush.distributor.sunup/)，优势是不用注册与不用自建服务器，使用 Mozilla 的推送服务器 \( https://push.services.mozilla.com \)。
 
 [grid]
 ![Sunup 服务端](https://s41.ax1x.com/2026/04/18/pe6wsTe.png)
@@ -134,13 +137,13 @@ UnifiedPush 的核心是一个规范。该规范分为两半：
 
 UnifiedPush 的一个关键特性是不指定推送服务器和分发器之间的通信。这意味着可以采用多种技术，例如 WebSocket、服务器发送事件、XMPP、原始 TCP 甚至 SMS，只要最适合用户即可。
 
-![UnifiedPush 底层原理](https://f-droid.org/assets/animation-flow_mn6UvHd72uYVuF8n36saeLBGpdRSR8O5O90R3delqI4=.svg)
+![UnifiedPush 底层原理](../images/unifiedpush-underlying-principle.svg)
 
 分发器使用平台特定的 IPC 机制（例如 Android 上的 Broadcast Intents 或 Linux 上的 D-Bus）来唤醒应用并允许它处理推送消息。然后应用可以处理数据并根据内容决定是否显示通知。重要的是要注意 UnifiedPush 不处理用户可见通知的显示；它只向应用提供数据。因此，应用可以支持各种平台的通知功能，而无需 UnifiedPush 或服务器的参与。
 
 在应用服务器本身不支持 UnifiedPush 的情况下，推送网关可以将特定于应用的通知转换为 UnifiedPush 服务器协议。一些流行的推送网关，例如用于 Matrix 的推送网关，被直接集成到推送服务器中以方便自托管。此外，Rewrite Proxies 用于推送服务器不支持 UnifiedPush 的极少数情况，例如 FCM 分发器发送 UnifiedPush-over-FCM。
 
-![Push Provider = Push Server](https://f-droid.org/assets/detailed-component-diagram_6cGPhCr3oZVif0gAwk4LaZNwdXop9PIRvEg08dvCK4c=.png)
+![Push Provider = Push Server](../images/detailed-component-diagram.png)
 
 ## 针对大陆用户的 FAQ
 
