@@ -21,15 +21,15 @@ Disallow: /
 
 User-agent: *
 Allow: /*?$
-Allow: .css$
-Allow: .js$
-Disallow: .jpg$
-Disallow: .jpeg$
-Disallow: .png$
-Disallow: .gif$
-Disallow: .webp$
-Disallow: .avif$
-Disallow: .svg$
+Allow: *.css$
+Allow: *.js$
+Disallow: *.jpg$
+Disallow: *.jpeg$
+Disallow: *.png$
+Disallow: *.gif$
+Disallow: *.webp$
+Disallow: *.avif$
+Disallow: *.svg$
 Disallow: /
 Disallow: /_astro/
 Disallow: /pagefind/
