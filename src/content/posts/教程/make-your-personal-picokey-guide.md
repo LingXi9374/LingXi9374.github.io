@@ -62,13 +62,13 @@ lang: 'zh_CN'
 
 其实它的官方名称是 __安全令牌__ (英文名: __Security Token__ )，它问世于 1980 年代，让我们引入 Wikipedia 的解释：
 
-> A security token is a peripheral device used to gain access to an electronically restricted resource. The token is used in addition to, or in place of, a password.[1] Examples of security tokens include wireless key cards used to open locked doors, a banking token used as a digital authenticator for signing in to online banking, or signing transactions such as wire transfers.
+> A security token is a peripheral device used to gain access to an electronically restricted resource. The token is used in addition to, or in place of, a password.Examples of security tokens include wireless key cards used to open locked doors, a banking token used as a digital authenticator for signing in to online banking, or signing transactions such as wire transfers.
 > 
-> 安全令牌是一种外设设备 ，用于访问电子受限资源。该令牌可作为密码的补充或替代使用 。 [1] 安全令牌的例子包括用于开锁门的无线钥匙卡 、用于登录网上银行的数字认证器、签署如电汇等交易的令牌。
+> 安全令牌是一种外设设备 ，用于访问电子受限资源。该令牌可作为密码的补充或替代使用。安全令牌的例子包括用于开锁门的无线钥匙卡、用于登录网上银行的数字认证器、签署如电汇等交易的令牌。
 >
 > Security tokens can be used to store information such as passwords, cryptographic keys used to generate digital signatures, or biometric data (such as fingerprints). Some designs incorporate tamper resistant packaging, while others may include small keypads to allow entry of a PIN or a simple button to start a generation routine with some display capability to show a generated key number. Connected tokens utilize a variety of interfaces including USB, near-field communication (NFC), radio-frequency identification (RFID), or Bluetooth. Some tokens have audio capabilities designed for those who are vision-impaired.
 > 
-> 安全令牌可用于存储密码、用于生成数字签名的密码密钥或生物识别数据（如指纹 ）等信息。有些设计采用防篡改包装，另一些则可能包含小键盘以便输入 PIN 码，或通过简单的按钮启动生成程序，并具备显示显示生成密钥号的功能。连接的令牌使用多种接口，包括 USB 接口、 近场通信 （NFC）、 射频识别 （RFID）或蓝牙 。部分代币具备专为视障人士设计的音频功能。
+> 安全令牌可用于存储密码、用于生成数字签名的密码密钥或生物识别数据（如指纹）等信息。有些设计采用防篡改包装，另一些则可能包含小键盘以便输入 PIN 码，或通过简单的按钮启动生成程序，并具备显示显示生成密钥号的功能。连接的令牌使用多种接口，包括 USB 接口、近场通信（NFC）、射频识别 （RFID）或蓝牙。部分代币具备专为视障人士设计的音频功能。
 > 
 > ——[安全令牌 - 维基百科，自由的百科全书](https://en.wikipedia.org/wiki/Security_token)
 
@@ -450,7 +450,22 @@ __需要注意的是__：默认情况下 PIN 只能尝试 8 次: 每尝试 3 次
 > 
 > 大陆可用的分享链接：[适用于微雪RP2350-One的3D保护外壳图纸_123云盘免登录下载不限速](https://1815647577.share.123865.com/123pan/IzpzVv-dAJlA?pwd=rcAi#) (提取码：rcAi)
 
-由于我在嘉立创下单的外壳还在生产中，所以效果图是暂时无法给大家展现了，非常抱歉，后续到货了我会再补充上去的🙏。
+我的外壳于 5 月 6 号成功到货，该外壳模具安装只需要将安全密钥根据底座开口朝向放入底座，再将带两个按钮的顶板轻轻合上即可。安装极其轻便且日后也容易拆卸。有了外壳再贴上微雪赠送的 Waveshare 品牌贴纸（开发板买来到货的时候那个无尘袋里一般有两个小贴纸），一个较为简陋的硬件密钥完全体就做好了！
+
+> *另附上期待已久的效果图.png*
+
+[grid]
+![Blender 外壳未闭合模型预览](https://github.com/LingXi9374/picx-images-hosting/raw/master/QQ20260509-221303.6ikwrqnwo7.png)
+![Blender 外壳闭合模型效果图](https://github.com/LingXi9374/picx-images-hosting/raw/master/QQ20260509-221325.pfyig0gfd.png)
+[/grid]
+
+[grid]
+![树脂外壳开箱](https://github.com/LingXi9374/picx-images-hosting/raw/master/IMG_20260506_174725.96ad23h3k6.jpg)
+![安装示意](https://github.com/LingXi9374/picx-images-hosting/raw/master/IMG_20260506_174830.6po4n6a7nz.jpg)
+![安装效果图](https://github.com/LingXi9374/picx-images-hosting/raw/master/IMG_20260506_175019.8advmn7f4m.jpg)
+[/grid]
+
+总之，照着这样操作完毕后，您的专属密钥已大功告成！
 
 ## P9: 碎碎念&注意事项
 
@@ -569,4 +584,4 @@ __THE END__
 
 始编撰于 公元 2026 年 5 月 2 日 农历三月十六
 
-__最后一次更新于 2026 年 5 月 7 日 农历三月廿一__
+__最后一次更新于 2026 年 5 月 9 日 农历三月廿三__
