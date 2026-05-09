@@ -19,7 +19,7 @@ lang: 'zh_CN'
 
 有一次周末，我在安装好的`Arch Linux`系统和`NVIDIA驱动`之后玩MC，发现帧数撑死只有100多，查看`nvidia-smi`发现能正常使用命令行，但是游戏画面还是卡的很严重，于是我开始排查问题。（如图，MC打开F3界面发现视频驱动使用的是Intel核显）
 
-![Minecraft Java F3 显示界面](https://s21.ax1x.com/2025/01/01/pAzxyqA.png)
+![Minecraft Java F3 显示界面](https://github.com/LingXi9374/picx-images-hosting/raw/master/pAzxyqA.2dpbfknvpw.png)
 
 
 ## 解决方法
@@ -36,7 +36,7 @@ sudo nvidia-xconfig --prime
 
 该命令会根据硬件情况自动生成配置文件。执行后**重新登录会话**即可生效（即使是 Wayland 用户也可以执行一次此命令）。
 
-![X11 Nvidia 配置](https://blog.hifuu.ink/images/1613f5602b203b38230f19699deb0219454454985.png)
+![X11 Nvidia 配置](https://github.com/LingXi9374/picx-images-hosting/raw/master/1613f5602b203b38230f19699deb0219454454985.6m4ipeedrr.png)
 
 ### 2. 配置 Wayland 下的 Nvidia 显卡优先
 
@@ -60,7 +60,7 @@ sudo nvidia-xconfig --prime
     export __GLX_VENDOR_LIBRARY_NAME=nvidia
     ```
  4. 保存并重启电脑，即可生效。
-    ![Wayland Nvidia 配置](https://blog.hifuu.ink/images/b2054bbaf6197624d38cc2007d885fd1454454985.png)
+    ![Wayland Nvidia 配置](https://github.com/LingXi9374/picx-images-hosting/raw/master/b2054bbaf6197624d38cc2007d885fd1454454985.7zr1tfplzt.png)
 
 ### 3. Intel + Nvidia 混合显卡方案
 
@@ -74,7 +74,7 @@ sudo nvidia-xconfig --prime
     ```bash title="XXX.desktop"
     Exec=prime-run <程序启动命令>
     ```
-    ![ ](https://blog.hifuu.ink/images/71a5357ef4bd808b10429bc2ea46cb6f454454985.png)
+    ![配置参数](https://github.com/LingXi9374/picx-images-hosting/raw/master/71a5357ef4bd808b10429bc2ea46cb6f454454985.8l0pfqklhe.png)
  3. Vim 快捷配置
     如果使用 Vim，可以使用以下快捷键快速批量替换`Exec=`为`Exec=prime-run`：
     ```vim
@@ -182,11 +182,11 @@ xrandr --auto
 
 重新启动后，应该能够进入DM和桌面。在终端中执行`nvidia-smi`，应该能够发现所有的GUI进程都由Nvidia显卡渲染，并且`Xorg`占用数百兆内存。
 
-![pAzziIx.png](https://s21.ax1x.com/2025/01/01/pAzziIx.png)
+![pAzziIx.png](https://github.com/LingXi9374/picx-images-hosting/raw/master/pAzziIx.5xb95dsfls.png)
 
 ## 效果
 
 在进行上文的步骤后，我立刻打开Minecraft，按下F3查看渲染模式，发现已经切换到了Nvidia显卡渲染，游戏画面立刻变得流畅，帧数也上去了。~~（请选择你的拍屏大师.png）~~
 
-![pAzzVzD.jpg](https://s21.ax1x.com/2025/01/01/pAzzVzD.jpg)
+![pAzzVzD.jpg](https://github.com/LingXi9374/picx-images-hosting/raw/master/pAzzVzD.2a5phuws5v.jpg)
 

@@ -34,8 +34,8 @@ lang: 'zh_CN'
 最近，我在 Bilibili 刷视频的时候，偶然发现许多 Minecraft 玩家分享了账号被盗的案例，这让我有些许恐慌：是啊，Microsoft Account （以下称“微软账号”）盗号现象居然越发频繁了。黑客以用户们意料之外的方式，利用与某些官网站点相似度极高的钓鱼网站，让用户无意间泄露自己的 Token/Cookie，从而盗取微软账号。
 
 [grid]
-![吓哭了×1](https://s41.ax1x.com/2026/05/02/peTHba4.jpg)
-![也是吓哭了好吧×2](https://s41.ax1x.com/2026/05/02/peTHqIJ.png)
+![吓哭了×1](https://github.com/LingXi9374/picx-images-hosting/raw/master/peTHba4.58hzldwog3.jpg)
+![也是吓哭了好吧×2](https://github.com/LingXi9374/picx-images-hosting/raw/master/peTHqIJ.1sfntan7fd.png)
 [/grid]
 
 > [!WARNING] 注意！
@@ -50,11 +50,11 @@ lang: 'zh_CN'
 
 就在我看到这些坏消息焦头烂额之际，那个图一视频下的一个评论意外引起我的好奇：天下居然有这种何等宝物！只需把登录凭证存储在这么一个小玩意里面，只有在电脑插上了它才允许登录。这简直可以让黑客无机可乘啊！(bushi)
 
-![感谢高人指点](https://s41.ax1x.com/2026/05/02/peTHvxx.png)
+![感谢高人指点](https://github.com/LingXi9374/picx-images-hosting/raw/master/peTHvxx.4n8bz32ncb.png)
 
 没错！这就是这篇文章所要带给大家展示的一个非常厉害的计算机安全技术：`安全密钥`！(也称“`硬件密钥`”、`物理密钥`、`实体密钥`等)
 
-![安全密钥](https://s41.ax1x.com/2026/05/02/peTqeh9.webp)
+![安全密钥](https://github.com/LingXi9374/picx-images-hosting/raw/master/peTqeh9.32ikzm5jq0.webp)
 
 有了它，你在互联网上的账号将完全属于你自己，没有拥有你的安全密钥的人都无法登录你的账号！:spoiler[~~(除非有人闯入你家偷走你的硬件安全密钥，并且知道你的 PIN 码)~~]这将账号安全提高到了最高层次。
 
@@ -102,7 +102,7 @@ graph LR
 
 想必大家可能觉得既然有了短信验证码，或是应用内二维码，或是有了基于时间的一次性密码，似乎就没必要用安全密钥了。但这个想法实际上并不对，不然银行也没必要给每一个打开网银的用户配上一个 U 盾了。
 
-![通行密钥概念图](https://i.imgur.com/ewBet9e.gif)
+![通行密钥概念图](https://github.com/LingXi9374/picx-images-hosting/raw/master/ewBet9e.3rbujmtmlg.gif)
 
 让我们回顾一下身份认证发展史，就可以看到安全专家们为了保障用户与企业的安全可谓是殚精竭虑。
 
@@ -123,7 +123,7 @@ graph LR
 
 不少网站和服务都会采用基于时间的一次性密码 TOTP，TOTP 确实要比短信来得安全得多。首先，与传统的静态密码相比，TOTP 动态生成的一次性密码更加安全，因为它只在特定的时间段内有效，并且生成过程基于共享的密钥和相同的时间，而共享的密钥只会在初次设置时进行交换。
 
-![TOTP 协议原理](https://i.imgur.com/rwQHCCw.png)
+![TOTP 协议原理](https://github.com/LingXi9374/picx-images-hosting/raw/master/rwQHCCw_d.3uvghcn7nu.webp)
 
 其次，实现 TOTP 技术因为不需要专门的硬件，所以实现成本很低，用户使用时只需要安装一个支持 TOTP 的软件即可，无论是智能手机、可穿戴设备或是电脑上都有对应的软件可以选择。最后，TOTP 对于网站和服务来说也非常便于接入到身份验证系统中，因此 TOTP 支持得非常广泛。
 
@@ -218,7 +218,7 @@ sequenceDiagram
 
 除了更安全，安全密钥自然也有着使用方便的特点，在电脑平台上直接插入到 USB 接口中就可以让其他程序调用，身份验证时也只需要额外进行一次触摸即可。至于在移动上，除了插入接口进行认证，也可以在支持 NFC 的设备上扫描 NFC 进行验证。整个流程非常简单，就和使用银行 U 盾一样。
 
-![中间人攻击示意图](https://i.imgur.com/AQ3z2ce.png)
+![中间人攻击示意图](https://github.com/LingXi9374/picx-images-hosting/raw/master/AQ3z2ce_d.7ehe75q47h.webp)
 
 前面我们也提到过，安全密钥还支持存储多种不同的加密类型，如果网站或者服务不支持 U2F 的话，不少安全密钥，比如 Yubikey 旗下的产品也支持存储支持更为广泛的 TOTP，填写时也只需要简单触摸一下安全密钥就可以自动填充。另外一些加密类型也可以在特定的场景下发挥作用，比如 PIV 智能卡可以用于替代门禁卡，OpenPGP 则是加密文件、邮件的常用方式。
 
@@ -238,7 +238,7 @@ sequenceDiagram
 
 2023 年， Cloudflare 推出的 [Yubikey 促销](https://blog.cloudflare.com/making-phishing-defense-seamless-cloudflare-yubico/) 掀起了一波小小的硬件密钥热潮, 很多人都通过国际代购，转运低价购入了 Yubikey. 不过转眼过去了两年, 之后再没有过类似的优惠, 国内现货的价格也一直居高不下 (目前为 ~500RMB).
 
-![Yubico YubiKey 5 系列](https://s41.ax1x.com/2026/05/02/peTqxHO.png)
+![Yubico YubiKey 5 系列](https://github.com/LingXi9374/picx-images-hosting/raw/master/peTqxHO.96ad229ogd.png)
 
 看到这个产品，我想说的一句话是：__这太TM贵了！__ 这样的价格对我一个 ~~安卓人~~ 学生来说是承担不起的（（。如果这样的小玩意弄丢了，这将是一个极大的损失（同时账号也丢了）！
 
@@ -259,7 +259,7 @@ sequenceDiagram
 
 以上三个方案成本都非常高昂，至少都在 100 RMB 以上。还好前人们都作总结了，都推荐基于 Rasbperry Pi RP2040/RP2350 或 ESP32S3 开发板的 [Pico Fido2 项目](https://github.com/polhenarejos/pico-fido2)，其中树莓派的芯片开发板选择多，流行度高，在大陆易于买到，且价格很低 (约 30RMB)。
 
-![Picokey 官网页面](https://i.imgur.com/mnSKMEI.png)
+![Picokey 官网页面](https://github.com/LingXi9374/picx-images-hosting/raw/master/mnSKMEI_d.77e6bq4e0n.webp)
 
 ::github{repo="librekeys/pico-fido2"}
 
@@ -270,8 +270,8 @@ sequenceDiagram
 `RP2350` 只是芯片型号，市面上有很多搭载该芯片的开发板，经前人们推荐我挑选了`微雪Waveshare`的`RP2350-One`，这款芯片可以非常轻松的在淘宝上以 30 元左右的价格包邮买到。Pico Keys 还支持其他各式各样的开发板, 可以自行选择最容易购买到或者最便宜的。
 
 [grid]
-![某宝商品示意](https://s41.ax1x.com/2026/05/02/peTj8KI.png)
-![购买到的 Waveshare RP2350-One, 实际大小近似一个较小的 U 盘](https://s41.ax1x.com/2026/05/02/peTjNa8.jpg)
+![某宝商品示意](https://github.com/LingXi9374/picx-images-hosting/raw/master/peTj8KI.2yyz1wed71.png)
+![购买到的 Waveshare RP2350-One, 实际大小近似一个较小的 U 盘](https://github.com/LingXi9374/picx-images-hosting/raw/master/peTjNa8.icqmz7q71.jpg)
 [/grid]
 
 ## P4: 刷入固件&配置
@@ -318,7 +318,7 @@ sequenceDiagram
 
 3. 设置完后，点击`Commission`按钮应用设置，记得为密钥设置PIN码并记住。
 
-![社区提供的 Pico Comissioner 配置界面](https://s41.ax1x.com/2026/05/02/pe7Sc6J.png)
+![社区提供的 Pico Comissioner 配置界面](https://github.com/LingXi9374/picx-images-hosting/raw/master/pe7Sc6J.et4p9et0a.png)
 
 #### Picoforge 配置教程核心步骤：
 
@@ -334,7 +334,7 @@ sequenceDiagram
 
 3. 设置完成后，点击`Apply Change`按钮应用设置，记得为密钥设置PIN码并记住。
 
-![Picoforge 配置界面](https://i.imgur.com/2kDvev3.png)
+![Picoforge 配置界面](https://github.com/LingXi9374/picx-images-hosting/raw/master/2kDvev3_d.232hmg5aa6.webp)
 
 > [!CAUTION] ⚠️警告！
 > 如果你想为了安全起见，可以开启`Secure Boot`和`Secure Lock`，但是这样开启后只能刷入Picokey提供的官方固件，不能再进行二次开发，建议正式使用的时候再开启！
@@ -348,8 +348,8 @@ sequenceDiagram
 访问[Webauthn.io](https://webauthn.io/)，测试一下这把 DIY 密钥的功能，根据网站与浏览器的引导进行操作即可。
 
 [grid]
-![WebAuthn 主界面](https://i.imgur.com/XFuQY1L.jpeg)
-![通过测试示意](https://i.imgur.com/WlgvjuH.png)
+![WebAuthn 主界面](https://github.com/LingXi9374/picx-images-hosting/raw/master/XFuQY1L_d.1sfntaqbmf.webp)
+![通过测试示意](https://github.com/LingXi9374/picx-images-hosting/raw/master/WlgvjuH_d.3k8mo79v1f.webp)
 [/grid]
 
 ## P5: 管理你的密钥
@@ -359,13 +359,13 @@ sequenceDiagram
 
 访问`Yubico`官网下载[Yubico Authenticator](https://www.yubico.com/products/yubico-authenticator/)，支持PC与移动端，打开后插入密钥可以看到能成功识别。
 
-![使用 Yubico Authenticator 管理你的密钥](https://i.imgur.com/kkzjMYv.png)
+![使用 Yubico Authenticator 管理你的密钥](https://github.com/LingXi9374/picx-images-hosting/raw/master/kkzjMYv.8s3xb7gig5.png)
 
 [Android 平台](https://play.google.com/store/apps/details?id=com.yubico.yubioath)也有官方支持的客户端，但需手机/平板支持 OTG，并且识别功能正常(找个U盘插一插就能知道可不可以正常识别了，**但请你警惕 Bad USB！** )
 
 在 Android 设备上识别到之后，一般来讲每当在浏览器发现有新的登录请求发出后会唤醒Yubico Authenticator，可以正常识别、使用。如果不能正常使用，问题应该出在Authn管理器上，一般来讲你的安卓、iOS都是可以用的（因为一般都做好了适配，且新版安卓可以自选Authn管理器），我目前的测试当中就 Via 浏览器是不能正常调用的，而Edge、Chrome与Firefox一起正常。
 
-![神秘米板4 + 神秘 OTG 转接器.jpg](https://i.imgur.com/dYlz5ig.jpeg)
+![神秘米板4 + 神秘 OTG 转接器.jpg](https://github.com/LingXi9374/picx-images-hosting/raw/master/dYlz5ig_d.32ikzm9084.webp)
 
 Yubico也提供官方 CLI 管理工具[Yubikey Manager](https://github.com/Yubico/yubikey-manager)，安装完在插入密钥后，使用`ykman`命令工具可以查询密钥状态。
 
@@ -393,42 +393,42 @@ __需要注意的是__：默认情况下 PIN 只能尝试 8 次: 每尝试 3 次
 
 登录`account.live.com`，进入管理界面后点击侧边栏的`安全`选项，然后点击“管理登录方式”并进行安全验证
 
-![Microsoft Account 安全 界面](https://i.imgur.com/j4c0Ifn.png)
+![Microsoft Account 安全 界面](https://github.com/LingXi9374/picx-images-hosting/raw/master/j4c0Ifn_d.2rvr6gu1ha.webp)
 
 在这个界面中滑下来找到`添加另一种登录账户的方式。`，然后在“添加一种新的登录或验证方法”窗口中选择`人脸、指纹、PIN 或安全密钥`
 
 [grid]
-![添加登录方式](https://i.imgur.com/oU4JW50.png)
-![添加一种新的登录或验证方法](https://i.imgur.com/1rgKfk9.png)
+![添加登录方式](https://github.com/LingXi9374/picx-images-hosting/raw/master/oU4JW50.6ikwrpx4o5.png)
+![添加一种新的登录或验证方法](https://github.com/LingXi9374/picx-images-hosting/raw/master/1rgKfk9_d.86u9ownstq.webp)
 [/grid]
 
 根据浏览器指引，会弹出新窗口引导你`选择保存密钥的位置`,这里选择`使用外部安全密钥`！
 
-![选择保存密钥的位置](https://i.imgur.com/gcMXA8z.png)
+![选择保存密钥的位置](https://github.com/LingXi9374/picx-images-hosting/raw/master/gcMXA8z_d.6m4ipfqog4.webp)
 
 接着会唤醒本地的 Windows 安全中心并继续引导你绑定安全密钥，插入密钥后输入PIN码，在提示“触摸安全密钥”时按下开发板密钥上的`BOOT`键即可，如提示“为密钥设置名称”则成功绑定！最后根据微软的提示为新绑定的密钥设置名称！
 
 [grid]
-![插入安全密钥](https://i.imgur.com/NOOUjdh.png)
-![输入 PIN 码](https://i.imgur.com/mhpFVvr.png)
-![触摸安全密钥](https://i.imgur.com/zpdWcQv.png)
+![插入安全密钥](https://github.com/LingXi9374/picx-images-hosting/raw/master/NOOUjdh_d.5q819zh21f.webp)
+![输入 PIN 码](https://github.com/LingXi9374/picx-images-hosting/raw/master/mhpFVvr_d.6ikwrpxqcg.webp)
+![触摸安全密钥](https://github.com/LingXi9374/picx-images-hosting/raw/master/zpdWcQv_d.7pwtu90pr.webp)
 [/grid]
 
 ### Google 账号
 
 登录`account.google.com`，进入管理界面后点击侧边栏的`安全性与登录`选项，然后点击“通行密钥和安全密钥”并进行安全验证
 
-![Google Account 安全性与登录 界面](https://i.imgur.com/Us4bdAR.png)
+![Google Account 安全性与登录 界面](https://github.com/LingXi9374/picx-images-hosting/raw/master/Us4bdAR.7zr1th9wlj.png)
 
 进入后，点击`创建通行密钥`
 
-![创建通行密钥](https://i.imgur.com/ztshcWl.png)
+![创建通行密钥](https://github.com/LingXi9374/picx-images-hosting/raw/master/ztshcWl.5c1lj4gyer.png)
 
 接下来的指引与微软账号配置密钥时相同，就是`选择存储在外部安全密钥-插入密钥-输入 PIN 码-触摸安全密钥`即可，最后提示如下图则为成功绑定，后续可以在谷歌密钥管理界面自己设定密钥名称。
 
 [grid]
-![选择保存密钥的位置](https://i.imgur.com/TA7mMn6.png)
-![成功绑定](https://i.imgur.com/gNeGyqh.png)
+![选择保存密钥的位置](https://github.com/LingXi9374/picx-images-hosting/raw/master/TA7mMn6_d.6m4ipfz00c.webp)
+![成功绑定](https://github.com/LingXi9374/picx-images-hosting/raw/master/gNeGyqh_d.3k8mo7xrju.webp)
 [/grid]
 
 根据这波指引下来：__🎉恭喜你！你已成功进入安全密钥令牌的世界！🎉__ 您的账号安全性将几乎无人匹敌(哦是吗?)，大大降低了被盗号的风险与概率。
@@ -479,8 +479,8 @@ __需要注意的是__：默认情况下 PIN 只能尝试 8 次: 每尝试 3 次
 此外，我在另外一个哔站视频评论区看到了以下楼层，这引发了我极大的思索：
 
 [grid]
-![Token 的重要性](https://i.imgur.com/2ruNNU0.jpeg)
-![FIDO2 与 Web 鉴权原理及潜在风险](https://i.imgur.com/LduSIUA.jpeg)
+![Token 的重要性](https://github.com/LingXi9374/picx-images-hosting/raw/master/2ruNNU0.102sbkzsmm.jpg)
+![FIDO2 与 Web 鉴权原理及潜在风险](https://github.com/LingXi9374/picx-images-hosting/raw/master/LduSIUA.7snty1q5um.jpg)
 [/grid]
 
 省流：简单来说，黑客偷的不是你硬件密钥载体上的私钥，而是偷的**签名后的验证信息**，也就是存储在 Cookie 中的 Token 令牌。什么意思呢，就是你回家路上被小偷跟踪了，你用智能门锁用指纹开门进入你的大豪斯的时候，小偷在你没注意的瞬间飞入了你家里，然后偷走了你所有的钱。但是这种作案过程中，小偷不是复制了你的指纹，而是在你开门的刹那闯进去了，就这么简单粗暴！

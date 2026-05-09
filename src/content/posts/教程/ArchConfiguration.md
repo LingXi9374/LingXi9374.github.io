@@ -26,7 +26,7 @@ sudo pacman -S fastfetch
 
 执行`fastfetch`命令，即可看到系统配置信息。
 
-![终端显示 fastfetch 信息](https://s21.ax1x.com/2024/12/21/pAXikBn.png)
+![终端显示 fastfetch 信息](https://github.com/LingXi9374/picx-images-hosting/raw/master/pAXikBn.8hh3i0on21.png)
 
 ### 2. 添加archlinuxcn仓库
 
@@ -185,7 +185,7 @@ sudo systemctl enable nvidia-suspend.service nvidia-hibernate.service nvidia-res
 
 重启电脑后检查，输入`nvidia-smi`命令，如果有输出，说明驱动安装成功。
 
-![终端显示 nvidia-smi 输出](https://s21.ax1x.com/2024/12/21/pAXivr9.png)
+![终端显示 nvidia-smi 输出](https://github.com/LingXi9374/picx-images-hosting/raw/master/pAXivr9.6bhow8x2i8.png)
 
 ### 2. 开启独显直连
 
@@ -229,7 +229,7 @@ rime_frontend=fcitx5-rime bash rime-install iDvel/rime-ice:others/recipes/full
 
 如何激活：接下来，只需要按「Ctrl+~」快捷键（其中，「~」键位于 Tab 键的正上方），打开 RIME 的输入方案选择菜单：
 
-![RIME 方案候选框](https://s21.ax1x.com/2024/12/21/pAXisEt.webp)
+![RIME 方案候选框](https://github.com/LingXi9374/picx-images-hosting/raw/master/pAXisEt.7axs9ezx1p.webp)
 
 然后，按下相应的数字键（或直接点击），选择「雾凇拼音」，那么雾凇拼音将正式激活，你可以畅快地打字了！
 

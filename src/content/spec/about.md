@@ -5,10 +5,9 @@
 此网站由Firefly模板制作而成。
 ::github{repo="CuteLeaf/Firefly"}
 
-本博客使用的图床：
+本博客使用的图床托管技术为`Picx🏞️`，它是一款基于 GitHub API 开发的图床工具，提供图片上传托管、生成图片链接和常用图片工具箱服务。优势在于无需依赖任何外部服务，使用 Github 存储库托管并生成外链，保障隐私安全与长时效性。
 
- - [路过图床 - 免费图片上传, 专业图片外链, 免费公共图床](https://imgchr.com)，缺点是最大图片大小为 10M，且每天限制上传8张图片
- - Imgur 图床，这里使用[Imgur Uploader | 图片上传工具](https://imguruploader.com/)上传图片，最大图片大小 20M，上传数量目前无限制
+::github{repo="XPoet/picx"}
 
 ## 关于
 
