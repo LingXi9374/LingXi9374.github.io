@@ -1,0 +1,18 @@
+# 每行一个图片 URL，支持 jpg/png/webp/avif/gif后缀
+# # 号开头的行为注释，空行会被忽略
+# 示例：
+https://pixiv.re/47004232.png
+https://pixiv.re/77992108.png
+https://pixiv.re/84625053.png
+https://pixiv.re/124159290.png
+https://pixiv.re/129647643.png
+https://pixiv.re/134902897.png
+https://pixiv.re/141502382.png
+https://pixiv.re/141538831.png
+https://pixiv.re/141859597.png
+https://pixiv.re/142022059.png
+https://pixiv.re/142118971.png
+https://pixiv.re/142633255.png
+https://pixiv.re/142722227.png
+https://pixiv.re/139287843.png
+https://pixiv.re/74627599.png
