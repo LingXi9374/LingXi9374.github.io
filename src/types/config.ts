@@ -3,6 +3,7 @@ import type {
 	LIGHT_MODE,
 	SYSTEM_MODE,
 	WALLPAPER_BANNER,
+	WALLPAPER_FULLSCREEN,
 	WALLPAPER_NONE,
 	WALLPAPER_OVERLAY,
 } from "../constants/constants";
@@ -280,6 +281,7 @@ export type LIGHT_DARK_MODE =
 
 export type WALLPAPER_MODE =
 	| typeof WALLPAPER_BANNER
+	| typeof WALLPAPER_FULLSCREEN
 	| typeof WALLPAPER_OVERLAY
 	| typeof WALLPAPER_NONE;
 
