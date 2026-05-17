@@ -109,7 +109,7 @@ export const siteConfig: SiteConfig = {
 	showLastModified: true,
 
 	// 文章过期阈值（天数），超过此天数才显示"上次编辑"卡片
-	outdatedThreshold: 15,
+	outdatedThreshold: 30,
 
 	// 是否开启分享海报生成功能
 	sharePoster: true,
