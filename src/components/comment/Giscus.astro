@@ -1,5 +1,5 @@
 ---
-import { commentConfig, siteConfig } from "@/config";
+import { commentConfig } from "@/config";
 
 if (!commentConfig?.giscus) {
 	throw new Error("Giscus comments are not configured");
@@ -30,7 +30,6 @@ const darkTheme = "dark";
   theme={lightTheme}
   lang={giscus.lang}
   loading={giscus.loading}
-  crossorigin={giscus.crossorigin}
 />
 
 <script is:inline define:vars={{ lightTheme, darkTheme }}>
