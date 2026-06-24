@@ -1,23 +1,13 @@
 ---
 import { Icon } from "astro-icon/components";
-import { LinkPresets } from "@/constants/link-presets";
-import { LinkPreset, type NavBarLink } from "@/types/config";
+import type { NavBarLink } from "@/types/config";
 import { url } from "@/utils/url-utils";
 
 interface Props {
 	links: NavBarLink[];
 }
 
-// 处理links中的LinkPreset转换
-const processedLinks = Astro.props.links.map((link: NavBarLink) => ({
-	...link,
-	children: link.children?.map((child: NavBarLink | LinkPreset): NavBarLink => {
-		if (typeof child === "number") {
-			return LinkPresets[child];
-		}
-		return child;
-	}),
-}));
+const processedLinks = Astro.props.links;
 ---
 <div id="nav-menu-panel" class:list={["float-panel float-panel-closed transition-all fixed right-4 px-2 py-2 max-h-[80vh] overflow-y-auto"]}>
     {processedLinks.map((link) => (
@@ -32,10 +22,10 @@ const processedLinks = Astro.props.links.map((link: NavBarLink) => ({
                         aria-expanded="false"
                     >
                         <div class="flex items-center transition text-black/75 dark:text-white/75 font-bold group-hover:text-(--primary) group-active:text-(--primary)">
-							{link.icon && <Icon name={link.icon} is:inline class="text-[1.1rem] mr-2" />}
+							{link.icon && <Icon is:inline name={link.icon} class="text-[1.1rem] mr-2" />}
                             {link.name}
                         </div>
-                        <Icon name="material-symbols:keyboard-arrow-down-rounded" is:inline
+                        <Icon is:inline name="material-symbols:keyboard-arrow-down-rounded"
                               class="transition text-[1.25rem] text-(--primary) mobile-dropdown-arrow duration-200"
                         />
                     </button>
@@ -47,10 +37,10 @@ const processedLinks = Astro.props.links.map((link: NavBarLink) => ({
                                target={child.external ? "_blank" : null}
                             >
                                 <div class="flex items-center transition text-black/60 dark:text-white/60 font-medium group-hover:text-(--primary) group-active:text-(--primary)">
-									{child.icon && <Icon name={child.icon} is:inline class="text-[1.1rem] mr-2" />}
+									{child.icon && <Icon is:inline name={child.icon} class="text-[1.1rem] mr-2" />}
                                     {child.name}
                                 </div>
-                                {child.external && <Icon name="fa7-solid:arrow-up-right-from-square" is:inline
+                                {child.external && <Icon is:inline name="fa7-solid:arrow-up-right-from-square"
                                       class="transition text-[0.75rem] text-black/25 dark:text-white/25 -translate-x-1"
                                 />}
                             </a>
@@ -65,13 +55,13 @@ const processedLinks = Astro.props.links.map((link: NavBarLink) => ({
                    target={link.external ? "_blank" : null}
                 >
                     <div class="flex items-center transition text-black/75 dark:text-white/75 font-bold group-hover:text-(--primary) group-active:text-(--primary)">
-						{link.icon && <Icon name={link.icon} is:inline class="text-[1.1rem] mr-2" />}
+						{link.icon && <Icon is:inline name={link.icon} class="text-[1.1rem] mr-2" />}
                         {link.name}
                     </div>
-					{!link.external && <Icon name="material-symbols:chevron-right-rounded"
+					{!link.external && <Icon is:inline name="material-symbols:chevron-right-rounded"
                           class="transition text-[1.25rem] text-(--primary)"
                     />}
-					{link.external && <Icon name="fa7-solid:arrow-up-right-from-square" is:inline
+					{link.external && <Icon is:inline name="fa7-solid:arrow-up-right-from-square"
                           class="transition text-[0.75rem] text-black/25 dark:text-white/25 -translate-x-1"
                     />}
                 </a>

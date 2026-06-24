@@ -1,4 +1,4 @@
-import type { GalleryConfig } from "@/types/config";
+import type { GalleryConfig } from "@/types/galleryConfig";
 
 // 相册配置
 export const galleryConfig: GalleryConfig = {
@@ -12,6 +12,8 @@ export const galleryConfig: GalleryConfig = {
 		// location: 相册拍摄地点
 		// date: 相册日期，格式为 YYYY-MM-DD，用于排序和显示
 		// tags: 相册标签，用于分类和过滤
+		// password: 访问密码，设置后需要输入密码才能查看相册内容（可选）
+		// passwordHint: 密码提示，设置后在输入密码错误时显示（可选，需配合password使用）
 		// 每添加一个数组项就相当于添加了一个相册，记得在 public/gallery/ 目录下创建对应的子目录并放入图片
 		{
 			id: "touhou-gallery-2026",

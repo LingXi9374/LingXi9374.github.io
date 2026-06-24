@@ -1,5 +1,5 @@
 ---
-title: 低成本打造一个独属于你自己的 PicoKey 安全密钥！LingXiの折腾记
+title: 低成本打造一个独属于你自己的 PicoKey 安全密钥！—— LingXiの折腾记①
 published: 2026-05-02
 description: '约 30 元低成本制作一个专属于自己的物理安全密钥，时刻为你的账号安全保驾护航！'
 image: '../images/picokey.png'

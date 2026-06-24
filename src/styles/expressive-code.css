@@ -5,7 +5,17 @@
 
   .title {
     font-family:
-      "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco,
+      var(--font-code), ui-monospace, SFMono-Regular, Menlo, Monaco,
+      Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  .frame pre,
+  .frame code,
+  .frame .code,
+  .frame .ec-code,
+  .frame .ec-code__inner {
+    font-family:
+      var(--font-code), ui-monospace, SFMono-Regular, Menlo, Monaco,
       Consolas, "Liberation Mono", "Courier New", monospace;
   }
 

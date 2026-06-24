@@ -49,11 +49,11 @@
     }
   }
 
-  code {
+  &.prose code:not(pre code) {
     @apply bg-(--inline-code-bg) text-(--inline-code-color) px-1 py-0.5 rounded-md overflow-hidden;
 
     font-family:
-      "JetBrains Mono Variable",
+      var(--font-code),
       ui-monospace,
       SFMono-Regular,
       Menlo,
@@ -70,6 +70,19 @@
     &:after {
       content: none;
     }
+  }
+
+  &.prose pre code {
+    font-family:
+      var(--font-code),
+      ui-monospace,
+      SFMono-Regular,
+      Menlo,
+      Monaco,
+      Consolas,
+      Liberation Mono,
+      Courier New,
+      monospace;
 
     counter-reset: line;
 

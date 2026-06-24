@@ -1,4 +1,4 @@
-import type { ProfileConfig } from "../types/config";
+import type { ProfileConfig } from "../types/profileConfig";
 
 export const profileConfig: ProfileConfig = {
 	// 头像
@@ -43,6 +43,12 @@ export const profileConfig: ProfileConfig = {
 			name: "Cloudmusic",
 			icon: "simple-icons:neteasecloudmusic",
 			url: "https://y.music.163.com/m/user?id=1380609119",
+			showName: false,
+		},
+		{
+			name: "RSS",
+			icon: "fa7-solid:rss",
+			url: "/rss/",
 			showName: false,
 		},
 	],

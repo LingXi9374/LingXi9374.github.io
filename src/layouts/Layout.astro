@@ -4,12 +4,13 @@ import La51Analytics from "@components/analytics/La51Analytics.astro";
 import MicrosoftClarity from "@components/analytics/MicrosoftClarity.astro";
 import UmamiAnalytics from "@components/analytics/UmamiAnalytics.astro";
 import FancyboxManager from "@components/features/FancyboxManager.astro";
-import FontManager from "@components/features/FontManager.astro";
+import FontSetup from "@components/features/FontSetup.astro";
 import MusicManager from "@components/features/MusicManager.astro";
 import SakuraEffect from "@components/features/SakuraEffect.astro";
 import ConfigCarrier from "@components/layout/ConfigCarrier.astro";
 
 import {
+	analyticsConfig,
 	backgroundWallpaper,
 	expressiveCodeConfig,
 	profileConfig,
@@ -23,7 +24,7 @@ import {
 } from "@/constants/constants";
 import { defaultFavicons } from "@/constants/icon";
 import type { Favicon } from "@/types/config";
-import { getDefaultBackground, isHomePage } from "@/utils/layout-utils";
+import { isHomePage } from "@/utils/layout-utils";
 import { url } from "@/utils/url-utils";
 
 import "@/styles/main.css";
@@ -40,8 +41,7 @@ interface Props {
 	postSlug?: string;
 }
 
-let { title, banner, description, lang, setOGTypeArticle, postSlug } =
-	Astro.props;
+let { title, description, lang, setOGTypeArticle, postSlug } = Astro.props;
 
 // apply a class to the body element to decide the height of the banner, only used for initial page load
 // Swup can update the body for each page visit, but it's after the page transition, causing a delay for banner height change
@@ -59,13 +59,6 @@ const navbarTransparentMode =
 const shouldShowTopHighlight =
 	navbarTransparentMode === "full" || navbarTransparentMode === "semifull";
 
-if (!banner || typeof banner !== "string" || banner.trim() === "") {
-	banner = getDefaultBackground();
-}
-
-// TODO don't use post cover as banner for now
-banner = getDefaultBackground();
-
 const enableBanner = backgroundWallpaper.mode === "banner";
 
 let pageTitle: string;
@@ -78,7 +71,7 @@ if (title) {
 }
 
 let ogImageUrl: string | undefined;
-if (siteConfig.generateOgImages && postSlug) {
+if (siteConfig.post.generateOgImages && postSlug) {
 	ogImageUrl = new URL(`/og/${postSlug}.png`, Astro.site).toString();
 }
 
@@ -98,29 +91,30 @@ const siteLang = lang.replace("_", "-");
 <html lang={siteLang} class="bg-(--page-bg) text-[14px] md:text-[16px]" data-wallpaper-mode={backgroundWallpaper.mode}>
   <head>
     <meta charset="UTF-8" />
-    {siteConfig.analytics?.googleAnalyticsId && (
-            <GoogleAnalytics analyticsId={siteConfig.analytics.googleAnalyticsId} />
+    {analyticsConfig?.googleAnalyticsId && (
+            <GoogleAnalytics analyticsId={analyticsConfig.googleAnalyticsId} />
     )}
-    {siteConfig.analytics?.microsoftClarityId && (
-            <MicrosoftClarity clarityId={siteConfig.analytics.microsoftClarityId} />
+    {analyticsConfig?.microsoftClarityId && (
+            <MicrosoftClarity clarityId={analyticsConfig.microsoftClarityId} />
     )}
-        {siteConfig.analytics?.umamiAnalytics?.websiteId && (
+        {analyticsConfig?.umamiAnalytics?.websiteId && (
           <UmamiAnalytics
-          websiteId={siteConfig.analytics.umamiAnalytics.websiteId}
-          scriptUrl={siteConfig.analytics.umamiAnalytics.scriptUrl}
-          trackOutboundLinks={siteConfig.analytics.umamiAnalytics.trackOutboundLinks}
-          collectWebVitals={siteConfig.analytics.umamiAnalytics.collectWebVitals}
-          relpays={siteConfig.analytics.umamiAnalytics.relpays}
+          websiteId={analyticsConfig.umamiAnalytics.websiteId}
+          scriptUrl={analyticsConfig.umamiAnalytics.scriptUrl}
+          replaysScriptUrl={analyticsConfig.umamiAnalytics.replaysScriptUrl}
+          trackOutboundLinks={analyticsConfig.umamiAnalytics.trackOutboundLinks}
+          collectWebVitals={analyticsConfig.umamiAnalytics.collectWebVitals}
+          replays={analyticsConfig.umamiAnalytics.replays}
           />
         )}
-        {siteConfig.analytics?.la51Analytics?.Id && (
+        {analyticsConfig?.la51Analytics?.Id && (
             <La51Analytics
-            analyticsId={siteConfig.analytics.la51Analytics.Id}
-            sdkUrl={siteConfig.analytics.la51Analytics?.sdkUrl}
-            ck={siteConfig.analytics.la51Analytics?.ck}
-            autoTrack={siteConfig.analytics.la51Analytics?.autoTrack}
-            hashMode={siteConfig.analytics.la51Analytics?.hashMode}
-            screenRecord={siteConfig.analytics.la51Analytics?.screenRecord}
+            analyticsId={analyticsConfig.la51Analytics.Id}
+            sdkUrl={analyticsConfig.la51Analytics?.sdkUrl}
+            ck={analyticsConfig.la51Analytics?.ck}
+            autoTrack={analyticsConfig.la51Analytics?.autoTrack}
+            hashMode={analyticsConfig.la51Analytics?.hashMode}
+            screenRecord={analyticsConfig.la51Analytics?.screenRecord}
             />
     )}
 
@@ -554,8 +548,8 @@ const siteLang = lang.replace("_", "-");
       href={`${Astro.site}rss.xml`}
     />
 
-    <!-- Font Manager -->
-    <FontManager />
+    <!-- Font Setup (Astro Font API) -->
+    <FontSetup />
   </head>
   <body
     class="min-h-screen"
@@ -568,12 +562,6 @@ const siteLang = lang.replace("_", "-");
         "enable-card-border": siteConfig.card?.border,
         "card-follow-theme-hue": siteConfig.card?.followTheme,
       },
-      ...(siteConfig.font.enable && siteConfig.font.selected
-        ? (Array.isArray(siteConfig.font.selected)
-            ? siteConfig.font.selected
-            : [siteConfig.font.selected]
-          ).map((fontId) => `font-${fontId}-enabled`)
-        : []),
     ]}
   >
 
@@ -1571,7 +1559,7 @@ function disableAnimation() {
       isPostPage ? widget.classList.add("hidden") : widget.classList.remove("hidden");
     });
 
-    // 处理 showOnNonPostPage === false 的组件
+    // 处理 hideOnNonPostPage === true 的组件
     document.querySelectorAll(".widget-hide-on-non-post").forEach((widget) => {
       !isPostPage ? widget.classList.add("hidden") : widget.classList.remove("hidden");
     });
@@ -1636,4 +1624,34 @@ function disableAnimation() {
     initThemeListener();
     initIconLoader();
   }
+
+  // LQIP fade-in：图片加载完成后淡出占位渐变
+  function initImageLoadFadeIn() {
+    const placeholders = document.querySelectorAll<HTMLElement>('.lqip-placeholder');
+    placeholders.forEach(placeholder => {
+      const container = placeholder.parentElement;
+      if (!container) return;
+      const img = container.querySelector<HTMLImageElement>('img, picture img');
+      if (!img) return;
+
+      if (img.complete && img.naturalWidth > 0) {
+        img.style.opacity = '1';
+        placeholder.classList.add('loaded');
+      } else {
+        img.addEventListener('load', () => {
+          img.style.opacity = '1';
+          placeholder.classList.add('loaded');
+        }, { once: true });
+        img.addEventListener('error', () => {
+          placeholder.classList.add('loaded');
+        }, { once: true });
+      }
+    });
+  }
+
+  initImageLoadFadeIn();
+  document.addEventListener('astro:page-load', initImageLoadFadeIn);
+  document.addEventListener('swup:contentReplaced', () => {
+    requestAnimationFrame(initImageLoadFadeIn);
+  });
 </script>
