@@ -1,11 +1,11 @@
-import type { AnnouncementConfig } from "../types/config";
+import type { AnnouncementConfig } from "../types/announcementConfig";
 
 export const announcementConfig: AnnouncementConfig = {
-	// 公告标题
-	title: "公告",
+	// 公告标题，留空则走i18n默认标题
+	title: "",
 
 	// 公告内容
-	content: "本 Blog 编者高考完已放假，直至 9 月份之前期间将经常性更新文章）",
+	content: "欢迎来到我的博客！这是一则示例公告。",
 
 	// 是否允许用户关闭公告
 	closable: true,

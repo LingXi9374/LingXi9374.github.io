@@ -49,6 +49,15 @@ export const friendsConfig: FriendLink[] = [
 		weight: 8,
 		enabled: true,
 	},
+	{
+		title: "Astrarix Archive",
+		imgurl: "https://kokosa.icu/main/about/kokosa-avatar.6lZ74eVt.avif",
+		desc: "乱七八糟的个人站",
+		siteurl: "https://kokosa.icu",
+		tags: ["Blog"],
+		weight: 7,
+		enabled: true,
+	},
 ];
 
 // 获取启用的友链并进行排序

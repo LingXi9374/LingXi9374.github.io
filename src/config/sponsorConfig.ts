@@ -43,8 +43,8 @@ export const sponsorConfig: SponsorConfig = {
 			name: "ko-fi",
 			icon: "simple-icons:kofi",
 			qrCode: "",
-			link: "https://ko-fi.com/lingxi9374",
-			description: "Buy a Coffee for Me",
+			link: "https://ko-fi.com/cuteleaf",
+			description: "Buy a Coffee for Firefly",
 			enabled: false,
 		},
 		{

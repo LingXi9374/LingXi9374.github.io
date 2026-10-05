@@ -46,9 +46,21 @@ export const profileConfig: ProfileConfig = {
 			showName: false,
 		},
 		{
+			name: "Email",
+			icon: "fa7-solid:envelope",
+			url: "mailto:yyr1919810@gmail.com",
+			showName: false,
+		},
+		{
 			name: "RSS",
 			icon: "fa7-solid:rss",
 			url: "/rss/",
+			showName: false,
+		},
+		{
+			name: "Atom",
+			icon: "fa7-solid:atom",
+			url: "/atom/",
 			showName: false,
 		},
 	],

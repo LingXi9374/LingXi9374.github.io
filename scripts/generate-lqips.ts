@@ -1,20 +1,20 @@
 // LQIP 方案来源: https://blog.cosine.ren/post/astro-lqip-implementation
 
-import sharp from "sharp";
+import fs from "node:fs/promises";
+import path from "node:path";
 import { glob } from "glob";
-import fs from "fs/promises";
-import path from "path";
+import sharp from "sharp";
 
 const SRC_DIR = "src";
 const PUBLIC_DIR = "public";
 const OUTPUT_FILE = "src/constants/lqips.json";
 // 需要忽略的目录（相对于项目根目录）
 const IGNORE_DIRS = [
-	"src/content/**",
 	"public/favicon/**",
 	"public/pio/**",
 	"public/assets/images/effects/**",
 	"public/assets/music/**",
+	"public/vndb-covers/**",
 ];
 
 interface RgbColor {

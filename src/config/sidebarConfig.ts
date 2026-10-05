@@ -18,11 +18,11 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 	// right: 平板端显示右侧边栏
 	tabletSidebar: "left",
 
-	// 使用单侧栏(position为left或right)时，是否在文章详情页显示双侧边栏
-	// 当position为left时开启此项，文章详情页将额外显示右侧边栏
-	// 当position为right时开启此项，文章详情页将额外显示左侧边栏
-	// 适用在只想用单侧栏，但在文章详情页想用对侧栏的目录等组件的场景
-	showBothSidebarsOnPostPage: true,
+	// 文章详情页隐藏侧边栏，设为 true 则只在首页等非文章页显示
+	hideSidebarOnPostPage: false,
+
+	// 本页没有侧栏列时，内容栏占「侧栏 + 内容栏」总宽的比例（0–1），不设置或 ≥1 则铺满
+	noSidebarContentWidth: 0.6,
 
 	// 左侧边栏组件配置列表
 	// 组件的渲染顺序完全取决于它们在配置数组中出现的顺序，但top的组件会优先于sticky位置的组件渲染
@@ -48,11 +48,11 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			// 组件类型：公告组件
 			type: "announcement",
 			// 是否启用该组件
-			enable: true,
+			enable: false,
 			// 组件位置
 			position: "top",
 			// 是否在文章详情页显示
-			showOnPostPage: true,
+			showOnPostPage: false,
 		},
 		{
 			// 组件类型：音乐播放器
@@ -60,7 +60,7 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			// 是否启用该组件
 			enable: true,
 			// 组件位置
-			position: "sticky",
+			position: "top",
 			// 是否在文章详情页显示
 			showOnPostPage: true,
 		},
@@ -99,6 +99,23 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 	// 右侧边栏组件配置列表
 	rightComponents: [
 		{
+			// 组件类型：最新动态组件
+			type: "dynamic",
+			// 是否启用该组件
+			enable: true,
+			// 组件位置
+			position: "top",
+			// 是否在文章详情页显示
+			showOnPostPage: true,
+			// 组件专属配置
+			specificConfig: {
+				dynamic: {
+					// 显示的最新动态数量
+					limit: 2,
+				},
+			},
+		},
+		{
 			// 组件类型：站点统计组件
 			type: "stats",
 			// 是否启用该组件
@@ -106,7 +123,7 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			// 组件位置
 			position: "top",
 			// 是否在文章详情页显示
-			showOnPostPage: true,
+			showOnPostPage: false,
 		},
 		{
 			// 组件类型：站点信息组件
@@ -116,7 +133,7 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			// 组件位置
 			position: "top",
 			// 是否在文章详情页显示
-			showOnPostPage: true,
+			showOnPostPage: false,
 			// 组件专属配置
 			specificConfig: {
 				siteInfo: {
@@ -156,62 +173,62 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			// 是否在非文章详情页隐藏
 			hideOnNonPostPage: true,
 		},
-		{
-			// 组件类型：广告栏组件 1
-			type: "advertisement",
-			// 是否启用该组件
-			enable: false,
-			// 是否显示组件标题
-			showTitle: false,
-			// 组件位置
-			position: "sticky",
-			// 是否在文章详情页显示
-			showOnPostPage: true,
-			// 组件专属配置（广告内容直接在此配置）
-			specificConfig: {
-				ad: {
-					image: {
-						src: "/assets/images/ad/ad1.webp",
-						alt: "广告横幅",
-						link: "https://haoka.lot-ml.com/plugreg.html?agentid=1423316",
-						external: true,
-					},
-					// 是否允许关闭广告
-					closable: false,
-					// 显示次数限制，-1为无限制
-					displayCount: -1,
-					// 组件内边距配置
-					padding: {
-						all: "1rem",
-					},
-				},
-			},
-		},
-		{
-			// 组件类型：广告栏组件 2
-			type: "advertisement",
-			// 是否启用该组件
-			enable: false,
-			// 组件位置
-			position: "sticky",
-			// 是否在文章详情页显示
-			showOnPostPage: true,
-			// 组件专属配置（广告内容直接在此配置）
-			specificConfig: {
-				ad: {
-					title: "支持博主",
-					content:
-						"如果您觉得本站内容对您有帮助，欢迎支持我们的创作！您的支持是我们持续更新的动力。",
-					link: {
-						text: "支持一下",
-						url: "about/",
-						external: false,
-					},
-					closable: false,
-					displayCount: -1,
-				},
-			},
-		},
+		// {
+		// 	// 组件类型：广告栏组件 1
+		// 	type: "advertisement",
+		// 	// 是否启用该组件
+		// 	enable: false,
+		// 	// 是否显示组件标题
+		// 	showTitle: false,
+		// 	// 组件位置
+		// 	position: "sticky",
+		// 	// 是否在文章详情页显示
+		// 	showOnPostPage: false,
+		// 	// 组件专属配置（广告内容直接在此配置）
+		// 	specificConfig: {
+		// 		ad: {
+		// 			image: {
+		// 				src: "/assets/images/ad/ad1.webp",
+		// 				alt: "广告横幅",
+		// 				link: "https://haoka.lot-ml.com/plugreg.html?agentid=1423316",
+		// 				external: true,
+		// 			},
+		// 			// 是否允许关闭广告
+		// 			closable: false,
+		// 			// 显示次数限制，-1为无限制
+		// 			displayCount: -1,
+		// 			// 组件内边距配置
+		// 			padding: {
+		// 				all: "1rem",
+		// 			},
+		// 		},
+		// 	},
+		// },
+		// {
+		// 	// 组件类型：广告栏组件 2
+		// 	type: "advertisement",
+		// 	// 是否启用该组件
+		// 	enable: false,
+		// 	// 组件位置
+		// 	position: "sticky",
+		// 	// 是否在文章详情页显示
+		// 	showOnPostPage: false,
+		// 	// 组件专属配置（广告内容直接在此配置）
+		// 	specificConfig: {
+		// 		ad: {
+		// 			title: "支持博主",
+		// 			content:
+		// 				"如果您觉得本站内容对您有帮助，欢迎支持我们的创作！您的支持是我们持续更新的动力。",
+		// 			link: {
+		// 				text: "支持一下",
+		// 				url: "about/",
+		// 				external: false,
+		// 			},
+		// 			closable: false,
+		// 			displayCount: -1,
+		// 		},
+		// 	},
+		// },
 	],
 
 	// 移动端底部组件配置列表
@@ -229,17 +246,9 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			// 组件类型：公告组件
 			type: "announcement",
 			// 是否启用该组件
-			enable: true,
+			enable: false,
 			// 是否在文章详情页显示
-			showOnPostPage: true,
-		},
-		{
-			// 组件类型：音乐播放器
-			type: "music",
-			// 是否启用该组件
-			enable: true,
-			// 是否在文章详情页显示
-			showOnPostPage: true,
+			showOnPostPage: false,
 		},
 		{
 			// 组件类型：分类组件
@@ -265,6 +274,21 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			specificConfig: {
 				// 折叠阈值：当标签数量超过20个时自动折叠
 				collapseThreshold: 10,
+			},
+		},
+		{
+			// 组件类型：最新动态组件
+			type: "dynamic",
+			// 是否启用该组件
+			enable: true,
+			// 是否在文章详情页显示
+			showOnPostPage: true,
+			// 组件专属配置
+			specificConfig: {
+				dynamic: {
+					// 显示的最新动态数量
+					limit: 2,
+				},
 			},
 		},
 		{
