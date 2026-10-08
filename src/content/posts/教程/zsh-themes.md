@@ -5,8 +5,8 @@ description: '安装 Zsh 并美化终端'
 image: '../images/zsh-config.png'
 tags: [Linux]
 category: '教程'
-draft: false 
-lang: 'zh_CN'
+series: Tutorial
+seriesOrder: 4
 ---
 
 # 一、小引

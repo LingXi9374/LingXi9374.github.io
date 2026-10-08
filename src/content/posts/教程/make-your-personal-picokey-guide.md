@@ -5,8 +5,8 @@ description: '约 30 元低成本制作一个专属于自己的物理安全密�
 image: '../images/picokey.png'
 tags: [安全, 微软, PicoKey, 开箱评测]
 category: '教程'
-draft: false 
-lang: 'zh_CN'
+series: Tutorial
+seriesOrder: 5
 ---
 
 ## 前言

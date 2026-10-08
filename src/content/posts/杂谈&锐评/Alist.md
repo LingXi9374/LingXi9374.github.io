@@ -5,8 +5,8 @@ description: '对知名网盘聚合软件Alist项目售出事件的一些想法'
 image: '../images/Alist.jpg'
 tags: [开源]
 category: '锐评'
-draft: false 
-lang: 'zh_CN'
+series: 锐评
+seriesOrder: 2
 ---
 
 ## 导引

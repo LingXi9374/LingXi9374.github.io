@@ -5,8 +5,8 @@ description: '微软公开信：全面整改 Win11 质量，如任务栏可停�
 image: '../images/microsoft-commitment-to-windows-quality-2026.png'
 tags: [Windows,微软,操作系统]
 category: '杂谈'
-draft: false 
-lang: 'zh_CN'
+series: 杂谈
+seriesOrder: 1
 ---
 
 :::note

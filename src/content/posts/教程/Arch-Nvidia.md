@@ -5,8 +5,8 @@ description: '如何在Arch Linux上启用NVIDIA独显直连，让应用程序�
 image: '../images/Arch-Nvidia.png'
 tags: [Linux]
 category: '教程'
-draft: false 
-lang: 'zh_CN'
+series: Tutorial
+seriesOrder: 3
 ---
 
 ## 前言

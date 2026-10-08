@@ -18,11 +18,18 @@ export const galleryConfig: GalleryConfig = {
 		{
 			id: "touhou-gallery-2026",
 			name: "车万",
-			description: "欢迎来到幻想乡！   图源来自Pixiv",
+			description: "欢迎来到幻想乡！\n图源来自Pixiv",
 			location: "東方Project",
 			date: "2026-03-26",
 			tags: ["车万", "东方"],
 		},
+		{
+			id: "otomachi-una",
+			name: "音街鳗",
+			description: "收集亿些 Una 的图\n图源来自Pixiv",
+			date: "2026-10-06",
+			tags: ["VOCALOID", "音街ウナ"]
+		}
 	],
 
 	// 瀑布流最小列宽(px)，浏览器根据容器宽度自动计算列数，默认 240

@@ -5,8 +5,8 @@ description: '分享在 Mint 上更换自编译带优化的内核且保留 N 卡
 image: '../images/using-the-cachyos-customized-kernel-with-linux-mint.png'
 tags: [Linux]
 category: '教程'
-draft: false 
-lang: 'zh_CN'
+series: Tutorial
+seriesOrder: 6
 ---
 
 ## 前言

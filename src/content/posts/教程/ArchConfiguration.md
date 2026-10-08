@@ -5,8 +5,8 @@ description: '讲述安装Arch Linux后，需要干什么'
 image: '../images/1920px-Archlinux_chan.png'
 tags: [Linux]
 category: '教程'
-draft: false 
-lang: 'zh_CN'
+series: Tutorial
+seriesOrder: 2
 ---
 ## 前言
 

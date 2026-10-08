@@ -5,8 +5,8 @@ description: '铲除**内容农场**产生的垃圾信息，还你一个清净�
 image: '../images/content_farm.png'
 tags: [搜索引擎调教]
 category: '搜索引擎异闻录'
-draft: false 
-lang: 'zh_CN'
+series: 搜索引擎异闻录
+seriesOrder: 1
 ---
 
 > [!NOTE] 2026 年首次开创新专栏合集

@@ -5,8 +5,8 @@ description: 'Micro$oft Bing 已经沦陷，亿万人必须使用 Duckduckgo ，
 image: '../images/bing-search-engine-dangerous.png'
 tags: [搜索引擎调教]
 category: '搜索引擎异闻录'
-draft: false 
-lang: 'zh_CN'
+series: 搜索引擎异闻录
+seriesOrder: 2
 ---
 
 > [!NOTE] 注意

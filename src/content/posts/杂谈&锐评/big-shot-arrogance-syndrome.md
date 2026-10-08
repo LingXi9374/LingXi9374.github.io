@@ -5,8 +5,8 @@ description: '对简中互联网老资历“厌蠢症”现象的解读'
 image: api
 tags: [人文,互联网]
 category: '杂谈'
-draft: false 
-lang: 'zh_CN'
+series: 杂谈
+seriesOrder: 2
 ---
 
 > [!WARNING]

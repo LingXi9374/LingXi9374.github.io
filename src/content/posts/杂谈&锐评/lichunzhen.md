@@ -5,8 +5,8 @@ description: '根据GPLv3许可证分析lchzh3473的版权要求及其行为是�
 image: '../images/lchzh3473.jpg'
 tags: [Phigros,音游]
 category: '锐评'
-draft: false 
-lang: 'zh_CN'
+series: 锐评
+seriesOrder: 1
 ---
 
 # <font color=#EE230D>__\# 1\. GPLv3 许可证概述__</font>

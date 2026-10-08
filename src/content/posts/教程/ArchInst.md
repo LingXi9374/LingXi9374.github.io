@@ -5,8 +5,8 @@ description: '如何在物理机/虚拟机上安装Arch Linux'
 image: '../images/ArchInst.png'
 tags: [Linux]
 category: '教程'
-draft: false 
-lang: 'zh_CN'
+series: Tutorial
+seriesOrder: 1
 ---
 
 ## 前言
