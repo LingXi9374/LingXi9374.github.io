@@ -19,7 +19,7 @@ UniGetUI是一款专为Windows 10和Windows 11设计的**图形用户界面工�
 
 UniGetUI本身并不存储软件包，而是作为一个**统一的图形化前端**，将多种命令行包管理器聚合在一起，让用户无需记忆复杂命令，就能轻松管理成千上万的软件。
 
-![UniGetUI 示意图](https://github.com/LingXi9374/picx-images-hosting/raw/master/pVTjxVe.92qr4c1y8s.png)
+![UniGetUI 示意图](https://img.lingxi9374.top/blogsite-images/unigetui/pVTjxVe.92qr4c1y8s.png)
 
 ## 核心功能特性
 
@@ -29,13 +29,13 @@ UniGetUI的魅力在于其强大而实用的功能集，几乎涵盖了软件管
 
 只需在搜索框中输入软件名称，UniGetUI就会同时从所有已配置的包管理器中查找结果。 你可以轻松比较不同来源的同一软件，并一键安装所需版本。
 
-![一站式软件管理](https://github.com/LingXi9374/picx-images-hosting/raw/master/2024082420185090991.b9irj6evc.png)
+![一站式软件管理](https://img.lingxi9374.top/blogsite-images/unigetui/2024082420185090991.b9irj6evc.png)
 
 ### 批量操作效率神器
 
 无论是新电脑配置还是批量软件更新，UniGetUI的批量处理功能可以节省大量时间。 你可以一次性选择多个软件进行安装、更新或卸载，无需逐个操作。
 
-![批量操作](https://github.com/LingXi9374/picx-images-hosting/raw/master/pVTTqiV.7lkm2ky57w.png)
+![批量操作](https://img.lingxi9374.top/blogsite-images/unigetui/pVTTqiV.7lkm2ky57w.png)
 
 ### 智能更新管理
 
@@ -47,7 +47,7 @@ UniGetUI的魅力在于其强大而实用的功能集，几乎涵盖了软件管
 
 不同于普通的软件商店，UniGetUI允许你深度定制安装过程。你可以选择软件版本、体系结构（32位或64位），添加自定义安装参数，甚至指定安装路径。
 
-![软件信息介绍页面示例](https://github.com/LingXi9374/picx-images-hosting/raw/master/pVT7ii6.96ad21vlw9.png)
+![软件信息介绍页面示例](https://img.lingxi9374.top/blogsite-images/unigetui/pVT7ii6.96ad21vlw9.png)
 
 ### 软件包分享与迁移
 
@@ -55,13 +55,13 @@ UniGetUI的魅力在于其强大而实用的功能集，几乎涵盖了软件管
 
 更实用的是，你可以**导出已安装软件列表**，在新设备或重装系统后快速恢复所有软件环境，大大简化了系统迁移过程。
 
-![软件包分享与迁移](https://github.com/LingXi9374/picx-images-hosting/raw/master/Screen-20250331171752@2x.5fl7gt6x6s.avif)
+![软件包分享与迁移](https://img.lingxi9374.top/blogsite-images/unigetui/Screen-20250331171752@2x.5fl7gt6x6s.avif)
 
 ### 系统深度集成
 
 UniGetUI提供系统托盘图标实时显示更新状态，还支持Windows 11小组件，让你无需打开主程序就能查看更新并快速操作。
 
-![系统深度集成](https://github.com/LingXi9374/picx-images-hosting/raw/master/pVTTORU.1zivopxeay.png)
+![系统深度集成](https://img.lingxi9374.top/blogsite-images/unigetui/pVTTORU.1zivopxeay.png)
 
 ## 支持的包管理器
 
@@ -75,7 +75,7 @@ UniGetUI的强大之处在于其广泛的包容性，目前支持多达10种主�
 - **PowerShell Gallery**
 - 以及**NuGet**、**.NET Tool**等共10种包管理器
 
-![支持包管理器](https://github.com/LingXi9374/picx-images-hosting/raw/master/pVTTXzF.8advmlmckm.png)
+![支持包管理器](https://img.lingxi9374.top/blogsite-images/unigetui/pVTTXzF.8advmlmckm.png)
 
 ## 安装指南
 
@@ -85,7 +85,7 @@ UniGetUI的强大之处在于其广泛的包容性，目前支持多达10种主�
 
 这是最安全简单的方法：打开Microsoft Store，搜索"UniGetUI"，点击获取即可。 自动更新，无需担心安全问题。
 
-![MS Store页面](https://github.com/LingXi9374/picx-images-hosting/raw/master/pVTvS5d.8hh3i18p9j.png)
+![MS Store页面](https://img.lingxi9374.top/blogsite-images/unigetui/pVTvS5d.8hh3i18p9j.png)
 
 ### 安装包安装
 

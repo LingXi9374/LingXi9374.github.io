@@ -19,7 +19,7 @@ seriesOrder: 6
 
 Linux Mint 相比 Ubuntu 去掉了很多 Canonical 留下的非必要的服务 (Services) 与套件 (如 Snap)，对此次尝试看来是一个比较纯净的值得实践的环境，对于用户自定义方面可能会更加开放。废话不多说，直接上手！
 
-![ ](https://github.com/LingXi9374/picx-images-hosting/raw/master/i-created-wallpaper-for-linux-mint-v0-rmhmplodt54f1.5trp701y67.png)
+![ ](https://img.lingxi9374.top/blogsite-images/using-the-cachyos-customized-kernel-with-linux-mint/i-created-wallpaper-for-linux-mint-v0-rmhmplodt54f1.5trp701y67.png)
 
 ## 为什么我选择 CachyOS 内核？
 
@@ -33,7 +33,7 @@ CachyOS 内核支持多种调度器，包括 **BORE**（面向突发的响应增
 
 内核还支持 **x86-64-v3** 和 **x86-64-v4** 指令集优化，特别适用于现代 CPU 架构。此外，CachyOS 内核通过 **Clang 编译器** 和 **LTO（链接时优化）** 技术进一步提升了性能。
 
-![ ](https://github.com/LingXi9374/picx-images-hosting/raw/master/cachyos-kavratech.5c1nifr23t.jpg)
+![ ](https://img.lingxi9374.top/blogsite-images/using-the-cachyos-customized-kernel-with-linux-mint/cachyos-kavratech.5c1nifr23t.jpg)
 
 ### 性能优化
 
@@ -57,7 +57,7 @@ CachyOS 内核适合希望提升系统性能的 Arch Linux 高级用户，同时
 
 CachyOS 内核通过其先进的优化技术和灵活的配置选项，为用户提供了一个高效、安全的 Linux 体验。
 
-![ ](https://github.com/LingXi9374/picx-images-hosting/raw/master/wallpaperflare.com_wallpaper.8z775yqwuc.jpg)
+![ ](https://img.lingxi9374.top/blogsite-images/using-the-cachyos-customized-kernel-with-linux-mint/wallpaperflare.com_wallpaper.8z775yqwuc.jpg)
 
 ## 准备环境
 
@@ -416,7 +416,7 @@ Linux version 7.1.1-cachyos-bore-lto-lingxi9374 (lingxi@lingxi-Shadow-SH16-74) (
 | **回退到 6.14/6.17 内核** | 什么都不用做，DKMS 的闭源模块自动工作 |
 | **系统 apt upgrade 升级了 nvidia-dkms-595-open** | 注意检查 `/lib/modules/7.1.1.../updates/dkms/` 是否又被写入闭源模块，如果有就删掉 |
 
-![ ](https://github.com/LingXi9374/picx-images-hosting/raw/master/avantages-de-linux-mint-sur-windows-11-1536x864.99u0z3wrdl.png)
+![ ](https://img.lingxi9374.top/blogsite-images/using-the-cachyos-customized-kernel-with-linux-mint/avantages-de-linux-mint-sur-windows-11-1536x864.99u0z3wrdl.png)
 
 ## 额外建议
 
@@ -439,4 +439,4 @@ sudo cpupower frequency-set -g performance
 
 如果一切结果正常，那么恭喜你，成功跟着我在 Linux Mint 制作并使用了自编译内核的同时保留了 NVIDIA 独显驱动！你的 **Linux Mint 22.3 + Linux CachyOS BORE 7.1 Kernel + NVIDIA Open 模块** 组合现在已经完全可用。BORE 调度器对游戏帧时间稳定性的改善应该能感觉得到，Enjoy！🎮
 
-![ ](https://github.com/LingXi9374/picx-images-hosting/raw/master/Screenshot_20260625_231305.77e86zjgbw.png)
+![ ](https://img.lingxi9374.top/blogsite-images/acer-shadow-knight-qing-7/Screenshot_20260625_231305.77e86zjgbw.png)

@@ -47,7 +47,7 @@ sudo pacman -S zsh zsh-completions   # Arch,Manjaro,Endeavour OS等
 
 注意：记得同意使用`Oh-my-zsh`的配置模板覆盖已有的`.zshrc`。
 
-![install omz](https://github.com/LingXi9374/picx-images-hosting/raw/master/202401012224221.6bhow9ajdy.png)
+![install omz](https://img.lingxi9374.top/blogsite-images/zsh-themes/202401012224221.6bhow9ajdy.png)
 
 # 三、终端配置
 
@@ -75,7 +75,7 @@ yay -S zsh-theme-powerlevel10k-git   # 试了一下在我这好像这样安装�
 
 [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)是一个命令提示插件，当你输入命令时，会自动推测你可能需要输入的命令，按下右键可以快速采用建议。效果如下：
 
-![zsh autosuggestions](https://github.com/LingXi9374/picx-images-hosting/raw/master/202401012250028.2dpbfkzuyw.png)
+![zsh autosuggestions](https://img.lingxi9374.top/blogsite-images/zsh-themes/202401012250028.2dpbfkzuyw.png)
 
 安装方式：把插件下载到本地的`~/.oh-my-zsh/custom/plugins`目录。
 
@@ -90,7 +90,7 @@ git clone https://github.moeyy.xyz/https://github.com/zsh-users/zsh-autosuggesti
 
 [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)是一个命令语法校验插件，在输入命令的过程中，若指令不合法，则指令显示为红色，若指令合法就会显示为绿色。效果如下：
 
-![zsh syntax highlighting](https://github.com/LingXi9374/picx-images-hosting/raw/master/202401012252786.1hsu04qidl.png)
+![zsh syntax highlighting](https://img.lingxi9374.top/blogsite-images/zsh-themes/202401012252786.1hsu04qidl.png)
 
 安装方式：把插件下载到本地的`~/.oh-my-zsh/custom/plugins`目录。
 
@@ -105,19 +105,19 @@ git clone https://github.moeyy.xyz/https://github.com/zsh-users/zsh-syntax-highl
 
 `oh-my-zsh`内置了`z`插件。`z`是一个文件夹快捷跳转插件，对于曾经跳转过的目录，只需要输入最终目标文件夹名称，就可以快速跳转，避免再输入长串路径，提高切换文件夹的效率。效果如下：
 
-![z](https://github.com/LingXi9374/picx-images-hosting/raw/master/202401012254065.6t7qkucz0m.png)
+![z](https://img.lingxi9374.top/blogsite-images/zsh-themes/202401012254065.6t7qkucz0m.png)
 
 ### 4. extract
 
 `oh-my-zsh`内置了`extract`插件。`extract`用于解压任何压缩文件，不必根据压缩文件的后缀名来记忆压缩软件。使用`x`命令即可解压文件，效果如下：
 
-![extract](https://github.com/LingXi9374/picx-images-hosting/raw/master/202401012259966.7i104v0rjg.png)
+![extract](https://img.lingxi9374.top/blogsite-images/zsh-themes/202401012259966.7i104v0rjg.png)
 
 ### 5. web-search
 
 `oh-my-zsh`内置了`web-search`插件。`web-search`能让我们在命令行中使用搜索引擎进行搜索。使用搜索引擎`关键字`+`搜索内容`即可自动打开浏览器进行搜索。效果如下：
 
-![web search](https://github.com/LingXi9374/picx-images-hosting/raw/master/202401012302476.4qrxwsevi5.png)
+![web search](https://img.lingxi9374.top/blogsite-images/zsh-themes/202401012302476.4qrxwsevi5.png)
 
 :::important
 最后，记得启用所有插件。

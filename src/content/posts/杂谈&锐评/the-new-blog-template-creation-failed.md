@@ -30,8 +30,8 @@ seriesOrder: 3
 Blog 主题的 Demo 样式图我使用 Canvas 设计网站自己搓了一个出来，如图所示: 
 
 [grid]
-![Stardust](https://github.com/LingXi9374/picx-images-hosting/raw/master/Stardust.2ocb8lqwi0.png)
-![Stardust-(1)](https://github.com/LingXi9374/picx-images-hosting/raw/master/Stardust-(1).58i5l8qv47.png)
+![Stardust](https://img.lingxi9374.top/blogsite-images/the-new-blog-template-creation-failed/Stardust.2ocb8lqwi0.png)
+![Stardust-(1)](https://img.lingxi9374.top/blogsite-images/the-new-blog-template-creation-failed/Stardust-(1).58i5l8qv47.png)
 [/grid]
 
 DSH 我使用 NPX (NPM) 运行然后安装了亿些必备的插件后就动手用了
@@ -51,14 +51,14 @@ DSH 我使用 NPX (NPM) 运行然后安装了亿些必备的插件后就动手�
 > 注: 下面放的图是中后期的样子了，Demo 大致就是除掉下图中的搜索框、相册页等功能
 
 [grid]
-![主界面](https://github.com/LingXi9374/picx-images-hosting/raw/master/QQ20261008-203516.4clo72mdke.png)
-![文章列表页](https://github.com/LingXi9374/picx-images-hosting/raw/master/QQ20261008-203531.3uvmihkzzk.png)
+![主界面](https://img.lingxi9374.top/blogsite-images/the-new-blog-template-creation-failed/QQ20261008-203516.4clo72mdke.png)
+![文章列表页](https://img.lingxi9374.top/blogsite-images/the-new-blog-template-creation-failed/QQ20261008-203531.3uvmihkzzk.png)
 [/grid]
 
 [grid]
-![友链页面](https://github.com/LingXi9374/picx-images-hosting/raw/master/QQ20261008-203537.6f1gv4kylt.png)
-![关于页面](https://github.com/LingXi9374/picx-images-hosting/raw/master/QQ20261008-203545.7zr7uli62b.png)
-![相册页](https://github.com/LingXi9374/picx-images-hosting/raw/master/QQ20261008-203557.3k8spc5ruf.png)
+![友链页面](https://img.lingxi9374.top/blogsite-images/the-new-blog-template-creation-failed/QQ20261008-203537.6f1gv4kylt.png)
+![关于页面](https://img.lingxi9374.top/blogsite-images/the-new-blog-template-creation-failed/QQ20261008-203545.7zr7uli62b.png)
+![相册页](https://img.lingxi9374.top/blogsite-images/the-new-blog-template-creation-failed/QQ20261008-203557.3k8spc5ruf.png)
 [/grid]
 
 > [!IMPORTANT] 注意
@@ -70,11 +70,11 @@ DSH 我使用 NPX (NPM) 运行然后安装了亿些必备的插件后就动手�
 
 大肥鱼在前 100M token 劲地发力很意外的让我爽翻，当时给我了 DS 完全可以秒杀前端开发的幻觉；总消耗量破了 200M token 它的短板就逐渐暴露出来。用一个很恰当的比喻就是: **这个模型有脑子，但看起来很像是个 ADHD (注意力缺陷多动障碍)**。一个项目越做到后面，大肥鱼的注意力就越来越散，Vibe 起来就越举步维艰。即使加了很多优化上下文压缩的插件，即使我的用户提示词做的很系统性了，也救不了这个模型本身的缺陷。
 
-![项目总 Toekn 耗费](https://github.com/LingXi9374/picx-images-hosting/raw/master/ebd56fba-c8f9-4473-948c-3c76fb94a3ba.lwilyssm4.png)
+![项目总 Toekn 耗费](https://img.lingxi9374.top/blogsite-images/the-new-blog-template-creation-failed/ebd56fba-c8f9-4473-948c-3c76fb94a3ba.lwilyssm4.png)
 
 你说我为什么不换成其他模型呢？我也有过这个考虑，但在 DSH 我自定义接入了一个模型平台的模型却不能正常触发对话，报 PI_AI_ERROR 或者 400 错误，我接入的是 [AstraFlow 星图](https://astraflow.ucloud.cn/modelverse) 模型平台 ~~(绝不是打广告！！！)~~，至今为止只能推断是我代理软件配置问题或者是这个模型平台没有兼容 DSH，，， 再加上我属于钱少事多的学生群体，GPT 和 Claude 早属于我想用也用不起的范畴，Kimi-K3 与 GLM 5.3 也是超预算的一线模型咱也就有时候干瞪着流口水，要不是这样我也不会用:spoiler[~~小南梁~~]梁圣出的性价比模型了）
 
-![你这吃白饭的蓝色大肥鱼.jpg](https://github.com/LingXi9374/picx-images-hosting/raw/master/image.szqheeit6.png)
+![你这吃白饭的蓝色大肥鱼.jpg](https://img.lingxi9374.top/blogsite-images/the-new-blog-template-creation-failed/image.szqheeit6.png)
 
 最后，仅仅提交了几次 Git，项目就仓促上传到 [GitHub](https://github.com/LingXi9374/Stardust) 存档了，~~依旧投放 Slop 这一块~~，后续也没有意愿维护 (如果你想接手我乐意奉陪，但应该许多人都不会愿意吧））)
 
