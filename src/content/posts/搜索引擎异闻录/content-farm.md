@@ -41,7 +41,7 @@ seriesOrder: 1
 
 在此特地点名一个内容农场——它就是臭名昭著，人见人恨的*****(算了不提名字，怕给人家引流)，玛德我每次搜索技术类问题，天天在我的搜索结果中冒出来，里面的内容可以说就像是印度恒河水与日本核污水混合起来一样——人一碰就死！我一看到那个网站上的AI味十足的男胡子程序员logo，心里直犯恶心，呕呕呕！🤢🤮
 
-![出现在搜索引擎前列也太恶心了](https://img.lingxi9374.top/blogsite-images/content-farm/pZMCdPS.1e982f5lcs.png)
+![出现在搜索引擎前列也太恶心了](https://img.lingxi9374.top/lingxi-image-hosting/2025/12/12/pZMCdPS.1e982f5lcs.png)
 
 ## 如何屏蔽
 
@@ -65,13 +65,13 @@ seriesOrder: 1
 
 成功创建规则后，下次搜索时，uBlacklist 便会帮你隐藏已屏蔽的域名，并在顶部显示屏蔽数量。如果没搜到想要的结果，也可以暂时取消屏蔽，检查是否有误伤，uBlacklist 会高亮展示这些条目。对了，在扩展的选项页中，能够自定义高亮的颜色模式，还可以单独高亮指定搜索结果。
 
-![UBlacklist 效果图](https://img.lingxi9374.top/blogsite-images/content-farm/pZMC4xJ.3626xbp52p.png)
+![UBlacklist 效果图](https://img.lingxi9374.top/lingxi-image-hosting/2025/12/12/pZMC4xJ.3626xbp52p.png)
 
 <center><font color="#D3D3D3">红色为被屏蔽的搜索结果</font></center>
 
 uBlacklist 默认仅为 Google 搜索结果启用，你可以在扩展的选项页中手动开启支持必应、DuckDuckGo、Ecosia 和 Startpage 四款搜索引擎，需要同意「存取相关网页数据」的额外权限。同页面还提供更多自定义选项，手动编辑、导入、导出规则，使用 Google 云端硬盘或 Dropbox 云端同步数据等功能。
 
-![UBlacklist 配置界面](https://img.lingxi9374.top/blogsite-images/content-farm/pZMCIM9.2h8xdb1qbq.png)
+![UBlacklist 配置界面](https://img.lingxi9374.top/lingxi-image-hosting/2025/12/12/pZMCIM9.2h8xdb1qbq.png)
 
 内容农场茫茫多，单靠自己添加，怕是得把这当成全职工作才行。这种时候，就有必要借助社区的力量了，一份由全球网友贡献并维护的优质规则列表可以极大地节约我们的时间。
 
@@ -87,13 +87,13 @@ uBlacklist 默认仅为 Google 搜索结果启用，你可以在扩展的选项�
 
 若依然执迷不悟，不妨点击「查看」按钮，浏览屏蔽多媒体内容和内嵌脚本后的纯净版页面，不让农场主骗取一分钱广告收益；想浏览完整网页，只能通过「解锁」按钮，但必须输入验证码，而且有冷却时间，避免频繁使用失去屏蔽的意义。
 
-![拦截页面](https://img.lingxi9374.top/blogsite-images/content-farm/pZMCzMd.26m3k5mo7f.png)
+![拦截页面](https://img.lingxi9374.top/lingxi-image-hosting/2025/12/12/pZMCzMd.26m3k5mo7f.png)
 
 「终结内容农场」扩展自然也支持订阅网络屏蔽列表，除了预设的 标准内容农场清单，在[GitHub 项目资料库](https://danny0838.github.io/content-farm-terminator/zh/subscriptions)，还提供了较为主观的`类内容农场清单`、聚焦社交网站账户的`社群内容农场清单`、报道罔顾事实的`假新闻网站清单`和谋财害命的`诈骗网站清单`等，可以根据自己的实际情况导入使用。
 
 屏蔽名单的语法在扩展选项页有详细说明，支持正则表达式匹配和通用转换规则。用户还能填写[Google 表单](https://goo.gl/forms/4nsmTmGjJUzQtr0p1)，报告新发现的内容农场或被误杀的正规网站，让扩展更加完善。
 
-![终结内容农场 配置界面](https://img.lingxi9374.top/blogsite-images/content-farm/pZMPpqI.1zivoq0n5s.png)
+![终结内容农场 配置界面](https://img.lingxi9374.top/lingxi-image-hosting/2025/12/12/pZMPpqI.1zivoq0n5s.png)
 
 除了专用扩展，[uBlock Origin](https://github.com/gorhill/uBlock)、[AdGuard](https://adguard.com/zh_cn/welcome.html)等现代广告过滤工具同样支持自定义拦截规则列表，亦可用来屏蔽内容农场；在 Android 设备上，我更推荐使用 Firefox、Kiwi Browser 等支持安装扩展的浏览器，再借助上文介绍的方法提升搜索体验。
 

@@ -112,7 +112,7 @@ seriesOrder: 1
 
 然后点击"选择目标磁盘"，找到你插入的U盘。
 
-![选择目标U盘](https://img.lingxi9374.top/blogsite-images/ArchInst/pECkXgs.8advml9if7.png)
+![选择目标U盘](https://img.lingxi9374.top/lingxi-image-hosting/2025/01/09/pECkXgs.8advml9if7.png)
 
 点击"现在烧录!"
 
@@ -126,7 +126,7 @@ seriesOrder: 1
 
 打开`Ventoy`，先在配置选项-分区类型选择GPT，默认选中了你的U盘，然后点击"安装"按钮，期间会反复确认是否格式化U盘，点击"是"即可。
 
-![分区格式选择GPT](https://img.lingxi9374.top/blogsite-images/ArchInst/pECAuVK.3rbujm47v4.png)
+![分区格式选择GPT](https://img.lingxi9374.top/lingxi-image-hosting/2025/01/09/pECAuVK.3rbujm47v4.png)
 
 之后把ISO镜像拖入到名为"Ventoy"的分区中即可。
 
@@ -144,31 +144,31 @@ seriesOrder: 1
 
 点击"创建新的虚拟机"，选择"自定义(高级)"。
 
-![创建虚拟机](https://img.lingxi9374.top/blogsite-images/ArchInst/pECAJKI.7pwtt1slr.png)
+![创建虚拟机](https://img.lingxi9374.top/lingxi-image-hosting/2025/01/09/pECAJKI.7pwtt1slr.png)
 
 虚拟机硬件兼容性保持默认，点击"下一步"，选择"安装程序光盘映像文件(iso)"，选择下载好的ISO镜像文件。
 
-![选择安装镜像文件](https://img.lingxi9374.top/blogsite-images/ArchInst/pECAUVf.4n8bz2edf9.png)
+![选择安装镜像文件](https://img.lingxi9374.top/lingxi-image-hosting/2025/01/09/pECAUVf.4n8bz2edf9.png)
 
 点击"下一步"，操作系统选择"Linux",版本选择"其他 Linux 6.x 内核 64 位"
 
-![选择操作系统](https://img.lingxi9374.top/blogsite-images/ArchInst/pECA5RJ.51erpxmssr.png)
+![选择操作系统](https://img.lingxi9374.top/lingxi-image-hosting/2025/01/09/pECA5RJ.51erpxmssr.png)
 
 点击下一步，编辑虚拟机名称和位置
 
-![编辑虚拟机名称和位置](https://img.lingxi9374.top/blogsite-images/ArchInst/pECATMR.46aw395kn.png)
+![编辑虚拟机名称和位置](https://img.lingxi9374.top/lingxi-image-hosting/2025/01/09/pECATMR.46aw395kn.png)
 
 选择处理器数量，建议为1个处理器数量和4个核心，然后分配内存，内存建议为4GB以上。
 
-![选择CPU核心数和分配内存](https://img.lingxi9374.top/blogsite-images/ArchInst/pECALdK.7w7fvq2826.png)
+![选择CPU核心数和分配内存](https://img.lingxi9374.top/lingxi-image-hosting/2025/01/09/pECALdK.7w7fvq2826.png)
 
 网络类型默认选择"使用网络地址转换(NAT)"，点击下一步，选择I/O控制器类型，保持默认点击下一步，虚拟磁盘类型选择"SATA"或者"NVMe"，点击下一步选择创建新虚拟磁盘，指定磁盘容量自定，下边保持默认。
 
-![自定磁盘容量](https://img.lingxi9374.top/blogsite-images/ArchInst/pECEieP.6po4n4dg58.png)
+![自定磁盘容量](https://img.lingxi9374.top/lingxi-image-hosting/2025/01/09/pECEieP.6po4n4dg58.png)
 
 点击"下一步"，最后检查设置，确保所有设置正确无误，点击"完成"，虚拟机创建完成。
 
-![确认设置](https://img.lingxi9374.top/blogsite-images/ArchInst/pEClYEd.41yocrkl1r.png)
+![确认设置](https://img.lingxi9374.top/lingxi-image-hosting/2025/01/09/pEClYEd.41yocrkl1r.png)
 
 ## 安装Arch Linux
 
@@ -186,7 +186,7 @@ seriesOrder: 1
 
 进入Arch Linux Live CD引导界面，选择`"Arch Linux install medium (x86_64, UEFI)"`回车。 ~~(第一个就是了直接Enter回车)~~
 
-![Choose This!](https://img.lingxi9374.top/blogsite-images/ArchInst/choose.png)
+![Choose This!](https://img.lingxi9374.top/lingxi-image-hosting/2025/01/09/blogsite-images_ArchInst_choose.png)
 
 进入满屏的跑代码界面几十秒后，就会成功进入Arch Live CD的命令行交互环境，下面是你能输入的那一行的标识：
 
@@ -200,11 +200,11 @@ root@archiso ~ #
 
 找到新建的虚拟机，点击`编辑虚拟机设置-硬件-CD/DVD`，选择下载好的ISO镜像文件，勾选`启动时连接`。
 
-![选择ISO镜像文件](https://img.lingxi9374.top/blogsite-images/ArchInst/pECld8P.5fl7gsyydq.png)
+![选择ISO镜像文件](https://img.lingxi9374.top/lingxi-image-hosting/2025/01/09/pECld8P.5fl7gsyydq.png)
 
 然后点击`选项`菜单，找到`高级`，在`固件类型`中选择`UEFI`，然后点击`确认`按钮。:spoiler[(当然虚拟机的话BIOS也是行的（（（)]
 
-![选择UEFI固件类型](https://img.lingxi9374.top/blogsite-images/ArchInst/pEClwgf.2dpbfkxqay.png)
+![选择UEFI固件类型](https://img.lingxi9374.top/lingxi-image-hosting/2025/01/09/pEClwgf.2dpbfkxqay.png)
 
 最后点击`开启此虚拟机`按钮，虚拟机就会启动，进入Arch Linux Live CD的命令行交互环境。
 
@@ -572,7 +572,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 记得检查`Fstab`文件是否正确，确保它包含了所有需要挂载的分区，并且挂载信息正确。
 
-![Fstab 文件示例](https://img.lingxi9374.top/blogsite-images/ArchInst/fstab.png)
+![Fstab 文件示例](https://img.lingxi9374.top/lingxi-image-hosting/2025/01/09/blogsite-images_ArchInst_fstab.png)
 
  > 更多相关信息，请参阅：
    - Fstab：https://wiki.archlinuxcn.org/wiki/Fstab

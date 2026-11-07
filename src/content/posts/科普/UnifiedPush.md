@@ -13,7 +13,7 @@ lang: 'zh_CN'
 
 > [!CAUTION] 注意！
 > 本文章科普对象**不是** [统一推送联盟](https://zh.wikipedia.org/wiki/%E7%BB%9F%E4%B8%80%E6%8E%A8%E9%80%81%E5%B7%A5%E4%BD%9C%E5%A7%94%E5%91%98%E4%BC%9A) (`Unified Push Alliance` (UPA)，现名`“电信终端产业协会统一推送工委会”` (TAF) )
-> ![原先的统一推送联盟已经转生力）](https://img.lingxi9374.top/blogsite-images/UnifiedPush/pe6bM5Q.232hmfxz9c.png)
+> ![原先的统一推送联盟已经转生力）](https://img.lingxi9374.top/lingxi-image-hosting/2026/04/18/pe6bM5Q.232hmfxz9c.png)
 
 ## 引子
 
@@ -88,7 +88,7 @@ UnifiedPush 的 **主要优势**：
 
 **工作原理** (如下图)：APP送出通知之后，需要一個服务端(Distributor)负责转发消息，再由手机上的APP收发。这里服务器可以自建，也能使用 Mozilla 的公共服务器代发。
 
-![工作原理](https://img.lingxi9374.top/blogsite-images/UnifiedPush/pe6btbT.4qrxwsrazh.jpg)
+![工作原理](https://img.lingxi9374.top/lingxi-image-hosting/2026/04/18/pe6btbT.4qrxwsrazh.jpg)
 
 总之，你选择了 **UnifiedPush**，你将拥有很多**隐私与自由**，无需担心你接收的任何一条消息推送会被大厂**监管或拦截**，用户相比开发者拥有**更多自主权**（比如可以自己搭建消息推送服务器，以获得控制权）。
 
@@ -99,19 +99,19 @@ UnifiedPush 的 **主要优势**：
 UnifiedPush 官网提供许多服务端，其中 [Ntfy](https://ntfy.sh//) 需要自建服务器，提供REST API。有公用节点，但需要注册账号才能使用。这里我推荐 [Sunup](https://f-droid.org/packages/org.unifiedpush.distributor.sunup/)，优势是不用注册与不用自建服务器，使用 Mozilla 的推送服务器 \( https://push.services.mozilla.com \)。
 
 [grid]
-![Sunup 服务端](https://img.lingxi9374.top/blogsite-images/UnifiedPush/pe6wsTe.4xv5s8dn9q.png)
-![Sunup 设置界面](https://img.lingxi9374.top/blogsite-images/UnifiedPush/pe6w6FH.46aw3t663.png)
+![Sunup 服务端](https://img.lingxi9374.top/lingxi-image-hosting/2026/04/18/pe6wsTe.4xv5s8dn9q.png)
+![Sunup 设置界面](https://img.lingxi9374.top/lingxi-image-hosting/2026/04/18/pe6w6FH.46aw3t663.png)
 [/grid]
 
 ### Step 2: 安装要使用 UnifiedPush 的 App
 
 以 Matrix 客户端 [FluffyChat](https://fluffychat.im/en/faq/#push_without_google_services) 为例。**注意：必需要在 [F-Droid](https://f-droid.org/packages/chat.fluffy.fluffychat/) 平台上下载！不要从 Google Play 商店下载！** 因为 F-Droid 的 APP 不能依赖 FCM，所以它会要求你使用 UnifiedPush。
 
-![Fluffy 通知设置界面](https://img.lingxi9374.top/blogsite-images/UnifiedPush/pe6whOf.3k8mo731tq.png)
+![Fluffy 通知设置界面](https://img.lingxi9374.top/lingxi-image-hosting/2026/04/18/pe6whOf.3k8mo731tq.png)
 
 同理，上文提到的 Fennec 浏览器设置里也有 UnifiedPush 开关，开启后该浏览器的资讯等消息都经过 UnifiedPush 服务端推送。
 
-![Fennec F-droid Browser 设置界面](https://img.lingxi9374.top/blogsite-images/UnifiedPush/pe6woTg.5xb95egypv.png)
+![Fennec F-droid Browser 设置界面](https://img.lingxi9374.top/lingxi-image-hosting/2026/04/18/pe6woTg.5xb95egypv.png)
 
 ### Step 3: 安装后
 
@@ -200,7 +200,7 @@ A7：还是非常抱歉，UnifiedPush 推送服务器**没有可用的大陆服�
 
 这是在大陆的现状。其实放眼全球，无论在哪个互联网社区，UnifiedPush 都依然非常小众，绝大部分国外用户都使用的是 FCM 与 APNs，其实与全球的开源社区/自由软硬件社区一样，终归属于特定的群体小范围传播，很难迈向大众化，同时还要面临大厂的垄断枷锁冲破软硬件市场的防线。如果有一天，某个知名开源软件大众化了，还能保持初心，我看到也没啥可遗憾了）
 
-![这种东西小范围享受就可以了.jpg](https://img.lingxi9374.top/blogsite-images/UnifiedPush/pe6jQcd.5mofc9240v.png)
+![这种东西小范围享受就可以了.jpg](https://img.lingxi9374.top/lingxi-image-hosting/2026/04/18/pe6jQcd.5mofc9240v.png)
 
 补充：你们猜我为什么一直特别强调它的小众特点？因为我撰写这篇文章搜集素材的时候，发现国内关于 UnifiedPush 的记载少之甚少，全是被 腾讯云，CSDN，gitcode 等神秘内容农场充斥着，没有一点有价值的信息供我参考。最后发现只有一丢丢的极少部分的中文 Blog 文章对此有介绍，可见它在中文社区真的小众得不能再小众了。:spoiler[~~(它的用户群体估计都没 FreeBSD 的个人用户体量大)~~]
 

@@ -97,8 +97,8 @@ Acer 听起来虽然没那么大众，但它推出的性价比游戏本系列暗
 国补购机到货上门，我录着视频，等快递员拆封确认笔记本是全新的机器之后，我立刻小心搬到我房间里去开始验机，其中双烤环节最高功耗能跑到 145 W，符合日常游戏环节功耗，硬盘通电时间显示 0 小时以及通电次数在合理范围内。其他的测试这里不方便放出来，总之没有问题就是了）
 
 [grid]
-![AIDA64 功耗显示](https://img.lingxi9374.top/blogsite-images/acer-shadow-knight-qing-7/IMG_20260618_113930..1sfpof7871.jpg)
-![DiskInfo 呈现](https://img.lingxi9374.top/blogsite-images/acer-shadow-knight-qing-7/IMG_20260618_111052..pg0djbeb4.jpg)
+![AIDA64 功耗显示](https://img.lingxi9374.top/lingxi-image-hosting/2026/06/25/IMG_20260618_113930..1sfpof7871.jpg)
+![DiskInfo 呈现](https://img.lingxi9374.top/lingxi-image-hosting/2026/06/25/IMG_20260618_111052..pg0djbeb4.jpg)
 [/grid]
 
 游戏的话，我在 PC 上游玩三角洲开了几局烽火综合下来非常流畅，极少有掉帧情况出现 ~~(有也是软件优化不好)~~
@@ -112,24 +112,24 @@ Acer 听起来虽然没那么大众，但它推出的性价比游戏本系列暗
  - SEUS PTGI 软光追 最高可达 45 FPS
 
 [grid]
-![Bliss](https://img.lingxi9374.top/blogsite-images/acer-shadow-knight-qing-7/Bliss.232jhl2t0l.png)
-![BSL-v10](https://img.lingxi9374.top/blogsite-images/acer-shadow-knight-qing-7/BSL-v10.4xv7ndhzsj.png)
-![Complementary Unbound](https://img.lingxi9374.top/blogsite-images/acer-shadow-knight-qing-7/ComplementaryUnbound.icsi45ll7.png)
+![Bliss](https://img.lingxi9374.top/lingxi-image-hosting/2026/06/25/Bliss.232jhl2t0l.png)
+![BSL-v10](https://img.lingxi9374.top/lingxi-image-hosting/2026/06/25/BSL-v10.4xv7ndhzsj.png)
+![Complementary Unbound](https://img.lingxi9374.top/lingxi-image-hosting/2026/06/25/ComplementaryUnbound.icsi45ll7.png)
 [/grid]
 
 -----
 
 [grid]
-![iterationT](https://img.lingxi9374.top/blogsite-images/acer-shadow-knight-qing-7/iterationT.102u6p6z6n.png)
-![SEUS-Renewed](https://img.lingxi9374.top/blogsite-images/acer-shadow-knight-qing-7/SEUS-Renewed.7w7hqvq98z.png)
-![SEUS-PTGI](https://img.lingxi9374.top/blogsite-images/acer-shadow-knight-qing-7/SEUS-PTGI.8okd8m6v1p.png)
+![iterationT](https://img.lingxi9374.top/lingxi-image-hosting/2026/06/25/iterationT.102u6p6z6n.png)
+![SEUS-Renewed](https://img.lingxi9374.top/lingxi-image-hosting/2026/06/25/SEUS-Renewed.7w7hqvq98z.png)
+![SEUS-PTGI](https://img.lingxi9374.top/lingxi-image-hosting/2026/06/25/SEUS-PTGI.8okd8m6v1p.png)
 [/grid]
 
 从结果上看，这款游戏本搭载 8 GB 显存的 5060 移动端显卡对于中低端光影**足够胜任**了，但面对像 SEUS PTGI 这类高端光影，它显得**捉襟见肘**了，帧率也比在低端光影下不稳定。个人建议挑选一款**能入眼的中低端光影作**为日常游玩，较高端的就没必要冲了，甜品卡也吃不消）））
 
 另外，宏碁自带了一个类似联想拯救者 Legion Zone 与华硕ROG/天选奥创中心 Armoury Crate/AURA Center 的游戏控制台，叫 Acer Control Center ~~(但开始菜单却显示的是 Fn hotkeys and OSD)~~，与市面上所有品牌控制中心一样可以根据使用环境切换不同模式，同时还支持独显直连与混合模式切换，也可自定义RGB键盘背光颜色与鼠标宏、控制电源等多种功能。
 
-![Control Center](https://img.lingxi9374.top/blogsite-images/acer-shadow-knight-qing-7/IMG_20260618_111445..6f1cp50r9n.jpg)
+![Control Center](https://img.lingxi9374.top/lingxi-image-hosting/2026/06/25/IMG_20260618_111445..6f1cp50r9n.jpg)
 
 ### 日常使用与编码体验
 
@@ -139,7 +139,7 @@ Acer 听起来虽然没那么大众，但它推出的性价比游戏本系列暗
  - 资源管理器与开始菜单使用 [Explorer Patcher](https://explorerpatcher.net/) 优化与定制
  - 壁纸使用 Wallpaper Engine 自定义
 
-![桌面一览](https://img.lingxi9374.top/blogsite-images/acer-shadow-knight-qing-7/BT9ylBIz40.mqtm7m2b.jpg)
+![桌面一览](https://img.lingxi9374.top/lingxi-image-hosting/2026/06/25/BT9ylBIz40.mqtm7m2b.jpg)
 
 **实用工具:**
 
@@ -155,8 +155,8 @@ Acer 听起来虽然没那么大众，但它推出的性价比游戏本系列暗
  - 跨端传输: LANDrop
 
 [grid]
-![开始菜单](https://img.lingxi9374.top/blogsite-images/acer-shadow-knight-qing-7/Kb1o11wtiS.szmbcqnqy.jpg)
-![终端界面](https://img.lingxi9374.top/blogsite-images/acer-shadow-knight-qing-7/WindowsTerminal_fEeR0j8MOZ.86ubk48vhq.jpg)
+![开始菜单](https://img.lingxi9374.top/lingxi-image-hosting/2026/06/25/Kb1o11wtiS.szmbcqnqy.jpg)
+![终端界面](https://img.lingxi9374.top/lingxi-image-hosting/2026/06/25/WindowsTerminal_fEeR0j8MOZ.86ubk48vhq.jpg)
 [/grid]
 
 这么折腾下来，开机只占了 6.1 GB 左右，不必担心美化对性能带来的负面效果（但是启动了 WSL 或者打开 IDE 或游戏，再挂个 QQ，内存就差不多吃满了）
@@ -168,8 +168,8 @@ Acer 听起来虽然没那么大众，但它推出的性价比游戏本系列暗
 双系统另一侧我选择了 Linux Mint 22.3，桌面环境使用 KDE Plasma 5.27 (因为它上游发行版是 Ubuntu 24.04 LTS，所以没有 Plasma 6)，这是使用 Layan 主题与 Colloid 图标折腾下来的效果:
 
 [grid]
-![Linux 桌面美化](https://img.lingxi9374.top/blogsite-images/acer-shadow-knight-qing-7/Screenshot_20260625_231207.1hsvvep2si.png)
-![终端 Fastfetch 输出](https://img.lingxi9374.top/blogsite-images/acer-shadow-knight-qing-7/Screenshot_20260625_231305.77e86zjgbw.png)
+![Linux 桌面美化](https://img.lingxi9374.top/lingxi-image-hosting/2026/06/25/Screenshot_20260625_231207.1hsvvep2si.png)
+![终端 Fastfetch 输出](https://img.lingxi9374.top/lingxi-image-hosting/2026/06/25/Screenshot_20260625_231305.77e86zjgbw.png)
 [/grid]
 
 ### 外设
