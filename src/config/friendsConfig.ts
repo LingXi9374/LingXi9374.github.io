@@ -24,7 +24,7 @@ export const friendsPageConfig: FriendsPageConfig = {
 export const friendsConfig: FriendLink[] = [
 	{
 		title: "Cloverta 的博客",
-		imgurl: "https://blog.cloverta.top/images/marisa.png",
+		imgurl: "https://cloverta.top/images/avatar.jpg",
 		desc: "见字如晤，展信舒颜。楮墨有限，不尽欲言。\n欢迎来到三叶的博客。",
 		siteurl: "https://blog.cloverta.top",
 		tags: ["Blog"],
@@ -58,6 +58,15 @@ export const friendsConfig: FriendLink[] = [
 		weight: 7,
 		enabled: true,
 	},
+	{
+		title: "YuYuBM的个人网站",
+		imgurl: "https://yuyubm.github.io/assets/rgbblock.svg",
+		desc: "一个看似简陋的页面却还有各种东西的小网站",
+		siteurl: "https://yuyubm.github.io/",
+		tags: ["Blog"],
+		weight: 6,
+		enabled: true,
+	}
 ];
 
 // 获取启用的友链并进行排序
