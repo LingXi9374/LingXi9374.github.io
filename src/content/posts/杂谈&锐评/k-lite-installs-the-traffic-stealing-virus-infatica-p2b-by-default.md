@@ -15,7 +15,7 @@ seriesOrder: 4
 
 于是乎，我安装 PotPlayer 播放器之后不像以前一样啥都不配置直接开箱即用了，而是研究起怎样解码画质更好、效率更高、调用 GPU 更积极。
 
-我参考了 [某乎上面的一篇文章](https://zhuanlan.zhihu.com/p/2055381775136952981) ，跟着配置了起来。但和文章不同的是，我并没有直接安装 [LAV Filters](https://github.com/Nevcairiel/LAVFilters) 与 [madVR](https://madshi.net/)，反而无意间在哔站上看到有人推荐 [K-Lite Codec Pack](https://www.codecguide.com/) 这个解码整合包:spoiler[~~懒人包~~]。那什么是 K-Lite Codec Pack你？
+我参考了 [某乎上面的一篇文章](https://zhuanlan.zhihu.com/p/2055381775136952981) ，跟着配置了起来。但和文章不同的是，我并没有直接安装 [LAV Filters](https://github.com/Nevcairiel/LAVFilters) 与 [madVR](https://madshi.net/)，反而无意间在哔站上看到有人推荐 [K-Lite Codec Pack](https://www.codecguide.com/) 这个解码整合包:spoiler[~~懒人包~~]。那什么是 K-Lite Codec Pack 呢？
 
 [K-Lite Codec Pack](https://en.wikipedia.org/wiki/K-Lite_Codec_Pack) 是一款适用于 Windows 系统的国外免费解码器合集，通过集成 `BSplayer`、`DivX`、`XviD` 等解码组件扩展多媒体播放功能，支持 `AVI`、`MKV`、`MP4` 等主流格式播放。软件包含 `Basic`、`Standard`、`Full` 及 `Mega` 等多种版本，其中 `Full` 版额外集成31种扩展组件，`Mega` 版本则整合 `Full` 版与 `Real Alternative` 等组件以支持更多影音格式。
 
@@ -77,9 +77,9 @@ K-Lite 由于它是闭源的专有软件，打包者 \/ 作者未知且已不可
 
  - 在软件供应链中主要维护者主动掺毒的 (无论开源闭源，被供应链攻击投毒的不算)
  - 软件许可证限制过于不合理的 (如 [LTCat](https://afdian.com/a/LTCat) 的 [PCL2](https://github.com/Meloong-Git/PCL) [发射器](https://zh.wikipedia.org/wiki/%E5%8F%91%E5%B0%84%E5%8F%B0))
- - 使用 <ruby>[LLM](https://zh.wikipedia.org/wiki/%E8%B6%85%E6%99%BA%E8%83%BD#%E7%89%B9%E6%9C%97%E6%99%AE%E9%87%8D%E5%91%BD%E5%90%8D%E4%BA%8B%E4%BB%B6)<rt><big>~~溜溜梅~~</big></rt></ruby> 辅助开发却毫无工程思维规划，无心维护做出[一坨](https://zh.wikipedia.org/wiki/AI%E5%9E%83%E5%9C%BE)的
+ - 使用 <ruby>[LLM](https://zh.wikipedia.org/wiki/%E8%B6%85%E6%99%BA%E8%83%BD#%E7%89%B9%E6%9C%97%E6%99%AE%E9%87%8D%E5%91%BD%E5%90%8D%E4%BA%8B%E4%BB%B6)<rt><big>~~溜溜梅~~</big></rt></ruby> 辅助开发却毫无工程思维规划，无心维护做出[一坨大粪](https://zh.wikipedia.org/wiki/AI%E5%9E%83%E5%9C%BE)的
 
-经过某群群友的指引明路下，[NOVA](https://github.com/hcmlab/nova) 和 [Shark007Codecs](https://shark007.net/index.html) 的确是不错的解码器(或类似物)替代品。至于好不好用只能等笔者以后亲自尝试体验一下咯）。
+经过某群群友的指引明路下，[Shark007Codecs](https://shark007.net/index.html) 的确是不错的解码器替代品，它由 [NOVA](https://github.com/hcmlab/nova) 这个开源项目引荐。至于好不好用只能等笔者以后亲自尝试体验一下咯）。
 
 ::github{repo="hcmlab/nova"}
 
