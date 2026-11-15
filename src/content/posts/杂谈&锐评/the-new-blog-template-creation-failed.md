@@ -82,6 +82,6 @@ DSH 我使用 NPX (NPM) 运行然后安装了亿些必备的插件后就动手�
 
 ## 总结
 
-这次的 Vibe 过程不是很顺心的结束了。与以前我使用 Gemini CLI 白嫖 Gemini 3.1 Pro 进行 Vibe Coding 好几个月的经历 (详见[此视频](https://www.bilibili.com/video/BV143tbz1Eb2/)) 对比来看，现在的 Vibe 项目不单单只依靠“许愿”与所谓的基本工程素养撑起来了，还需要用户对模型 Agent 能力的把握与精准调教。但无论怎样，实际上 Vibe 这样的“实践”根本不可能从中获取到新知，宁愿拿这点钱去烧 Token <ruby><rb>许愿</rb><rt><big>Wish/Vow</big></rt></ruby>，不如让我抱着啃 Python 教程电子书有用。我现在难以理解哔站上那些动不动用 GPT 6 Astra，Claude Fable/Opus 5.5 这种烧钱大户的小登 UP 主，去 Vibe 一个超级屎山的意图与价值了，甚至他们的工程思维也许没有我的强 (笑)，如果后面闲得慌了我可能还会专门写长篇大论去锐评 (绷)。
+这次的 Vibe 过程不是很顺心的结束了。与以前我使用 Gemini CLI 白嫖 Gemini 3.1 Pro 进行 Vibe Coding 好几个月的经历 (详见[此视频](https://www.bilibili.com/video/BV143tbz1Eb2/)) 对比来看，现在的 Vibe 项目不单单只依靠“许愿”与所谓的基本工程素养撑起来了，还需要用户对模型 Agent 能力的把握与精准调教。但无论怎样，实际上 Vibe 这样的“实践”根本不可能从中获取到新知，宁愿拿这点钱去烧 Token <ruby>许愿<rt><big>Wish/Vow</big></rt></ruby>，不如让我抱着啃 Python 教程电子书有用。我现在难以理解哔站上那些动不动用 GPT 6 Astra，Claude Fable/Opus 5.5 这种烧钱大户的小登 UP 主，去 Vibe 一个超级屎山的意图与价值了，甚至他们的工程思维也许没有我的强 (笑)，如果后面闲得慌了我可能还会专门写长篇大论去锐评 (绷)。
 
 ~~若是从此开始的半年内我还没有在编程方面得到任何进步，我当场就把整个 Blog 站点吃了！ (bushi)~~

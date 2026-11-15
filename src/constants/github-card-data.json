@@ -10,5 +10,11 @@
 		"language": "Astro",
 		"avatarUrl": "https://avatars.githubusercontent.com/u/25200299?v=4",
 		"license": "MIT"
+	},
+	"xpoet/picx": {
+		"description": "🏞️ PicX，免费、安全的一站式在线图片处理平台。",
+		"language": "TypeScript",
+		"avatarUrl": "https://avatars.githubusercontent.com/u/24516169?v=4",
+		"license": "AGPL-3.0"
 	}
 }
